@@ -9,11 +9,11 @@ gem "paperclip", "~> 2.4"
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'dynamic_form'
 
-# Deploy with Capistrano
-# gem "capistrano"
+group :development, :test do
+  gem 'ruby-debug19'
+  gem "capistrano"
+end
 
-# To use debugger
-# gem "ruby-debug"
 
 # Bundle the extra gems:
 # gem "bj"
