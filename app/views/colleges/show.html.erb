@@ -1,0 +1,22 @@
+<table class="details">
+  <tr>
+    <th><%= label :name, "Name:" %></th>
+    <td><%= @college.name %></td>
+  </tr>
+  <tr>
+    <th><%= label :short_name, "Short Name:" %></th>
+    <td><%= @college.short_name %></td>
+  </tr>
+  <tr>
+    <th><%= label :mascot, "Mascot:" %></th>
+    <td><%= @college.mascot %></td>
+  </tr>
+  <%= render :partial => "addresses/show", :locals => {:address => @college.address, :in_table => true} %>
+  <tr>
+    <th><%= label :description, "Description:" %></th>
+    <td><%= @college.description %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_college_path(@college) %> |
+<%= link_to 'Back', colleges_path %>

@@ -1,0 +1,98 @@
+<div>
+  <div class="big_column">
+    <h1>
+      <%= @listing.college %>
+      <span style="font-size: 0.9em;font-weight:normal;"><%= @listing %></span>
+      <span style="font-size: 0.8em;color: orange;font-weight:bold;"><%= number_to_currency(@listing.price_per_month) %></span>
+    </h1>
+    
+    <div style="border: 1px solid green">
+      <!-- Lightbox and shadowbox -->
+      <% @listing.images.each do |image| %>
+        <%= image_tag image.doc.url(:medium), :class => "picture_frame" %>
+        <br />
+      <% end %>
+    </div>
+    
+    <table class="form">
+      <% if @listing.community %>
+        <tr>
+          <th>Community:</th>
+          <td>
+            <%= @listing.community %> (see all <%= link_to "#{@listing.community} ads", 
+              listings_path(:filter => {:community_id => @listing.community_id}) %> )
+          </td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.preferred_gender %>
+        <tr>
+          <th>Preferred Gender:</th>
+          <td><%= @listing.preferred_gender %></td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.available_bedrooms || @listing.total_bedrooms %>
+        <tr>
+          <td colspan="2">
+            <% if @listing.total_bedrooms %>
+              <%= pluralize(@listing.total_bedrooms, "room") %> available 
+              <% if @listing.available_bedrooms %>
+                out of <%= @listing.available_bedrooms %> total <%= pluralize(@listing.available_bedrooms, "bedroom") %>
+              <% end %>
+            <% else %>
+              <%= @listing.available_bedrooms %> total <%= pluralize(@listing.available_bedrooms, "bedroom") %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.available_on %>
+        <tr>
+          <th>Available:</th>
+          <td><%= @listing.available_on.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+      
+      <tr>
+        <th>Description:</th>
+        <td><%= @listing.description %></td>
+      </tr>
+      <tr>
+        <th>Contact:</th>
+        <td>
+          <% if @listing.contact_email %>
+            <%= @listing.contact_email %>
+          <% end %>
+          <% if @listing.contact_phone %>
+            <%= image_tag("phone.png") %>
+            <%= @listing.contact_phone %>
+          <% end %>  
+        </td>
+      </tr>
+    </table>
+  </div>
+  
+  <div class="small_column">
+    <%= render :partial => "addresses/map", :object => @map %>
+  
+  <div class="for_rent feature_box">
+    <h2>Features</h2>
+    
+    <% Feature.all(:conditions => "utility IS NOT TRUE").each do |feature| %>
+      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
+      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
+    <% end %>
+    <p>&nbsp;</p>
+    <h2>Utilities <span class="small_info">(included in cost)</span></h2>
+    
+    <% Feature.find_all_by_utility(true).each do |feature| %>
+      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
+      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
+    <% end %>
+  </div>
+  
+  </div>
+
+  <div class="clear"></div>
+</div>

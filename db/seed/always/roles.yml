@@ -1,0 +1,7 @@
+admin:
+  id: 1
+  name: Admin
+    
+manager:
+  id: 2
+  name: Manager

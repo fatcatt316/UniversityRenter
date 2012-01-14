@@ -1,0 +1,48 @@
+<%   
+  if f.object 
+    div_id = f.object.new_record? ? "new_address_NEWATTRIBUTEDIV" : "address_#{f.object.id.to_s}"  
+  else
+    div_id = 'address_0'
+  end
+  
+  css_class ||= ""
+%>
+
+
+<% if !defined?(editable) || (defined?(editable) && editable) %>
+  <tbody id="<%= div_id %>" class="address_form fields <%= css_class %>">
+    <tr>
+      <th><%= f.label :line1, "Address:" %></th><td><%= f.text_area :line1, :size => '32x3' %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :city_state, "City, ST:" %></th><td><span id='<%= "city_#{div_id}" %>'><%= f.object.city %></span>,
+        <span id='<%= "state_#{div_id}" %>'><%= f.object.state.try(:abbreviation) %></span>
+        </td>
+    </tr>
+    <tr>
+      <th>
+        <%= f.label :zip, "ZIP:" %>
+      </th>
+      <td>
+        <%= f.text_field :zip, :size => 5, :maxlength => 5, :id => "zip_#{div_id}", 
+          :onkeyup => "if (this.value.length == 5 ){
+            #{remote_function(
+            :url => {:controller => :addresses, :action => :get_city_and_state, :div_id => div_id},
+            :with => %{'zip_code=' + $('zip_#{div_id}').value},
+            :method => :get)}};" %>
+      </td>
+    </tr>
+    <%= f.hidden_field :city, :id => "#{div_id}_city" %>
+    <%= f.hidden_field :state_id, :id => "#{div_id}_state_id" %>
+  </tbody>
+  
+<% else %>
+  <tbody>
+    <tr>
+      <th><%= f.label :line1, "Mailing Address:" %></th><td><%= f.object.line1 %></td></tr><tr>
+      <th>City: </th><td><%= f.object.city %></td></tr><tr>
+      <th>State: </th><td><%= f.object.state %></td></tr><tr>
+      <th>Zip: </th><td><%= f.object.zip %></td>
+    </tr>
+  </tbody>
+<% end -%>

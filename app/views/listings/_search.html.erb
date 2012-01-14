@@ -1,0 +1,35 @@
+<%= form_for @listings_search do |f| -%>
+  <table class="search_table">
+    <tr class="title">
+      <td colspan="4">Search Listings</td>
+    </tr>
+    <tr>
+      <th>Type:</th>
+      <th colspan=3><%= f.select :wanted_is, [["for rent AND wanted", nil], ["for rent", false], ["wanted", true]], {}, :class => "search_select" %></th>
+    </tr>
+    <tr>
+      <th>College:</th>
+      <td colspan=3>
+        <%= f.select :college_id_eq, College.select_options(:include_blank => true), {}, 
+           :onchange => remote_function(
+           :with => "'college_id=' + this.value",
+           :url => {:controller => :communities, :action => :update_dropdown, :search_box => true},
+           :method => :get), 
+           :class => "search_select" %>
+      </td>
+    </tr>
+    <tr id="community_dropdown">
+      <%= render :partial => "communities/dropdown", :locals => {:f => f, :search_box => true, :college => @current_college} %>
+    </tr>
+    <tr>
+      <th>Min Price:</th>
+      <td>$<%= f.text_field :price_per_month_gte, :size => 3 %></td>
+      <th>Max Price:</th>
+      <td>$<%= f.text_field :price_per_month_lte, :size => 3 %></td>
+    </tr>
+    <tr class="search_button">
+      <td colspan=4><%= f.submit "Search", :class => "button black medium" %></td>
+    </tr>
+  </table>
+  <!--  features, gender, brs, baths, etc. -->
+<% end %>

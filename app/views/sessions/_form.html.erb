@@ -1,0 +1,18 @@
+<% if @current_user %>
+  <%= @current_user %>
+  <%= link_to_remote "Logout", :url => logout_path %>
+<% else %>
+  <%= form_tag sessions_path do %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email], :size => 15 %>
+    
+    <%= label_tag :password %>
+    <%= password_field_tag :password, :size => 10 %>
+    
+    <%= submit_tag "Log in" %>
+    <br />
+    No account? <%= link_to "Sign up here", signup_path %>
+    <%#= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <%#= label_tag :remember_me %>
+  <% end %>
+<% end %>

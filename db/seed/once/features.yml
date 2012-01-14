@@ -1,0 +1,20 @@
+<% features = [
+    {:name => "bus route" },
+    {:name => "pool" },
+    {:name => "washer and dryer" },
+    {:name => "gym" },
+    {:name => "tennis court" },
+    {:name => "basketball court" },
+    {:name => "electricity", :utility => true },
+    {:name => "internet", :utility => true},
+    {:name => "cable tv", :utility => true},
+    {:name => "water", :utility => true},
+    { :name => "dogs okay"},
+    { :name => "cats okay"},
+  ] 
+%>
+<% features.each_with_index do |feature, i| %>
+  feature_<%= i %>:
+    name: <%= feature[:name] %>
+    utility: <%= feature[:utility] %>
+<% end %>

@@ -1,0 +1,21 @@
+<% college    ||= nil %>
+<% search_box ||= nil %>
+
+<% if defined?(f) && f %>
+  <% if search_box %>
+    <th><%= f.label :community_id_eq, "Community:" %></th>
+    <td colspan=3>
+      <%= f.select :community_id_eq, Community.select_options(:include_blank => true, :college_id => college.try(:id)), 
+        {}, :class => "search_select" %>
+    </td>
+  <% else %>
+    <th><%= f.label :community_id, "Community:" %></th>
+    <td><%= f.select :community_id, Community.select_options(:include_blank => true, :college_id => college.try(:id)), 
+        {}, :class => "search_select" %></td>
+  <% end %>
+<% else %>
+  <th><%= label 'search_community_id_eq', "Community:" %></th>
+  <td colspan=3><%= select_tag 'search[community_id_eq]', 
+      options_for_select( Community.select_options(:include_blank => true, :college_id => college.try(:id))), 
+      :class => "search_select" %></td>
+<% end %>

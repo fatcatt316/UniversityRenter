@@ -1,0 +1,36 @@
+<h1>Colleges</h1>
+
+<table class="list_table">
+  <tr>
+    <th>College</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Ads</th>
+    
+    <% if @current_user && @current_user.admin? %>
+      <th class="icons"></th>
+    <% end %>
+  </tr>
+
+  <% @colleges.each do |college| %>
+    <tr class="<%= cycle('even', 'odd') %>">
+      <td><%= link_to h(college), college %></td>
+      <td><%= college.address.try(:city) %></td>
+      <td><%= college.address.try(:state).try(:abbreviation) %></td>
+      <td><%= link_to "#{college.listings.count} Ads", listings_path(:filter => {:college_id => college.id}) %></td>
+      
+      <% if @current_user && @current_user.admin? %>
+        <td class="icons">
+          <%= link_to '', edit_college_path(college), :class => "edit_link" %>
+          <%= link_to '', college, :confirm => 'Are you sure?', :method => :delete, :class => "delete_link" %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<% if @current_user && @current_user.admin? %>
+  <%= link_to 'New college', new_college_path %>
+<% end %>

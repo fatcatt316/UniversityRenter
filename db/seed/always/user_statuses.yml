@@ -1,0 +1,7 @@
+pending:
+  name: Pending
+banned:
+  name: Banned
+active:
+  name: Active
+  

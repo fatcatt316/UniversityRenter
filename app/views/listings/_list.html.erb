@@ -1,0 +1,22 @@
+<% if listings.empty? %>
+  <h3>Dang, no ads found</h3>
+<% else %>
+  <table class="list_table">
+    <tr>
+      <th>Title</th>
+      <% unless @current_college %>
+        <th>College</th>
+      <% end %>
+      <th>Price</th>
+      <th class="date_cell">Date</th>
+      <% if @current_user %>
+        <th class="icons">&nbsp;</th>
+      <% end %>
+    </tr>
+    <% listings.each do |listing| %>
+      <%= render :partial => "listings/row", :locals => {:listing => listing} %>
+    <% end %>
+  </table>
+<% end %>
+
+<%= will_paginate listings %>

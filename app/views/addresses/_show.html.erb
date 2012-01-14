@@ -1,0 +1,10 @@
+<% in_table ||= false %>
+
+<% if in_table %>
+  <tr>
+    <th style="vertical-align: top"><%= label :address, "Address:" %></th>
+    <td><%= line_break(address.to_s) %></td>
+  </tr>
+<% else %>
+  <%= address.to_s %>
+<% end %>

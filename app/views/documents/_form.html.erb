@@ -1,0 +1,23 @@
+<div class="file_uploader_box">
+  <% if !defined?(editable) || editable %>
+    <div class="fields">
+      <p>
+        <% if f.object.image? %>
+          <%= image_tag f.object.doc.url(:medium), :class => "picture_frame" %><br />
+          <%= f.object.to_s %>
+          <br />
+        <% end %>
+        <%= f.check_box :primary %> <%= f.label :primary %><br />
+        Title: <%= f.text_field :title %><br />
+        <%= f.file_field :doc %>
+        <%= remove_child_link image_tag('cross.png', :alt => 'Delete', :title => 'Delete'), f %><br />
+      </p>
+    </div>
+  <% else -%>
+    <br />
+    <% if f.object.image? %>
+      <%= image_tag f.object.doc.url(:medium), :class => "picture_frame" %>
+      <br />
+    <% end %>
+  <% end -%>
+</div>

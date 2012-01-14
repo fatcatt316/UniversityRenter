@@ -1,0 +1,109 @@
+<div>
+  <div class="big_column">
+    <span class="required" style="font-weight: bold">* = required</span><br />
+    <%= f.radio_button :wanted, false, :onclick => "hideAndDisable('wanted');showAndEnable('for_rent');" %> 
+    <%= f.label 'wanted_false', "for rent", :class => "rent_or_wanted_label" %> 
+    <%= f.radio_button :wanted, true, :onclick => "hideAndDisable('for_rent');showAndEnable('wanted');" %> 
+    <%= f.label 'wanted_true', "wanted", :class => "rent_or_wanted_label" %><br />
+    
+    <table class="form">
+      <tr>
+        <th class="required">* <%= f.label :college_id, "College:" %></th>
+        <td>
+          <%= f.select :college_id, College.select_options(:include_blank => true), {}, 
+             :onchange => remote_function(
+             :with => "'college_id=' + this.value",
+             :url => {:controller => :communities, :action => :update_dropdown}, 
+             :method => :get), 
+             :class => "search_select" %>
+        </td>
+      </tr>
+      
+      <tr id="community_dropdown">
+        <%= render :partial => "communities/dropdown", :locals => {:f => f, :college => @current_college} %>
+      </tr>
+      
+      <tr>
+        <th class="required">* <%= f.label :title, "Title:" %></th>
+        <td><%= f.text_field :title, :size => 60 %></td>
+      </tr>
+      <tr>
+        <th colspan=2 class="required" style="text-align: center;">* Contact Info (email or phone):</th>
+      </tr>
+      <tr>
+        <th><%= f.label :contact_email, "Email:" %></th>
+        <td><%= f.text_field :contact_email %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :contact_phone, "Phone:" %></th>
+        <td><%= f.text_field :contact_phone %></td>
+      </tr>
+
+      <%= f.fields_for :address do |address_form| %>
+        <%= render :partial => 'addresses/form', :locals => { :f => address_form, 
+          :editable => f.object.editable?(@current_user), :css_class => "for_rent required" } %>
+      <% end %>
+      
+      <tr class="for_rent">
+        <th><%= f.label :available_bedrooms, "Available bedrooms:" %></th>
+        <td><%= f.select :available_bedrooms, [""] + (1..10).to_a %></td>
+      </tr>
+      <tr class="for_rent">
+        <th><%= f.label :total_bedrooms, "Total bedrooms in unit:" %></th>
+        <td><%= f.select :total_bedrooms, [""] + (1..10).to_a %></td>
+      </tr>
+      <tr class="for_rent required">
+        <th>* <%= f.label :price_per_month, "Price per month:" %></th>
+        <td>$<%= f.text_field :price_per_month, :size => "4" %></td>
+      </tr>
+      <tr class="for_rent">
+        <th><%= f.label :available_on, "When is this available?" %></th>
+        <td><%= f.text_field :available_on %></td>
+      </tr>
+      <tr class="for_rent">
+        <th><%= f.label :preferred_gender_id, "Preferred gender of renter:" %></th>
+        <td><%= f.select :preferred_gender_id, Gender.select_options(:include_blank => true) %></td>
+      </tr>
+      
+      <tr class="wanted">
+        <th><%= f.label :available_bedrooms, "# of Bedrooms Needed:" %></th>
+        <td><%= f.select :available_bedrooms, [""] + (0..10).to_a %></td>
+      </tr>
+      <tr class="wanted">
+        <th><%= f.label :available_on, "Date needed:" %></th>
+        <td><%= f.text_field :available_on %></td>
+      </tr>
+      <tr class="wanted">
+        <th><%= f.label :preferred_gender_id, "Gender:" %></th>
+        <td><%= f.select :preferred_gender_id, Gender.select_options(:include_blank => true) %></td>
+      </tr>
+      
+      <tr>
+        <th><%= f.label :description, "Description:" %></th>
+        <td><%= f.text_area :description, :size => "50x5" %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="for_rent feature_box">
+    <h2>Features</h2>
+    
+    <% Feature.all(:conditions => "utility IS NOT TRUE").each do |feature| %>
+      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
+      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
+    <% end %>
+    <p>&nbsp;</p>
+    <h2>Utilities <span class="small_info">(included in cost)</span></h2>
+    
+    <% Feature.find_all_by_utility(true).each do |feature| %>
+      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
+      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
+    <% end %>
+  </div>
+  
+  <div class="small_column">
+    <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => f.object.editable?(@current_user) } %>
+  </div>
+
+  <div class="clear"></div>
+</div>

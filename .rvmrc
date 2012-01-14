@@ -1,0 +1,6 @@
+# If you currently have a gemset that is not
+# of the same name. Rename it with:
+# rvm gemset rename old_name new_name
+
+rvm_gemset_create_on_use_flag=1
+rvm use 1.9.2@ur3

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <title><%= show_title %></title>
+    <meta name="description" content="current_site.home_meta_description">
+    <meta name="keywords" content="current_site.home_meta_keywords">
+  
+    <%= stylesheet_link_tag 'application', :media => "all" %>
+    <%#= stylesheet_link_tag 'prettyPhoto' %>
+
+    <!-- Comment out the line below when testing from a different computer -->
+    <!-- FIND A RAILS 3 WAY TO DO GOOGLE MAPS -->
+    <%#= GMap.header %><!-- includes Javascript for Google Maps -->
+    <%= @map.to_html unless @map.blank? %>
+  	
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag 'jquery-1.6.1.min.js'%>
+    <script type="text/javascript">
+      $.noConflict();
+      // Code that uses other library's $ can follow here.
+    </script>
+    <%#= javascript_include_tag 'jquery.prettyPhoto.js' %>
+    <%= javascript_include_tag 'custom_jquery.js' %>
+  
+    <%= yield :javascript %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        
+        <div id="logo_box">
+          <%= link_to image_tag("logo.png", :alt => "University Renter", :title => "University Renter"), listings_path %>
+        </div>
+        
+        <div class="right_header">
+          <div id="upper_login" class='login_form'>
+              <%= render :partial => "sessions/form" %>
+          </div>
+          <% if @current_college %>
+            <h3><%= @current_college %></h3>
+          <% end %>
+        </div>
+        
+        <div class="clear"></div>
+      </div>
+      
+      <div id="navbar">
+        <%= render :partial => "shared/navbar", :locals => {:current_user => @current_user} %>
+      </div>
+      
+      <div id="flash">
+        <% flash.each do |name, msg| %>  
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>  
+        <% end %>
+      </div>
+      
+      <div id="main">
+        <%= yield %>
+      </div>
+    
+    </div>
+  </body>
+</html>
