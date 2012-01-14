@@ -1,0 +1,3 @@
+TODO: Convert to Rails 3
+ flash[:notice]
+ select_options
