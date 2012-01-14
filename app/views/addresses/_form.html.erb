@@ -15,8 +15,10 @@
       <th><%= f.label :line1, "Address:" %></th><td><%= f.text_area :line1, :size => '32x3' %></td>
     </tr>
     <tr>
-      <th><%= f.label :city_state, "City, ST:" %></th><td><span id='<%= "city_#{div_id}" %>'><%= f.object.city %></span>,
-        <span id='<%= "state_#{div_id}" %>'><%= f.object.state.try(:abbreviation) %></span>
+      <th><%= f.label :city_state, "City, ST:" %></th>
+        <td>
+          <span id='<%= "city_#{div_id}" %>'><%= f.object.city %></span>,
+          <span id='<%= "state_#{div_id}" %>'><%= f.object.state.try(:abbreviation) %></span>
         </td>
     </tr>
     <tr>
