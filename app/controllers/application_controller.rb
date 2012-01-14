@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  layout 'reddity'
-  
   private
   
   def require_user
