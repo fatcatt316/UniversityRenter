@@ -25,24 +25,24 @@ module ApplicationHelper
   
   ########### Complex forms helpers ##########
   
+  def add_child_link(name, f, association, options={})
+    options[:class]   ||= "add_link"
+    options[:where]   ||= "before"
+    options[:partial] ||= "#{association.to_s.singularize}_fields"
+    new_object = f.object.class.reflect_on_association(association).klass.new
+    
+    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |nested_form|
+      render(:partial => options[:partial], :locals => { :f => nested_form })
+    end
+        
+    link_to_function(name, ("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\", \"#{options[:where]}\")"), 
+      :class => options[:class])
+  end
+  
+  
+  
   def remove_child_link(name, f)
     f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this)")
-  end
-
-  def add_child_link(name, f, method, options={})
-    css_class = options[:class] || ""
-    where = options[:where] || "before"
-    fields = new_child_fields(f, method, {:partial => options[:partial]})
-    link_to_function(name, h("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\", \"#{where}\")"), :class => css_class)
-  end
-
-  def new_child_fields(form_builder, method, options = {})
-    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
-    options[:partial] ||= method.to_s.singularize
-    options[:form_builder_local] ||= :f
-    form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
-      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
-    end
   end
   
   ########### END Complex forms helpers END ##########

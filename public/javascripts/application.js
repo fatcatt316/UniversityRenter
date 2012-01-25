@@ -1,7 +1,6 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 /////// Nested forms //////////
-
 function remove_fields(link) {
   jQuery(link).prev("input[type=hidden]").val("1");
   jQuery(link).closest(".fields").hide();
@@ -19,10 +18,6 @@ function add_fields(link, association, content, where) {
 	} else {
 		jQuery(link).parent().after(content.replace(regexp, new_id).replace(divregexp, new_id));
 	}
-}
-
-function insert_fields(link, association, content, where) {
-	add_fields(link, association, content, where);
 }
 
 /////// END Nested forms END //////////

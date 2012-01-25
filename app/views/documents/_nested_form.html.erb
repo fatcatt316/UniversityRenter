@@ -1,8 +1,7 @@
 <div id="document_wrapper">
   <strong>Pictures:</strong>&nbsp;&nbsp;&nbsp;&nbsp;
   <% if editable %>
-    <span><%= add_child_link "New Image", f, :documents, 
-    {:partial => 'documents/form', :where => 'bottom', :class => 'add_link'} %></span><br />
+    <span><%= add_child_link "New Image", f, :documents, {:partial => 'documents/form', :where => 'bottom'} %></span><br />
   <% end -%>
 
   <%= f.fields_for :documents do |document_form| %>

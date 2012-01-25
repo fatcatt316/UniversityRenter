@@ -126,6 +126,8 @@ select, textarea, input {
 }
 
 .file_uploader_box{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid black;
 	padding: 8px;
 	width: 270px;
@@ -255,9 +257,11 @@ select.search_select{
 	float: left;
 	width: 31%;
 }
-.feature_box{
+.feature_box {
 	float: left;
 	width: 310px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid green;
 	background-color: #BEE9BE;
 	margin-left: 10px;
