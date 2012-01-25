@@ -23,7 +23,7 @@
       <% unless @current_college %>
         <td><%= community.college %></td>
       <% end %>
-      <td><%= link_to h(community), community %></td>
+      <td><%= link_to community, community %></td>
       <td><%= community.address %></td>
       <td>
         <%= link_to "#{community.listings.count} Ads", 

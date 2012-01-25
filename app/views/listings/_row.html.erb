@@ -1,7 +1,7 @@
 <tr id="listing_row_<%= listing.id %>" class="listing_row <%= cycle('even', 'odd') %>">
-  <td><%= link_to h(listing), listing %></td>
+  <td><%= link_to listing, listing %></td>
   <% unless @current_college %>
-    <td><%= link_to h(listing.college), listing.college %></td>
+    <td><%= link_to listing.college, listing.college %></td>
   <% end %>
   <td><%= number_to_currency(listing.price_per_month) %></td>
   <td class="date_cell"><%= listing.created_at.strftime("%m/%d/%y") %></td>

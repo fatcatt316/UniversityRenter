@@ -14,7 +14,7 @@
 
   <% @colleges.each do |college| %>
     <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= link_to h(college), college %></td>
+      <td><%= link_to college, college %></td>
       <td><%= college.address.try(:city) %></td>
       <td><%= college.address.try(:state).try(:abbreviation) %></td>
       <td><%= link_to "#{college.listings.count} Ads", listings_path(:filter => {:college_id => college.id}) %></td>
