@@ -11,13 +11,13 @@ class MakeFirstPeople
     end
     
     users = [{:email => "joe@universityrenter.com",
-              :password => "q1982tqn",
-              :password_confirmation => "q1982tqn",
+              :password => "password",
+              :password_confirmation => "password",
               :gender => gender,
               :user_status => active},
              {:email => "billy@universityrenter.com",
-              :password => "q1982tqn",
-              :password_confirmation => "q1982tqn",
+              :password => "password",
+              :password_confirmation => "password",
               :gender => gender,
               :user_status => active}]
     
@@ -26,6 +26,8 @@ class MakeFirstPeople
       user.user_roles.build(:role => admin)
       user.save!
     end
+    
+    puts "Change the passwords of the initial people!"
     
   end
 
