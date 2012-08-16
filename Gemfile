@@ -1,13 +1,15 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.7"
+gem "rails", "~>3.0.7"
 
 gem "mysql", "~>2.8.1"
+gem "geokit"
 gem "rake", "~>0.8.7"
-gem "sorcery"
+gem "sorcery", "~>0.7.6"
 gem "paperclip", "~> 2.4"
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'dynamic_form'
+gem "recaptcha", :require => "recaptcha/rails"
 
 group :development, :test do
   gem 'ruby-debug19'
