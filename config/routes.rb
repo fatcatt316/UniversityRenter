@@ -3,9 +3,15 @@ Ur3::Application.routes.draw do
   resources :addresses do
     collection do
       get :get_city_and_state
+      get :select_state
+      get :select_city
     end
   end
-  resources :colleges
+  resources :colleges do
+    member do
+      get :select
+    end
+  end
   resources :communities do
     collection do
       get :update_dropdown
