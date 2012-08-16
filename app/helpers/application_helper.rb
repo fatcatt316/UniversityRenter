@@ -2,8 +2,31 @@ module ApplicationHelper
   
   # TODO: Better SEO
   def show_title
-    return "TITLE FIX ME"
-    yield(:title) || controller.controller_name.titleize + ' ' + controller.action_name.titleize
+    title = "University Renter - "
+    if current_college
+      title << "#{current_college.short_name} student apartments in #{current_college.city_state} "
+    else
+      title << "Student Apartments, Subleases, and Roommates "
+    end
+    title << controller.controller_name.titleize
+    return title
+  end
+  
+  
+  def show_keywords
+    keywords = [current_college.name, "college student apartments", "off-campus townhomes", 
+      current_college.short_name, current_college.city_state, "roommate", "sublease", "rent"]
+    return keywords.compact.join(",")
+  end
+  
+  
+  def show_description
+    if current_college
+      description = "#{current_college.short_name} student apartments and townhomes in #{current_college.city_state} to rent or sublease near #{current_college.name}"
+    else
+      description = "Off-campus college student apartments and townhomes to rent or sublease.  Find a roommate or a place to rent near your university."
+    end
+    return description
   end
   
   
