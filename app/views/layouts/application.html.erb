@@ -3,10 +3,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <title><%= show_title %></title>
-    <meta name="description" content="current_site.home_meta_description">
-    <meta name="keywords" content="current_site.home_meta_keywords">
+    <%= render "shared/meta_content" %>
   
     <%= stylesheet_link_tag 'application', 'buttons', :media => "all" %>
     <%#= stylesheet_link_tag 'prettyPhoto' %>
@@ -22,6 +19,7 @@
       $.noConflict();
       // Code that uses other library's $ can follow here.
     </script>
+    <%= yield(:head) %>
     <%#= javascript_include_tag 'jquery.prettyPhoto.js' %>
     <%= javascript_include_tag 'custom_jquery.js' %>
   
@@ -37,7 +35,7 @@
         
         <div class="right_header">
           <div id="upper_login" class='login_form'>
-              <%= render :partial => "sessions/form" %>
+            <%= render :partial => "sessions/form" %>
           </div>
           <% if @current_college %>
             <h3><%= @current_college %></h3>
@@ -53,7 +51,7 @@
       
       <div id="flash">
         <% flash.each do |name, msg| %>  
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>  
+          <%= content_tag :div, msg, :id => "#{name}", :class => "message" %>
         <% end %>
       </div>
       
