@@ -1,0 +1,5 @@
+city_div = jQuery('#city_dropdown');
+city_div.html("<%= escape_javascript(render :partial => 'addresses/city_dropdown', :locals => {:state_id => state_id}) %>");
+
+college_div = jQuery('#college_results');
+college_div.html("<%= escape_javascript(render :partial => 'colleges/results', :locals => {:colleges => @colleges}) %>");

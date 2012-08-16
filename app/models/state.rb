@@ -7,4 +7,16 @@ class State < ActiveRecord::Base
   def to_s
     return name
   end
+  
+  
+  def self.select_options(options={})
+    select = self
+    if options[:having_colleges]
+      select = select.joins(:addresses).where("addresses.subject_type = 'College'")
+    end
+    
+    select = select.order("name ASC").all.map{|state| [state.name, state.id] }
+    select = [""].concat(select) if options[:include_blank]
+    return select
+  end
 end
