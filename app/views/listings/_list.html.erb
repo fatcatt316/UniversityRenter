@@ -4,12 +4,12 @@
   <table class="list_table">
     <tr>
       <th>Title</th>
-      <% unless @current_college %>
+      <% unless current_college %>
         <th>College</th>
       <% end %>
       <th>Price</th>
       <th class="date_cell">Date</th>
-      <% if @current_user %>
+      <% if current_user %>
         <th class="icons">&nbsp;</th>
       <% end %>
     </tr>

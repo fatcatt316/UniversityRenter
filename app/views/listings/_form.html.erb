@@ -1,9 +1,8 @@
 <div>
   <div class="big_column">
-    <span class="required" style="font-weight: bold">* = required</span><br />
-    <%= f.radio_button :wanted, false, :onclick => "hideAndDisable('wanted');showAndEnable('for_rent');" %> 
+    <%= f.radio_button :wanted, false %> 
     <%= f.label 'wanted_false', "for rent", :class => "rent_or_wanted_label" %> 
-    <%= f.radio_button :wanted, true, :onclick => "hideAndDisable('for_rent');showAndEnable('wanted');" %> 
+    <%= f.radio_button :wanted, true %> 
     <%= f.label 'wanted_true', "wanted", :class => "rent_or_wanted_label" %><br />
     
     <table class="form">
@@ -20,7 +19,7 @@
       </tr>
       
       <tr id="community_dropdown">
-        <%= render :partial => "communities/dropdown", :locals => {:f => f, :college => @current_college} %>
+        <%= render :partial => "communities/dropdown", :locals => {:f => f, :college => current_college} %>
       </tr>
       
       <tr>
@@ -41,7 +40,7 @@
 
       <%= f.fields_for :address do |address_form| %>
         <%= render :partial => 'addresses/form', :locals => { :f => address_form, 
-          :editable => f.object.editable?(@current_user), :css_class => "for_rent required" } %>
+          :editable => f.object.editable?(current_user), :css_class => "for_rent required" } %>
       <% end %>
       
       <tr class="for_rent">
@@ -101,8 +100,8 @@
     <% end %>
   </div>
   
-  <div class="small_column">
-    <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => f.object.editable?(@current_user) } %>
+  <div class="small_column for_rent">
+    <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => f.object.editable?(current_user) } %>
   </div>
 
   <div class="clear"></div>

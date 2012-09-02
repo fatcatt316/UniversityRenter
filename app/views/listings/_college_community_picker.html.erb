@@ -1,0 +1,27 @@
+<% filter ||= {} %>
+
+<% if current_college %>
+  <div>
+    <h3><%= current_college %><br><%= current_college.city_state %></h3>
+    <div style="font-weight: bold;font-size: 1.4em;">Communities</div>
+    <%= render :partial => "communities/list", :locals => {:communities => current_college.communities.order(:name)} %>
+  </div>
+<% else %>
+  <div>
+    <h3>Choose a College</h3>
+    <div style="margin-bottom: 10px;">
+      <div style="float:left;width: 60px;font-size: 16px;">
+        State:
+      </div>
+      <%= select_tag :state_id, 
+        options_for_select(State.select_options(:having_colleges => true, :include_blank => true), filter[:state_id]),
+        :class => "short_select" %>
+    </div>
+    <div id="city_dropdown" style="margin-bottom: 10px;">
+      <%= render :partial => "addresses/city_dropdown", :locals => {:state_id => params[:state_id]} %>
+    </div>
+    <div id="college_results">
+      <%= render :partial => "colleges/results", :locals => {:colleges => @colleges} %>
+    </div>
+  </table>
+<% end %>

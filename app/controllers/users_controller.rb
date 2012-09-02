@@ -13,10 +13,28 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    if @user.save
-      redirect_to root_url, :notice => "Signed up!"
-    else
-      render :new
+    
+    respond_to do |format|
+      if verify_recaptcha(:model => @user, :message => "Incorrect captcha message") && @user.save
+        auto_login(@user)
+        format.html { redirect_to root_url, :notice => "You're logged in and good to go!" }
+        format.js do
+          render :update do |page|
+            page << "jQuery('#absent_user').html('<strong>You\'re logged in and good to go!</strong>');"
+            page << "jQuery('#not_signed_in_warning').hide();"
+            page.replace_html('upper_login', :partial => 'sessions/form')
+          end
+        end
+      else
+        format.html { render :new, :warning => "Please fix your errors!" }
+        format.js do
+          error_message = @user.errors.map{|k,v| k == :base ? v : "#{k.to_s.titleize}: #{v}"}.join("<br />")
+          render :update do |page|
+            page << "Recaptcha.reload();"
+            page << "jQuery('#login_error_message').show().html('<strong>Please fix your errors</strong><br />#{escape_javascript(error_message)}');"
+          end
+        end
+      end
     end
   end
   

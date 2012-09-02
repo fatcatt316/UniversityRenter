@@ -1,6 +1,6 @@
-<% if @current_user %>
-  <%= @current_user %>
-  <%= link_to_remote "Logout", :url => logout_path %>
+<% if current_user %>
+  <%= current_user %>
+  <%= link_to "Logout", logout_path, :remote => true %>
 <% else %>
   <%= form_tag sessions_path do %>
     <%= label_tag :email %>

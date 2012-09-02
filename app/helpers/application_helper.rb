@@ -14,8 +14,8 @@ module ApplicationHelper
   
   
   def show_keywords
-    keywords = [current_college.name, "college student apartments", "off-campus townhomes", 
-      current_college.short_name, current_college.city_state, "roommate", "sublease", "rent"]
+    keywords = [current_college.try(:name), "college student apartments", "off-campus townhomes", 
+      current_college.try(:short_name), current_college.try(:city_state), "roommate", "sublease", "rent"]
     return keywords.compact.join(",")
   end
   

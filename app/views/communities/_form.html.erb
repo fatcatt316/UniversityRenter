@@ -27,5 +27,5 @@
 </table>
 
 <div>
-  <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => @current_user.admin? } %>
+  <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => current_user.admin? } %>
 </div>

@@ -1,0 +1,13 @@
+<% colleges ||= [] %>
+
+<div style="font-size: 16px;">
+  Select a College:
+</div>
+
+<% if colleges.blank? %>
+  <em>None found.</em>
+<% else %>
+  <% colleges.each do |college| %>
+    <%= link_to "#{h college} apartments", :controller => :colleges, :action => :select, :id => college.id %><br />
+  <% end %>
+<% end %>

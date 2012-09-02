@@ -1,21 +1,17 @@
 class CollegesController < ApplicationController
-
+  before_filter :admin_only, :except => [:index, :show, :select]
 
   def index
     @colleges = College.all
   end
 
   # NOT IN USE  
-  # def select
-  #   if params[:college_id] && @college = College.find_by_id(params[:college_id])
-  #     session[:college_id] = @college.id
-  #     redirect_to ads_path
-  #   else
-  #     session[:college_id] = nil
-  #     flash[:warning] = "Dang, try picking a college again."
-  #     redirect_to colleges_path
-  #   end
-  # end
+  def select
+    college              = College.find_by_id(params[:id])
+    session[:college_id] = college.try(:id)    
+    flash[:warning]      = "Dang, try picking a college again." if college.blank?
+    redirect_to listings_path
+  end
 
 
   def show

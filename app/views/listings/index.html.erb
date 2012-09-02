@@ -1,20 +1,13 @@
 <div class="left_side">
-  <h1>
-    <% if @current_college %>
-      <%= @current_college %> 
-    <% end %>
-    Ads
-    <span class="new_link_holder"><%= link_to 'Post an Ad!', new_listing_path, :class => 'add_link' %></span>
-  </h1>
+  <h1><%= listings_header %></h1>
 
   <div id="listings_list">
-    <%= render :partial => "listings/list", :locals => {:listings => @listings} %>
+    <%= render :partial => "list", :locals => {:listings => @listings} %>
   </div>
 </div>
 
-<div id="search_box">
-  FIND A RAILS 3 SEARCH GEM!
-  <%#= render :partial => "listings/search", :locals => {:filter => params[:filter]} %>
+<div id="college_community_picker">
+  <%= render :partial => "college_community_picker", :locals => {:filter => params[:filter]} %>
 </div>
 
 <div class="clear"></div>

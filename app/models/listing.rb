@@ -62,6 +62,23 @@ class Listing < ActiveRecord::Base
   end
   
   
+  def self.search(options={})
+    joins = []
+    listing_search = self
+    
+    # unless current_user.try(:admin?)
+    listing_search = listing_search.where(:ad_status_id => AdStatus.where("name = 'Approved'").first)
+    if options[:college_id]
+      listing_search = listing_search.where(:college_id => options[:college_id])
+    end
+    
+    options[:order] ||= "created_at DESC"
+    listing_search = listing_search.order(options[:order])
+    
+    return listing_search
+  end
+  
+  
   private
   
   def contact_email_or_contact_phone

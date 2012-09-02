@@ -9,10 +9,14 @@ class College < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_presence_of :address
   
-  cattr_accessor :current_college
   
   def to_s 
     return name
+  end
+  
+  
+  def city_state
+    return "#{address.city}, #{address.state.abbreviation}"
   end
   
   
@@ -21,5 +25,29 @@ class College < ActiveRecord::Base
     select = self.all(:order => order).map{|u| [u.to_s, u.id]}
     select = [""].concat(select) if options[:include_blank]
     return select
+  end
+  
+  
+  def self.search(options={})
+    joins = []
+    college_search = self
+    
+    joins << :address if options[:state_id].present? || options[:city].present?
+    
+    if options[:state_id]
+      college_search = college_search.where("addresses.state_id = ?", options[:state_id])
+    end
+    if options[:city]
+      college_search = college_search.where("addresses.city = ?", options[:city])
+    end
+    
+    joins.each do |join|
+      college_search = college_search.joins(join)
+    end
+    
+    options[:order] ||= :name
+    college_search = college_search.order(options[:order])
+    
+    return college_search
   end
 end

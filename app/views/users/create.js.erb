@@ -1,0 +1,29 @@
+var el = $('#absent_user');
+
+<% if @user.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul />');
+
+  <% @user.errors.full_messages.each do |error| %>
+    errors.append('<li><%= escape_javascript( error ) %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+  // We could also render a partial to display the comment here
+  // $('#comments').append("<%= escape_javascript( 
+  //     simple_format( @comment.body ) 
+  //   ) %>");
+
+  // Clear form
+	el.find('.errors').empty();
+  el.hide();
+// TODO: Display success message and hide rest of the form
+  el.find('input:text,textarea').val('');
+  el.find('.errors').empty();
+
+<% end %>

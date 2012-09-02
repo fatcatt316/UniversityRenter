@@ -1,14 +1,14 @@
 <tr id="listing_row_<%= listing.id %>" class="listing_row <%= cycle('even', 'odd') %>">
   <td><%= link_to listing, listing %></td>
-  <% unless @current_college %>
+  <% unless current_college %>
     <td><%= link_to listing.college, listing.college %></td>
   <% end %>
   <td><%= number_to_currency(listing.price_per_month) %></td>
   <td class="date_cell"><%= listing.created_at.strftime("%m/%d/%y") %></td>
 
-  <% if @current_user %>
+  <% if current_user %>
     <td class="icons">
-      <% if listing.editable?(@current_user) %>
+      <% if listing.editable?(current_user) %>
         <%= link_to '', edit_listing_path(listing), :class => "edit_link"  %>
         <%= link_to '', listing, :confirm => 'Are you sure?', :method => :delete, :class => "delete_link" %>
       <% end %>

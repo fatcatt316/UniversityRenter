@@ -16,13 +16,14 @@ img { border:none; }
 
 h1 { font-family:Georgia, Serif; font-size:30px; padding:0; margin: 0; color:#333; font-weight:normal; letter-spacing:0px; }
 h2 { font:26px Trebuchet MS, Sans-Serif; margin:0px 0 10px 0; padding:0 0 10px 0; letter-spacing:0px; color:#333; border-bottom:1px dotted #333; }
-h3 { font-size:18px; font-weight:normal; line-height:20px; margin:0px 0 20px 0px; padding:0px; color:#006600; }
+h3 { font-size:18px; font-weight:normal; line-height:20px; margin:0px 0 10px 0px; padding:0px; color:#006600; }
 h4 { font-family:Georgia, Serif; font-weight:bold; font-size:11px; line-height:11px; margin:0; padding:0; color:#333333; }
 
 select, textarea, input {
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	font-size: 16px;
+	padding: 2px;
 }
 
 .small_info{
@@ -73,7 +74,8 @@ select, textarea, input {
 }
 
 #error,
-#warning {
+#warning,
+.warning {
   border: 1px solid maroon;
   color: maroon;
   background-color: lavenderblush;
@@ -140,6 +142,22 @@ select, textarea, input {
 	border: 1px solid grey;
 }
 
+.post_an_ad {
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	background-color: #F7921D;
+	border: 2px solid black;
+	font-size: 18px !important;
+	color: white;
+	text-decoration: none;
+}
+
+.post_an_ad:hover {
+	background-color: black;
+	border: 2px solid #F7921D;
+}
+
 /**v LINK CLASSES v**/
 
 .new_link_holder{
@@ -188,18 +206,27 @@ select, textarea, input {
 }
 
 
-select.medium_select{
+select.medium_select {
 	width: 200px;
+}
+select.short_select {
+	width: 150px;
 }
 
 
 /**v Listings v**/
 .left_side{
 	float: left;
-	width: 70%;
+	width: 66%;
 }
 div#listings_list{
 	width: 100%;
+}
+
+#college_community_picker {
+	float: left;
+	width: 32%;
+	padding-left: 10px;
 }
 
 /** v Search Box v**/
@@ -257,12 +284,34 @@ select.search_select{
 	float: left;
 	width: 31%;
 }
+.login_or_register_to_edit {
+	font-size: 18px;
+}
+
+.login_or_register_to_edit a {
+	text-decoration: underline;	
+}
+
+.login_or_register_to_edit a:hover {
+	text-decoration: none;
+}
+
+.orange_notice {
+	float: left;
+	width: 610px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 2px solid orange;
+	background-color: #FFCD79;
+	padding: 5px;
+	font-weight: bold;
+}
 .feature_box {
 	float: left;
 	width: 310px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	border: 1px solid green;
+	border: 2px solid green;
 	background-color: #BEE9BE;
 	margin-left: 10px;
 	padding: 5px;

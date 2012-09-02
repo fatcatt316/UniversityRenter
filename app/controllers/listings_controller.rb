@@ -1,18 +1,12 @@
 class ListingsController < ApplicationController
   
+  
   def index
-    params[:search] ||= {}
-    params[:search][:college_id_eq] ||= session[:college_id] if session[:college_id]
+    filter = {}
+    filter[:college_id] = current_college.try(:id)
     
-    if session[:college_id] != params[:search][:college_id_eq]
-      session[:college_id] = params[:search][:college_id_eq]
-      @current_college = College.find_by_id(params[:search][:college_id_eq]) unless params[:search][:college_id_eq].blank?
-    end
-    
-    
-    # @listings_search = Listing.all(params[:search])
-    # @listings = @listings_search.paginate(:page => params[:page] || 1, :per_page => 2)
-    @listings = Listing.paginate(:per_page => 2, :page => params[:page])
+    @colleges = College.order(:name).all if current_college.blank?
+    @listings = Listing.search(filter).paginate(:page => (params[:page] || 1), :per_page => 20)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -27,13 +21,14 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find_by_id(params[:id])
-    @map = @listing.address.try(:map)
+    @map     = @listing.address.try(:map)
   end
 
 
   def new
     @listing = Listing.new(params[:listing])
     @listing.build_address
+    @user = User.new if current_user.blank?
   end
 
 
@@ -45,15 +40,16 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(params[:listing])
-
-    ### TODO: AdStatus
-
+    @listing.ad_status = current_user.present? ? AdStatus.find_by_name("Approved") : AdStatus.find_by_name("Pending")
+    
     if @listing.save
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @listing.update_features(params[:feature_ids])
       flash[:notice] = 'Listing was successfully created.'
+      flash[:notice] += ' Since you weren\'t signed in, the ad will be pending for now.' if current_user.blank?
       redirect_to(@listing)
     else
+      @user = User.new if current_user.blank?
       @listing.build_address unless @listing.address
       render :action => "new"
     end
@@ -64,7 +60,6 @@ class ListingsController < ApplicationController
     @listing = Listing.find_by_id(params[:id])    
     
     params[:feature_ids] ||= {} # TODO: Better way to do this
-
     if @listing.update_attributes(params[:listing])
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully updated.'

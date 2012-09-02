@@ -7,7 +7,7 @@
     <th>State</th>
     <th>Ads</th>
     
-    <% if @current_user && @current_user.admin? %>
+    <% if current_user && current_user.admin? %>
       <th class="icons"></th>
     <% end %>
   </tr>
@@ -19,7 +19,7 @@
       <td><%= college.address.try(:state).try(:abbreviation) %></td>
       <td><%= link_to "#{college.listings.count} Ads", listings_path(:filter => {:college_id => college.id}) %></td>
       
-      <% if @current_user && @current_user.admin? %>
+      <% if current_user && current_user.admin? %>
         <td class="icons">
           <%= link_to '', edit_college_path(college), :class => "edit_link" %>
           <%= link_to '', college, :confirm => 'Are you sure?', :method => :delete, :class => "delete_link" %>
@@ -31,6 +31,6 @@
 
 <br />
 
-<% if @current_user && @current_user.admin? %>
+<% if current_user && current_user.admin? %>
   <%= link_to 'New college', new_college_path %>
 <% end %>

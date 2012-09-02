@@ -37,8 +37,8 @@
           <div id="upper_login" class='login_form'>
             <%= render :partial => "sessions/form" %>
           </div>
-          <% if @current_college %>
-            <h3><%= @current_college %></h3>
+          <% if current_college %>
+            <h3><%= current_college %></h3>
           <% end %>
         </div>
         
@@ -46,7 +46,7 @@
       </div>
       
       <div id="navbar">
-        <%= render :partial => "shared/navbar", :locals => {:current_user => @current_user} %>
+        <%= render :partial => "shared/navbar" %>
       </div>
       
       <div id="flash">

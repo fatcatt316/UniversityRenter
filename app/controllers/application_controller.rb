@@ -1,7 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
+  helper_method :current_college  
+  
+  def current_college    
+    @current_college ||= College.find_by_id(session[:college_id]) if session[:college_id].present?
+    return @current_college
+  end
+  
   
   private
+  
   
   def require_user
     unless current_user

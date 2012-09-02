@@ -1,6 +1,4 @@
-<% current_user ||= nil %>
-
-<%= link_to "Post an Ad", new_listing_path(:listing => {:college_id => @current_college.try(:id)}), :class => "button orange medium" %>
+<%= link_to "Post an Ad", new_listing_path(:listing => {:college_id => current_college.try(:id)}), :class => "button orange medium" %>
 <%= link_to "Apartment Ads", listings_path, :class => "button black medium" %>
 
 <% if current_user %>
@@ -10,6 +8,5 @@
     <%= link_to "Colleges", colleges_path, :class => "button black medium" %>
     <%= link_to "Communities", communities_path, :class => "button black medium" %>
     <%= link_to "Users", users_path, :class => "button black medium" %>
-    <%= link_to "Settings", {:controller => :admin}, :class => "button black medium" %>
   <% end %>
 <% end %>

@@ -16,8 +16,6 @@ class User < ActiveRecord::Base
   validates_presence_of :email  
   validates_uniqueness_of :email
   
-  cattr_accessor  :current_user
-  
   
   def to_s
     return email.to_s
