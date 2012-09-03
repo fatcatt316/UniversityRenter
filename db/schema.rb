@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111009040820) do
+ActiveRecord::Schema.define(:version => 20120902190530) do
 
   create_table "ad_features", :force => true do |t|
     t.integer  "subject_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(:version => 20111009040820) do
     t.string   "zip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   create_table "colleges", :force => true do |t|

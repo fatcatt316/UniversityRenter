@@ -6,6 +6,8 @@
       <span style="font-size: 0.8em;color: orange;font-weight:bold;"><%= number_to_currency(@listing.price_per_month) %></span>
     </h1>
     
+    <%= render :partial => "addresses/map" %>
+    
     <div style="border: 1px solid green">
       <!-- Lightbox and shadowbox -->
       <% @listing.images.each do |image| %>
@@ -72,9 +74,6 @@
       </tr>
     </table>
   </div>
-  
-  <div class="small_column">
-    <%= render :partial => "addresses/map", :object => @map %>
   
   <div class="for_rent feature_box">
     <h2>Features</h2>

@@ -21,7 +21,9 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find_by_id(params[:id])
-    @map     = @listing.address.try(:map)
+    @map = @listing.address.blank? ? nil : @listing.address.to_gmaps4rails do |address, marker|
+      marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
+    end
   end
 
 

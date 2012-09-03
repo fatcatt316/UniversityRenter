@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
-  include Geokit::Geocoders
+  acts_as_gmappable
+  
   belongs_to :subject, :polymorphic => true
   belongs_to :state
     
@@ -19,31 +20,13 @@ class Address < ActiveRecord::Base
   end
   
   
-  def latitude_and_longitude
-    result = MultiGeocoder.geocode(location_string)
-    return result.success ? result.ll.split(",") : nil
-  end
-  
-  
-  def map(options={})
-    map = nil
-    coordinates = latitude_and_longitude
-    return nil unless coordinates 
-  
-    # http://www.killswitchcollective.com/articles/65_google_maps_on_rails
-    # http://github.com/queso/ym4r-gm
-    map = GMap.new("map")
-    map.control_init(:large_map => true, :map_type => true)
-    title = CGI::escapeHTML(self.subject.to_s)
-    map.center_zoom_init(coordinates,12)
-    map_link = "http://maps.google.com/maps?f=q&hl=en&saddr=&daddr=#{location_string.gsub(' ','+')}&geocode=&q=#{location_string.gsub(' ','+')}"
-    map.overlay_init(GMarker.new(coordinates,:title => title, :info_window => "<a href=#{map_link}>#{title}</a>"))
-    return map
+  def gmaps4rails_address
+    return location_string
   end
   
   
   def google_api_address
-    return [line1, city, state.to_s, zip].join("+").gsub(" ", "+")
+    return location_string
   end
   
   

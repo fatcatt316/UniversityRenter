@@ -5,13 +5,9 @@
   <head>
     <%= render "shared/meta_content" %>
   
-    <%= stylesheet_link_tag 'application', 'buttons', :media => "all" %>
-    <%#= stylesheet_link_tag 'prettyPhoto' %>
-
-    <!-- Comment out the line below when testing from a different computer -->
-    <!-- FIND A RAILS 3 WAY TO DO GOOGLE MAPS -->
-    <%#= GMap.header %><!-- includes Javascript for Google Maps -->
-    <%#= @map.to_html unless @map.blank? %>
+    <%= stylesheet_link_tag 'application', :media => "all" %>
+    <%= stylesheet_link_tag 'buttons' %>
+    <%= stylesheet_link_tag 'gmaps4rails' %>
   	
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'jquery-1.6.1.min.js'%>
@@ -20,7 +16,6 @@
       // Code that uses other library's $ can follow here.
     </script>
     <%= yield(:head) %>
-    <%#= javascript_include_tag 'jquery.prettyPhoto.js' %>
     <%= javascript_include_tag 'custom_jquery.js' %>
   
     <%= yield :javascript %>
@@ -60,5 +55,6 @@
       </div>
     
     </div>
+    <%= yield :scripts %>
   </body>
 </html>

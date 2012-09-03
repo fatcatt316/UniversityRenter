@@ -1,6 +1,10 @@
-<% if map %>
-  <div class="map_section">
-    <%= map.div(:width => 400, :height => 250) %>
-    <div class="clear"></div>
-  </div>
+<% if @map %>
+  <%= gmaps({
+         :map_options => { :auto_zoom => false, :zoom => 17, :type => "HYBRID"},
+         :markers     => { :data => @map},
+         :direction => {:data => {:to => @listing.address.location_string}}
+        }
+        )
+  %>
+  <%# , :options => { :raw => '{ animation: google.maps.Animation.BOUNCE }' }   %>
 <% end %>

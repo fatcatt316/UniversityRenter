@@ -3,7 +3,7 @@ source "http://rubygems.org"
 gem "rails", "~>3.0.7"
 
 gem "mysql", "~>2.8.1"
-gem "geokit"
+gem "gmaps4rails"
 gem "rake", "~>0.8.7"
 gem "sorcery", "~>0.7.6"
 gem "paperclip", "~> 2.4"
