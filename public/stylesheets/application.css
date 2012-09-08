@@ -2,7 +2,7 @@
 
 body {
   margin: 0px 0 0 0;
-	font: 12px Verdana, Sans-Serif;
+	font: 16px Helvetica, Sans-Serif;
 	color: #333;
 	background: url('/images/top-sliver1.png') repeat-x;
 }	
@@ -346,4 +346,15 @@ select.search_select{
 }
 .even{
 	background-color: white;
+}
+
+/* Contact form */
+.contact_form {
+	margin-top: 20px;
+}
+
+.contact_form .contact_header {
+	font-weight: bold;
+	margin: 20px 0 10px 0;
+	font-size: 1.2em;
 }

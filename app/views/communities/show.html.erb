@@ -2,7 +2,6 @@
   <div class="big_column">
     <h1>
       <%= link_to @community.college, @community.college %> > <%= @community %>
-      <!-- <span style="font-size: 0.9em;font-weight:normal;"><%#= @listing %></span> -->
     </h1>
     
     <%= render :partial => "addresses/map", :locals => {:address => @community.address} %>
@@ -19,7 +18,27 @@
     </table>
   </div>
   
+  <div class="small_column" style="margin-left: 10px;padding: 5px;">
+    <%= simple_format @community.description %>
+  </div>
+  
   <%= render partial: "shared/feature_box", locals: {subject: @community, editable: false} %>
+  
+  <div class="small_column" style="margin-left: 10px; padding: 5px;">
+    <h2>Contact Info</h2>
+    <% if @community.email.present? %>
+      <p><%= image_tag("email.png") %><%= link_to "Email", {action: :contact, id: @community.id} %></p>
+    <% end %>
+    <% if @community.phone.present? %>
+      <p><%= image_tag("phone.png") %>Phone: <%= @community.phone %></p>
+    <% end %>
+    <% if @community.fax.present? %>
+      <p><%= image_tag("fax.gif") %>Fax: <%= @community.fax %></p>
+    <% end %>
+    <% if @community.external_url.present? %>
+      <p><%= image_tag("link.gif") %><%= link_to "External website", @community.external_url %></p>
+    <% end %>
+  </div>
 
   <div class="clear"></div>
 </div>

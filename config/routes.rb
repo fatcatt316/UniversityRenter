@@ -16,6 +16,8 @@ Ur3::Application.routes.draw do
     collection do
       get :update_dropdown
     end
+    get :contact, on: :member
+    post :send_email, on: :member
   end
   
   resources :features

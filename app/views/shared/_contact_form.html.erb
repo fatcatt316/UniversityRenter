@@ -1,0 +1,20 @@
+<div class="contact_form">
+  <div class="contact_header">
+    Subject
+  </div>
+  <%= text_field_tag :subject, params[:subject], size: 50 %>
+  
+  <div class="contact_header">
+    From (your email)
+  </div>
+  <%= text_field_tag :sender, params[:sender], size: 50 %>
+
+  <div class="contact_header">
+    Message
+  </div>
+  <%= text_area_tag :message, params[:message], size: "50x10" %>
+
+  <div class="contact_header">
+    <%= submit_tag "Send Email!" %>
+  </div>
+</div>

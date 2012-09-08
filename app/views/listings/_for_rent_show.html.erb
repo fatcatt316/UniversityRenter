@@ -64,6 +64,7 @@
         <th>Contact:</th>
         <td>
           <% if @listing.contact_email %>
+            <%= image_tag("email.png") %>
             <%= @listing.contact_email %>
           <% end %>
           <% if @listing.contact_phone %>

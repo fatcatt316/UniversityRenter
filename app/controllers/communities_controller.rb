@@ -1,7 +1,8 @@
 class CommunitiesController < ApplicationController
+  before_filter :admin_only, :except => [:index, :show, :contact, :send_]
 
   def index
-    @communities = Community.all
+    @communities = Community.order(:name).all
   end
 
 
@@ -10,6 +11,18 @@ class CommunitiesController < ApplicationController
     @map = @community.address.blank? ? nil : @community.address.to_gmaps4rails do |address, marker|
       marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
     end
+  end
+  
+  
+  def contact
+    @community = Community.find(params[:id])
+  end
+  
+  
+  def send_email
+    ## Add on "From UniversityRenter" to the subject, and add a link in the body to UR
+    @community = Community.find(params[:id])
+    CommunityMailer.email_community(@community, params[:from], params[:subject], params[:body]).deliver
   end
   
   

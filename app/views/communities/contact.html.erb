@@ -1,0 +1,5 @@
+<h1>Email <%= link_to @community, @community %></h1>
+
+<%= form_tag({controller: :communities, action: :send_email, id: @community.id}, {method: :post}) do %>
+  <%= render :partial => "shared/contact_form" %>
+<% end %>
