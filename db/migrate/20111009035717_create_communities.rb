@@ -7,6 +7,7 @@ class CreateCommunities < ActiveRecord::Migration
       t.text :description
       t.string :email
       t.string :phone
+      t.string :fax
       t.string :external_url
       t.timestamps
     end

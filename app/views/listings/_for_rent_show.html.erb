@@ -6,7 +6,7 @@
       <span style="font-size: 0.8em;color: orange;font-weight:bold;"><%= number_to_currency(@listing.price_per_month) %></span>
     </h1>
     
-    <%= render :partial => "addresses/map" %>
+    <%= render :partial => "addresses/map", :locals => {:address => @listing.address} %>
     
     <div style="border: 1px solid green">
       <!-- Lightbox and shadowbox -->
@@ -75,23 +75,7 @@
     </table>
   </div>
   
-  <div class="for_rent feature_box">
-    <h2>Features</h2>
-    
-    <% Feature.all(:conditions => "utility IS NOT TRUE").each do |feature| %>
-      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
-      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
-    <% end %>
-    <p>&nbsp;</p>
-    <h2>Utilities <span class="small_info">(included in cost)</span></h2>
-    
-    <% Feature.find_all_by_utility(true).each do |feature| %>
-      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
-      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
-    <% end %>
-  </div>
-  
-  </div>
+  <%= render partial: "shared/feature_box", locals: {subject: @listing, editable: false, css_class: "for_rent"} %>
 
   <div class="clear"></div>
 </div>

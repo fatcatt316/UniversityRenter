@@ -29,6 +29,7 @@ class ListingsController < ApplicationController
 
   def new
     @listing = Listing.new(params[:listing])
+    @listing.available_on ||= Date.today
     @listing.build_address
     @user = User.new if current_user.blank?
   end
@@ -46,7 +47,7 @@ class ListingsController < ApplicationController
     
     if @listing.save
       params[:feature_ids] ||= {} # TODO: Better way to do this
-      @listing.update_features(params[:feature_ids])
+      @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully created.'
       flash[:notice] += ' Since you weren\'t signed in, the ad will be pending for now.' if current_user.blank?
       redirect_to(@listing)

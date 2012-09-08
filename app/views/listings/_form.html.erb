@@ -79,26 +79,12 @@
       
       <tr>
         <th><%= f.label :description, "Description:" %></th>
-        <td><%= f.text_area :description, :size => "50x5" %></td>
+        <td><%= f.text_area :description, :size => "42x10" %></td>
       </tr>
     </table>
   </div>
-
-  <div class="for_rent feature_box">
-    <h2>Features</h2>
-    
-    <% Feature.all(:conditions => "utility IS NOT TRUE").each do |feature| %>
-      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
-      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
-    <% end %>
-    <p>&nbsp;</p>
-    <h2>Utilities <span class="small_info">(included in cost)</span></h2>
-    
-    <% Feature.find_all_by_utility(true).each do |feature| %>
-      <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, @listing.has_feature?(feature) %>
-      <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
-    <% end %>
-  </div>
+  
+  <%= render partial: "shared/feature_box", locals: {subject: @listing, editable: true, css_class: "for_rent"} %>
   
   <div class="small_column for_rent">
     <%= render :partial => "documents/nested_form", :locals => {:f => f, :editable => f.object.editable?(current_user) } %>

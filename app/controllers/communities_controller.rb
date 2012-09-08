@@ -7,6 +7,9 @@ class CommunitiesController < ApplicationController
 
   def show
     @community = Community.find(params[:id])
+    @map = @community.address.blank? ? nil : @community.address.to_gmaps4rails do |address, marker|
+      marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
+    end
   end
   
   
@@ -41,6 +44,8 @@ class CommunitiesController < ApplicationController
     @community = Community.new(params[:community])
 
     if @community.save
+      params[:feature_ids] ||= {} # TODO: Better way to do this
+      @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully created.'
       redirect_to(@community)
     else
@@ -54,6 +59,8 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
 
     if @community.update_attributes(params[:community])
+      params[:feature_ids] ||= {} # TODO: Better way to do this
+      @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully updated.'
       redirect_to(@community)
     else

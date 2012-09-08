@@ -48,10 +48,12 @@ class Listing < ActiveRecord::Base
   
   
   def has_feature?(feature)
-    return self.ad_features.map(&:feature_id).include?(feature.id)
+    @ad_feature_ids = self.ad_features.map(&:feature_id)
+    return @ad_feature_ids.include?(feature.id)
   end
   
   
+  # TODO: Use accepts_nested_attributes instead of something like this
   def update_features(feature_ids=[])
     existing_ad_features = self.ad_features
     existing_ad_features.select{|ad_feature| !feature_ids.include?(ad_feature.feature_id)}.each &:destroy

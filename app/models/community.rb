@@ -28,6 +28,35 @@ class Community < ActiveRecord::Base
   end
   
   
+  def images(options={})
+    pictures = self.documents.select(&:image?)
+    pictures.sort!{|a,b| a.primary? <=> b.primary?} if options[:primary_first]
+    return pictures
+  end
+  
+  
+  def has_feature?(feature)
+    @ad_feature_ids = self.ad_features.map(&:feature_id)
+    return @ad_feature_ids.include?(feature.id)
+  end
+  
+  
+  def editable?(current_user)
+    return current_user && current_user.admin?
+  end
+  
+  
+  # TODO: Use accepts_nested_attributes instead of something like this
+  def update_features(feature_ids=[])
+    existing_ad_features = self.ad_features
+    existing_ad_features.select{|ad_feature| !feature_ids.include?(ad_feature.feature_id)}.each &:destroy
+    feature_ids.each do |feature_id|
+      ad_feature = existing_ad_features.find_by_feature_id(feature_id)
+      ad_feature ||= self.ad_features.create(:feature_id => feature_id)
+    end
+  end
+  
+  
   def self.select_options(options={})
     cond = "TRUE"
     cond_crit = []
