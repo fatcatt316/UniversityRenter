@@ -57,7 +57,7 @@
       </tr>
       <tr class="for_rent">
         <th><%= f.label :available_on, "When is this available?" %></th>
-        <td><%= f.text_field :available_on %></td>
+        <td><%= f.text_field :available_on, :class => 'datepicker' %></td>
       </tr>
       <tr class="for_rent">
         <th><%= f.label :preferred_gender_id, "Preferred gender of renter:" %></th>
@@ -70,7 +70,7 @@
       </tr>
       <tr class="wanted">
         <th><%= f.label :available_on, "Date needed:" %></th>
-        <td><%= f.text_field :available_on %></td>
+        <td><%= f.text_field :available_on, :class => 'datepicker' %></td>
       </tr>
       <tr class="wanted">
         <th><%= f.label :preferred_gender_id, "Gender:" %></th>

@@ -11,8 +11,9 @@ jQuery(document).ready(function() {
     });
   });
 
-  
-
+  jQuery(function (){
+		jQuery('.datepicker').datepicker();
+	});
 
   jQuery('select#city').live("change", function(){
 		var state_id = jQuery('select#state_id').val();
@@ -28,7 +29,7 @@ jQuery(document).ready(function() {
 	
 	// Used on listings/_form
 	// TODO: Consider loading this only on pages that use this partial.
-	var selected_id = jQuery("input[@name=listing[wanted]]:checked").attr('id');
+	var selected_id = jQuery("input[name=\"listing[wanted]\"]:checked").attr('id');
 	
 	jQuery('#listing_wanted_false').change(function() {
 		jQuery('.wanted :input').attr('disabled', true)

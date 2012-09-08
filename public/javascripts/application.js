@@ -1,5 +1,3 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
 /////// Nested forms //////////
 function remove_fields(link) {
   jQuery(link).prev("input[type=hidden]").val("1");
