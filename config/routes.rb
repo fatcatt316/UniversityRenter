@@ -8,9 +8,7 @@ Ur3::Application.routes.draw do
     end
   end
   resources :colleges do
-    member do
-      get :select
-    end
+    get :select, on: :member
   end
   resources :communities do
     collection do
@@ -23,11 +21,14 @@ Ur3::Application.routes.draw do
   resources :features
   resources :listings
   resources :sessions
-  resources :users
+  resources :users do
+    get :signup, on: :member
+    post :finalize_signup, on: :collection
+  end
 
   get "logout" => "sessions#destroy", :as => "logout"  
   get "login" => "sessions#new", :as => "login"  
-  get "signup" => "users#new", :as => "signup"  
+  get "signup" => "users#signup", :as => "signup"  
   
   root :to => "listings#index"
 

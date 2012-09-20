@@ -1,14 +1,22 @@
-<%= f.label :name, "Name:" %><br />
-<%= f.text_field :name %><br />
-<%= f.label :short_name, "Short Name:" %> <span class="extra_info">(like NCSU)</span><br />
-<%= f.text_field :short_name %><br />
-<%= f.label :mascot, "Mascot:" %><br />
-<%= f.text_field :mascot %><br />
-
-<%= f.fields_for :address do |address_form| %>
-  <tr class="fields"><td colspan="2"><%= render :partial => 'addresses/form', :locals => { :f => address_form, 
-    :editable => true } %></td></tr>
-<% end %>
-
-
-<%= f.label :description, "Description:" %><br /> <%= f.text_area :description, :size => "50x5" %><br />
+<table class="form">
+  <tr>
+    <th><%= f.label :name, "Name:" %></th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :short_name, "Short Name:" %> <span class="extra_info">(like NCSU)</span></th>
+    <td><%= f.text_field :short_name %></td>
+  </tr>
+  <tr>
+    <th><%= f.label :mascot, "Mascot:" %></th>
+    <td><%= f.text_field :mascot %></td>
+  </tr>
+  <%= f.fields_for :address do |address_form| %>
+    <tr class="fields"><td colspan="2"><%= render :partial => 'addresses/form', :locals => { :f => address_form, 
+      :editable => true } %></td></tr>
+  <% end %>
+  <tr>
+    <th><%= f.label :description, "Description:" %></th>
+    <td><%= f.text_area :description, :size => "50x5" %></td>
+  </tr>
+</table>

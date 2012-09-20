@@ -1,5 +1,10 @@
 <tr id="listing_row_<%= listing.id %>" class="listing_row <%= cycle('even', 'odd') %>">
-  <td><%= link_to listing, listing %></td>
+  <td>
+    <div style="float: left;margin-right: 10px;">
+      <%= show_primary_image(listing) %>
+    </div>
+  
+  <%= link_to listing, listing %></td>
   <% unless current_college %>
     <td><%= link_to listing.college, listing.college %></td>
   <% end %>

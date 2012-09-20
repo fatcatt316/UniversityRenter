@@ -1,4 +1,4 @@
-<h1>Editing college</h1>
+<h1>Editing College: <%= @college %></h1>
 
 <%= form_for(@college) do |f| %>
   <%= f.error_messages %>
@@ -9,6 +9,3 @@
     <%= f.submit 'Update' %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @college %> |
-<%= link_to 'Back', colleges_path %>
