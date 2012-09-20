@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :user_roles, :dependent => :destroy
   has_many :roles, :through => :user_roles
   has_many :documents
-  has_many :listings, :as => :creator
+  has_many :listings, :foreign_key => "creator_id"
   
   attr_accessible :email, :password, :password_confirmation, :gender_id, :user_status_id # user_roles?
 

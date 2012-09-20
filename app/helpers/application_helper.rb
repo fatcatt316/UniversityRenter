@@ -32,7 +32,7 @@ module ApplicationHelper
   
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
-    image_file = owner.primary_document
+    image_file = owner.images.first #owner.primary_document
     
     if image_file && image_file.image?
       return image_tag image_file.doc.url(options[:size].to_sym), :title => image_file.to_s, :class => "picture_frame"

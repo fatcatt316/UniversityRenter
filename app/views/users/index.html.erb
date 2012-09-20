@@ -1,18 +1,29 @@
-<h1>Listing users</h1>
+<h1>Manage Users</h1>
 
-<table>
+<table class="list_table">
   <tr>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Roles</th>
+    <th style="width: 200px;"></th>
   </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <% @users.each do |user| %>
+    <tr class="<%= cycle('odd', 'even') %>">
+      <td><%= user.email %></td>
+      <td><%= user.user_status %></td>
+      <td><%= user.roles.map(&:to_s).to_sentence %></td>
+      <td>
+        <%= link_to 'Show', user %>
+        <%= link_to 'Edit', edit_user_path(user), class: 'edit_link' %>
+        <%= link_to 'Delete', user, confirm: "Are you sure you want to delete #{user}?  This will remove their ads, too.", 
+          method: :delete, class: 'delete_link' %>
+      </td>
+    </tr>
+  <% end %>
 </table>
+
+<%= will_paginate @users %>
 
 <br />
 
-<%= link_to 'New user', new_user_path %>
+<%= link_to 'New User', new_user_path, class: 'add_link' %>

@@ -1,17 +1,17 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :except => [:new, :create]
+  before_filter :admin_only, :except => [:signup, :finalize_signup]
   
   def index
-    @users = User.all
+    @users = User.order(:email).paginate(:page => (params[:page] || 1), :per_page => 20)
   end
   
   
-  def new
+  def signup
     @user = User.new
   end
 
 
-  def create
+  def finalize_signup
     @user = User.new(params[:user])
     
     respond_to do |format|
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
           end
         end
       else
-        format.html { render :new, :warning => "Please fix your errors!" }
+        format.html { render :signup, :warning => "Please fix your errors!" }
         format.js do
           error_message = @user.errors.map{|k,v| k == :base ? v : "#{k.to_s.titleize}: #{v}"}.join("<br />")
           render :update do |page|
@@ -35,6 +35,21 @@ class UsersController < ApplicationController
           end
         end
       end
+    end
+  end
+  
+  
+  def new
+    @user = User.new
+  end
+  
+  
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      redirect_to @user, :notice => "User created!"
+    else
+      render :new, :warning => "Dangit, fix your errors!"
     end
   end
   

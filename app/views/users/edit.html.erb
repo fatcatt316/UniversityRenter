@@ -1,12 +1,24 @@
-<h1>Editing user</h1>
+<h1>Editing User: <%= @user %></h1>
 
 <%= form_for(@user) do |f| %>
   <%= f.error_messages %>
+  
+  <table class="form">
+    <tr>
+      <th>Email</th>
+      <td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+      <th>Status:</th>
+      <td><%= f.select :user_status_id, UserStatus.select_options(:include_blank => true), {}, :class => 'medium_select' %></td>
+    </tr>
+    <tr>
+      <th>Disabled at:</th>
+      <td><%= f.text_field :disabled_at, class: 'datepicker' %></td>
+    </tr>
+  </table>
 
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
