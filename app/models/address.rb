@@ -33,7 +33,7 @@ class Address < ActiveRecord::Base
   def self.city_select_options(options={})
     cities = order("city DESC").group(:city)
     cities = cities.where(:state_id => options[:state_id]) if options[:state_id].present?
-    cities = cities.all.map{|city| [city.city, city.city] }
+    cities = cities.select("addresses.city").all.map{|city| [city.city, city.city] }
     if options[:include_blank]
       blank_option = cities.size.zero? ? "None found!" : ""
       cities = [blank_option].concat(cities)
