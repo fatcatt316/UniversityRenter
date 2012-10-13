@@ -5,7 +5,7 @@ gem "rails", "~>3.0.7"
 gem "pg"
 # gem "mysql", "~>2.8.1"
 gem "gmaps4rails"
-gem "rake", "~>0.8.7"
+gem "rake", "~>0.9.2"
 gem "sorcery", "~>0.7.6"
 gem "paperclip", "~> 2.4"
 gem 'will_paginate', '~> 3.0.pre4'
