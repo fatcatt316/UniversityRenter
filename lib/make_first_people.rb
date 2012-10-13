@@ -1,7 +1,7 @@
 class MakeFirstPeople
 
   def self.go
-    admin = Role.find_by_name("Admin")
+    admin  = Role.find_by_name("Admin")
     gender = Gender.find_by_name("Male")
     active = UserStatus.find_by_name("Active")
     
