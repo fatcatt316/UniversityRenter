@@ -136,7 +136,7 @@ DEPENDENCIES
   pg
   rails (~> 3.0.7)
   rake (~> 0.9.2)
-  recaptcha
+  recaptcha (~> 0.3.4)
   ruby-debug19
   sorcery (~> 0.7.6)
   will_paginate (~> 3.0.pre4)

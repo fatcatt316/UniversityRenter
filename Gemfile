@@ -10,7 +10,7 @@ gem "sorcery", "~>0.7.6"
 gem "paperclip", "~> 2.4"
 gem 'will_paginate', '~> 3.0.pre4'
 gem 'dynamic_form'
-gem "recaptcha", :require => "recaptcha/rails"
+gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
 
 group :development, :test do
   gem 'ruby-debug19'
