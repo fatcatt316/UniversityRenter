@@ -1,4 +1,6 @@
 Recaptcha.configure do |config|
-  # config.proxy = 'http://myrpoxy.com.au:8080'
-  # TODO: Get this to work in development
+  if Rails.env.development?
+    config.public_key  = '6Lc6BAAAAAAAAChqRbQZcn_yyyyyyyyyyyyyyyyy'
+    config.private_key = '6Lc6BAAAAAAAAKN3DRm6VA_xxxxxxxxxxxxxxxxx'
+  end
 end
