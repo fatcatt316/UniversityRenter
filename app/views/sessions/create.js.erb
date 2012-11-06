@@ -1,0 +1,11 @@
+(function($) {
+  <% if current_user %>
+    $('#absent_user').html('<strong>You\'re logged in and good to go!</strong>');
+    $('#not_signed_in_warning').hide();
+    $('#login_error_message').hide();
+    
+    $("#upper_login").html("<%= escape_javascript(render(:partial => 'sessions/form')) %>");
+  <% else %>
+    $('#login_error_message').show().html('Email or password was invalid.');
+  <% end %>
+})(jQuery);
