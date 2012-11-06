@@ -23,7 +23,8 @@
     </div>
   
     <div id="new_user_form" style="display: none;">
-      <%= form_for @user, :remote => true, :html => { :id => 'new-user-form' } do |f| %>
+      <%= form_for @user, :url => {:controller => :users, :action => :finalize_signup}, :remote => true,
+        :html => {:method => :post, :id => 'new-user-form'} do |f| %>
         <table class="form">
           <tr>
             <th><%= f.label :email %></th>
