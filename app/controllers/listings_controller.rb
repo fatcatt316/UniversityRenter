@@ -28,8 +28,11 @@ class ListingsController < ApplicationController
 
 
   def new
+    params[:listing] ||= {}
+    params[:listing][:contact_email] ||= current_user.email if current_user
+    params[:listing][:available_on] ||= Date.today
+    
     @listing = Listing.new(params[:listing])
-    @listing.available_on ||= Date.today
     @listing.build_address
     @user = User.new if current_user.blank?
   end
