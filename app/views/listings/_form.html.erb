@@ -60,8 +60,8 @@
         <td><%= f.text_field :available_on, :class => 'datepicker' %></td>
       </tr>
       <tr class="for_rent">
-        <th><%= f.label :preferred_gender_id, "Preferred gender of renter:" %></th>
-        <td><%= f.select :preferred_gender_id, Gender.select_options(:include_blank => true) %></td>
+        <th><%= f.label :preferred_gender_id, "Girl or Guy Renter?" %></th>
+        <td><%= f.select :preferred_gender_id, Gender.select_options, prompt: "Don't matter to me" %></td>
       </tr>
       
       <tr class="wanted">
@@ -73,8 +73,8 @@
         <td><%= f.text_field :available_on, :class => 'datepicker' %></td>
       </tr>
       <tr class="wanted">
-        <th><%= f.label :preferred_gender_id, "Gender:" %></th>
-        <td><%= f.select :preferred_gender_id, Gender.select_options(:include_blank => true) %></td>
+        <th><%= f.label :preferred_gender_id, "Are you a Guy or Girl?" %></th>
+        <td><%= f.select :preferred_gender_id, Gender.select_options(include_blank: true) %></td>
       </tr>
       
       <tr>

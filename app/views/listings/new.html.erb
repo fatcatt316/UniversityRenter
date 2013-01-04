@@ -57,7 +57,7 @@
   
   <% if current_user.blank? %>
     <div id="not_signed_in_warning" class="orange_notice">
-      Are you sure you want to create an ad without <%= link_to "logging in", "#absent_user" %>?  You won't be able to edit it!
+      Are you sure you want to create an ad without <%= link_to "logging in", "#absent_user" %>?<br />You won't be able to edit it later on!
     </div>
     <div class="clear" style="padding-bottom: 10px;"></div>
   <% end %>
