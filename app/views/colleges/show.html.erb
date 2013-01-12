@@ -1,4 +1,4 @@
-<table class="details">
+<table class="list_table">
   <tr>
     <th><%= label :name, "Name:" %></th>
     <td><%= @college.name %></td>
@@ -18,5 +18,7 @@
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_college_path(@college) %> |
-<%= link_to 'Back', colleges_path %>
+<% if @college.can_edit?(current_user) %>
+  <%= link_to 'Edit', edit_college_path(@college) %> |
+<% end %>
+<%= link_to 'College list', colleges_path %>

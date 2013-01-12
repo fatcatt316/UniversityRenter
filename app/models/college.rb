@@ -20,6 +20,11 @@ class College < ActiveRecord::Base
   end
   
   
+  def can_edit?(user=nil)
+    return user && user.admin?
+  end
+  
+  
   def self.select_options(options={})
     order = (options[:order_by])? options[:order_by]: "name ASC"
     select = self.all(:order => order).map{|u| [u.to_s, u.id]}
