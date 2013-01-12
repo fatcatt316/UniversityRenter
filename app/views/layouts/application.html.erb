@@ -23,7 +23,7 @@
     <%= yield :javascript %>
   </head>
   <body>
-    <div id="container">
+    <div class="container">
       <div id="header">
         
         <div id="logo_box">
@@ -52,8 +52,19 @@
       <div id="main">
         <%= yield %>
       </div>
-    
+
     </div>
     <%= yield :scripts %>
+    <div id="footer">
+      <div class="container">
+        <div class="copyright_info">
+          UniversityRenter &copy;2005-<%= Date.today.year %>
+        </div>
+        
+        <div class="bj_web_development">
+          Created by <a href="http://www.bjwebdevelopment.com/">BJ Web Development</a>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

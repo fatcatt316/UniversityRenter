@@ -5,9 +5,10 @@ body {
   font: 16px Helvetica, Sans-Serif;
   color: #333;
   background: url('/images/top-sliver1.png') repeat-x;
+  position: relative;
 }
 
-#container{
+.container{
   width: 1000px;
   margin: auto;
 }
@@ -119,8 +120,47 @@ select, textarea, input {
   padding: 3px 5px;
   font-size: 12px; 
   font-weight: bold;
-/*  background-color: #75D279;*/
   height: 24px;
+}
+
+#footer {
+/*  background: #72D579;*/
+  min-width: 100%;
+  padding: 20px 0 40px 0;
+  background-image: linear-gradient(top, #60AB64 30%, #72D578 62%);
+  background-image: -o-linear-gradient(top, #60AB64 30%, #72D578 62%);
+  background-image: -moz-linear-gradient(top, #60AB64 30%, #72D578 62%);
+  background-image: -webkit-linear-gradient(top, #60AB64 30%, #72D578 62%);
+  background-image: -ms-linear-gradient(top, #60AB64 30%, #72D578 62%);
+
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.3, #60AB64),
+    color-stop(0.62, #72D578)
+  );
+  
+  color: white;
+}
+
+#footer a {
+  text-decoration:none;
+  border-bottom: dotted white;
+  color: white;
+}
+
+#footer a:hover {
+  border-bottom: dashed white;
+  color: white;
+}
+
+#footer .bj_web_development {
+  float: right;
+}
+
+#footer .copyright_info {
+  float: left;
 }
 
 .login_form .fieldWithErrors{
