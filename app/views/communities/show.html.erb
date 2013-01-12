@@ -6,7 +6,7 @@
     
     <%= render :partial => "addresses/map", :locals => {:address => @community.address} %>
     
-    <div style="border: 1px solid green">
+    <div>
       <!-- Lightbox and shadowbox, fancyzoom -->
       <% @community.images.each do |image| %>
         <%= image_tag image.doc.url(:medium), :class => "picture_frame" %>
@@ -30,13 +30,13 @@
       <p><%= image_tag("email.png") %><%= link_to "Email", {action: :contact, id: @community.id} %></p>
     <% end %>
     <% if @community.phone.present? %>
-      <p><%= image_tag("phone.png") %>Phone: <%= @community.phone %></p>
+    <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
     <% end %>
     <% if @community.fax.present? %>
-      <p><%= image_tag("fax.gif") %>Fax: <%= @community.fax %></p>
+      <p><%= image_tag("fax.gif", class: "contact_icon") %>Fax: <%= @community.fax %></p>
     <% end %>
     <% if @community.external_url.present? %>
-      <p><%= image_tag("link.gif") %><%= link_to "External website", @community.external_url %></p>
+      <p><%= image_tag("link.gif", class: "contact_icon") %><%= link_to "External website", @community.external_url %></p>
     <% end %>
   </div>
 
@@ -47,4 +47,4 @@
 <% if @community.editable?(current_user) %>
   <%= link_to 'Edit', edit_community_path(@community) %> |
 <% end %>
-<%= link_to 'Back', communities_path %>
+<%= link_to "Student Apartment Communities near #{@community.college}", communities_path(college_id: @community.college_id) %>
