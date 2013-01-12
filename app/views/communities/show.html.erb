@@ -24,10 +24,10 @@
   
   <%= render partial: "shared/feature_box", locals: {subject: @community, editable: false} %>
   
-  <div class="small_column" style="margin-left: 10px; padding: 5px;">
+  <div class="small_column" style="float: right;margin-right: 10px; padding: 5px;">
     <h2>Contact Info</h2>
     <% if @community.email.present? %>
-      <p><%= image_tag("email.png") %><%= link_to "Email", {action: :contact, id: @community.id} %></p>
+    <p><%= image_tag("email.png", class: "contact_icon") %><%= link_to "Email", {action: :contact, id: @community.id} %></p>
     <% end %>
     <% if @community.phone.present? %>
     <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
