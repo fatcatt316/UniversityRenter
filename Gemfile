@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "~>3.0.7"
+gem "rails", "~>3.0.19"
 
 gem "pg"
 # gem "mysql", "~>2.8.1"
