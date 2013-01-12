@@ -18,6 +18,11 @@
   </tr>
 </table>
 
+<div>
+  <h3><%= @college %> Student Apartment Communities in <%= @college.city_state %></h3>
+  <%= render partial: "communities/table", locals: {communities: @college.communities} %>
+</div>
+
 <% if @college.can_edit?(current_user) %>
   <%= link_to 'Edit', edit_college_path(@college) %> |
 <% end %>
