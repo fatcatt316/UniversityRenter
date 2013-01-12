@@ -62,7 +62,6 @@ class CommunitiesController < ApplicationController
       flash[:notice] = 'Community was successfully created.'
       redirect_to(@community)
     else
-      @community.build_address
       render :action => "new"
     end
   end
