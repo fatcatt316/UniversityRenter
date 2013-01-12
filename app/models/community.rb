@@ -14,9 +14,9 @@ class Community < ActiveRecord::Base
   
   validates_presence_of :name, :college
   validates_presence_of :address
-  validates_uniqueness_of :name, :scope => :college_id
-  validates_numericality_of :price_per_month, :allow_nil => true
-  validates_format_of :email, :with => /^\S+@\w+\.\w+/, :on => :create, :message => "is invalid"
+  validates_uniqueness_of :name, scope: :college_id
+  validates_numericality_of :price_per_month, allow_blank: true
+  validates_format_of :email, with: /^\S+@\w+\.\w+/, on: :create, message: "is invalid", allow_blank: true
   
   def to_s 
     return name
