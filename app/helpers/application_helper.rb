@@ -43,7 +43,7 @@ module ApplicationHelper
   
   
   def line_break(string)
-    return (h string).gsub("\n", '<br />') rescue ""
+    return raw((h string).gsub("\n", '<br />')) rescue ""
   end
   
   ########### Complex forms helpers ##########
