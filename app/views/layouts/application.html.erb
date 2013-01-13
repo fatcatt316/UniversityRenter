@@ -19,44 +19,48 @@
     </script>
     <%= yield(:head) %>
     <%= javascript_include_tag 'custom_jquery.js' %>
-  
+    <!--[if !IE 7]>
+      <style type="text/css">
+        #wrap {display:table;height:100%}
+      </style>
+    <![endif]-->
     <%= yield :javascript %>
   </head>
   <body>
-    <div class="container">
-      <div id="header">
-        
-        <div id="logo_box">
-          <%= link_to image_tag("logo.png", :alt => "University Renter", :title => "University Renter"), listings_path %>
-        </div>
-        
-        <div class="right_header">
-          <div id="upper_login" class='login_form'>
-            <%= render :partial => "sessions/form" %>
+    <div id="wrap">
+      <div id="main" class="container">
+        <div id="header">
+          <div id="logo_box">
+            <%= link_to image_tag("logo.png", :alt => "University Renter", :title => "University Renter"), listings_path %>
           </div>
-        </div>
         
+          <div class="right_header">
+            <div id="upper_login" class='login_form'>
+              <%= render :partial => "sessions/form" %>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      
+        <div id="navbar">
+          <%= render :partial => "shared/navbar" %>
+        </div>
+      
+        <div id="flash">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "#{name}", :class => "message" %>
+          <% end %>
+        </div>
+      
+        <div id="main_content">
+          <%= yield %>
+        </div>
         <div class="clear"></div>
       </div>
-      
-      <div id="navbar">
-        <%= render :partial => "shared/navbar" %>
-      </div>
-      
-      <div id="flash">
-        <% flash.each do |name, msg| %>  
-          <%= content_tag :div, msg, :id => "#{name}", :class => "message" %>
-        <% end %>
-      </div>
-      
-      <div id="main">
-        <%= yield %>
-      </div>
-
     </div>
     <%= yield :scripts %>
     <div id="footer">
-      <div class="container">
+      <div class="container" style="padding-top: 20px;">
         <div class="copyright_info">
           UniversityRenter &copy;2005-<%= Date.today.year %>
         </div>
