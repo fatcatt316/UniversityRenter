@@ -1,4 +1,5 @@
 class FeaturesController < ApplicationController
+  before_filter :admin_only
 
   def index
     @features = Feature.all

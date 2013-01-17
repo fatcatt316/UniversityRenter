@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_filter :admin_only, :except => [:index, :show, :contact, :send_]
+  before_filter :admin_only, :except => [:index, :show, :contact, :send_email, :update_dropdown]
 
   def index
     @communities = Community.order(:name).all

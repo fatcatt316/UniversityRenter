@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :admin_only, :except => [:signup, :finalize_signup]
+  before_filter :admin_only, except: [:signup, :finalize_signup]
+  before_filter :require_user, except: [:signup, :finalize_signup, :edit, :update]
   
   def index
     @users = User.order(:email).paginate(:page => (params[:page] || 1), :per_page => 20)
