@@ -38,7 +38,7 @@ class Listing < ActiveRecord::Base
   
   
   def editable?(user=nil)
-    return self.new_record? || (user && (user.admin? || self.creator_id = user))
+    return self.new_record? || (user && (user.admin? || self.creator_id == user))
   end
   
   
