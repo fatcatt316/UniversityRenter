@@ -42,6 +42,11 @@ class Listing < ActiveRecord::Base
   end
   
   
+  def destroyable?(user=nil)
+    return (user && (user.admin? || self.creator_id == user))
+  end
+  
+  
   def for_rent?
     return !self.wanted?
   end

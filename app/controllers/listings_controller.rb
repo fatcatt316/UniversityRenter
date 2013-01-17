@@ -40,6 +40,10 @@ class ListingsController < ApplicationController
 
   def edit
     @listing = Listing.find(params[:id])
+    unless @listing.editable?(current_user)
+      flash[:warning] = "Whoops, looks like you can't edit that ad!"
+      return redirect_to listings_path
+    end
     @listing.build_address unless @listing.address
   end
 
@@ -63,7 +67,11 @@ class ListingsController < ApplicationController
 
 
   def update
-    @listing = Listing.find_by_id(params[:id])    
+    @listing = Listing.find(params[:id])
+    unless @listing.editable?(current_user)
+      flash[:warning] = "Whoops, looks like you can't edit that ad!"
+      return redirect_to listings_path
+    end
     
     params[:feature_ids] ||= {} # TODO: Better way to do this
     if @listing.update_attributes(params[:listing])
@@ -77,8 +85,12 @@ class ListingsController < ApplicationController
 
 
   def destroy
-    @listing = Listing.find(params[:id])
-    @listing.destroy
+    @listing = Listing.find_by_id(params[:id])
+    if @listing && @listing.destroyable?(current_user)
+      @listing.destroy
+    else
+      flash[:warning] = "Whoa now, you can't be deleting that."
+    end
     redirect_to(listings_url)
   end
 end
