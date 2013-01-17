@@ -67,7 +67,7 @@ class CollegesController < ApplicationController
     end
   end
 
-  # TODO: Admin only
+
   def destroy
     @college = College.find(params[:id])
     @college.destroy

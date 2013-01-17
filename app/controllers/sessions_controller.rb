@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     respond_to do |format|
       format.html do
         if user
-          redirect_back_or_to root_url, :notice => "Logged in!"
+          redirect_back_or_to root_url, notice: "Logged in!"
         else
           flash.now[:warning] = "Wrong email or password."
           render :new
@@ -24,10 +24,10 @@ class SessionsController < ApplicationController
   def destroy
     logout
     respond_to do |format|
-      format.html { redirect_to root_url, :notice => "Logged out!" }
+      format.html { redirect_to root_url, notice: "Logged out!" }
       format.js do
         render :update do |page|
-          page.replace_html('upper_login', :partial => 'sessions/form')
+          page.replace_html('upper_login', partial: 'sessions/form')
         end
       end
     end
