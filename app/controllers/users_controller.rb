@@ -49,11 +49,19 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    unless @user.editable?(current_user)
+      flash[:warning] = "Hey now, you can't edit that person!"
+      return redirect_to listings_path
+    end
   end
   
   
   def update
     @user = User.find(params[:id])
+    unless @user.editable?(current_user)
+      flash[:warning] = "Hey now, you can't edit that person!"
+      return redirect_to listings_path
+    end
     if @user.update_attributes(params[:user])
       flash[:notice] = 'User was successfully updated.'
       redirect_to(@user)
@@ -65,6 +73,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    unless current_user.admin?
+      flash[:warning] = "Hey now, you can't edit that person!"
+      return redirect_to listings_path
+    end
     @user.destroy
 
     redirect_to(users_url)

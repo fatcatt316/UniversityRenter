@@ -30,4 +30,9 @@ class User < ActiveRecord::Base
   def admin?
     return self.has_role?("admin")
   end
+  
+  
+  def editable?(user=nil)
+    return user && (user.admin? || user.id == self.id)
+  end
 end
