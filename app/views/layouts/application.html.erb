@@ -5,7 +5,7 @@
   <head>
     <%= render "shared/meta_content" %>
   
-    <%= stylesheet_link_tag 'application', :media => "all" %>
+    <%= stylesheet_link_tag 'application', media: "all" %>
     <%= stylesheet_link_tag 'buttons' %>
     <%= stylesheet_link_tag 'gmaps4rails' %>
     <%= stylesheet_link_tag 'le-frog/jquery-ui-1.8.23.custom.css' %>
@@ -31,24 +31,24 @@
       <div id="main" class="container">
         <div id="header">
           <div id="logo_box">
-            <%= link_to image_tag("logo.png", :alt => "University Renter", :title => "University Renter"), listings_path %>
+            <%= link_to image_tag("logo.png", alt: "University Renter", title: "University Renter"), listings_path %>
           </div>
         
           <div class="right_header">
             <div id="upper_login" class='login_form'>
-              <%= render :partial => "sessions/form" %>
+              <%= render partial: "sessions/form" %>
             </div>
           </div>
           <div class="clear"></div>
         </div>
       
         <div id="navbar">
-          <%= render :partial => "shared/navbar" %>
+          <%= render partial: "shared/navbar" %>
         </div>
       
         <div id="flash">
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, :id => "#{name}", :class => "message" %>
+            <%= content_tag :div, msg, id: "#{name}", class: "message" %>
           <% end %>
         </div>
       
