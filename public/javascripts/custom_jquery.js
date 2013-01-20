@@ -11,9 +11,9 @@ jQuery(document).ready(function() {
     });
   });
 
-  jQuery(function (){
-		jQuery('.datepicker').datepicker();
-	});
+  jQuery('.datepicker').live('focus', function () {
+      jQuery(this).not('.hasDatePicker').datepicker();
+  });
 
   jQuery('select#city').live("change", function(){
 		var state_id = jQuery('select#state_id').val();
