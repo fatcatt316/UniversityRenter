@@ -2,18 +2,18 @@ source "http://rubygems.org"
 
 gem "rails", "~>3.0.19"
 
-gem "pg"
+gem 'dynamic_form'
 gem "gmaps4rails"
+gem "paperclip", "~> 2.4"
+gem "pg"
 gem "rake", "~>0.9.2"
 gem "sorcery", "~>0.7.6"
-gem "paperclip", "~> 2.4"
 gem 'will_paginate', '~> 3.0.pre4'
-gem 'dynamic_form'
 gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
 
 group :development, :test do
-  gem 'ruby-debug19'
   gem "capistrano"
+  gem 'ruby-debug19'
 end
 
 
