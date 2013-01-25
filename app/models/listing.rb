@@ -18,8 +18,6 @@ class Listing < ActiveRecord::Base
   validates_presence_of :price_per_month, :address, :if => :for_rent?
   validate :contact_email_or_contact_phone
   
-  before_create :set_creator
-  
   def to_s
     return title
   end
@@ -92,10 +90,5 @@ class Listing < ActiveRecord::Base
     if self.contact_email.blank? && self.contact_phone.blank?
       errors.add_to_base("Fill in an email or phone number where people can reach you, por favor")
     end
-  end
-  
-  
-  def set_creator
-    self.creator_id = User.current_user
   end
 end
