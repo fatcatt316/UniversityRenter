@@ -8,7 +8,7 @@ class CollegesController < ApplicationController
   # NOT IN USE  
   def select
     college              = College.find_by_id(params[:id])
-    session[:college_id] = college.try(:id)    
+    session[:college_id] = college.try(:id)
     flash[:warning]      = "Dang, try picking a college again." if college.blank?
     redirect_to listings_path
   end

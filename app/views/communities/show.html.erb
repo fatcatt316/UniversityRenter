@@ -27,10 +27,10 @@
   <div class="small_column" style="float: right;margin-right: 10px; padding: 5px;">
     <h2>Contact Info</h2>
     <% if @community.email.present? %>
-    <p><%= image_tag("email.png", class: "contact_icon") %><%= link_to "Email", {action: :contact, id: @community.id} %></p>
+      <p><%= image_tag("email.png", class: "contact_icon") %><%= @community.email %></p>
     <% end %>
     <% if @community.phone.present? %>
-    <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
+      <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
     <% end %>
     <% if @community.fax.present? %>
       <p><%= image_tag("fax.gif", class: "contact_icon") %>Fax: <%= @community.fax %></p>
