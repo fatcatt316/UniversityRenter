@@ -6,6 +6,6 @@
     
     $("#upper_login").html("<%= escape_javascript(render(:partial => 'sessions/form')) %>");
   <% else %>
-    $('#login_error_message').show().html('Email or password was invalid.');
+    $('#login_error_message').show().html('Email or password was wrong.');
   <% end %>
 })(jQuery);

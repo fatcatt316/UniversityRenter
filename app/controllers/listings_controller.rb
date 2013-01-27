@@ -57,7 +57,7 @@ class ListingsController < ApplicationController
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully created.'
-      flash[:notice] += ' Since you weren\'t signed in, the ad will be pending for now.' if current_user.blank?
+      flash[:notice] += ' Since you weren\'t signed in, your ad will need to be approved before it shows up.' if current_user.blank?
       redirect_to(@listing)
     else
       @user = User.new if current_user.blank?
