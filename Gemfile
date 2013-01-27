@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 gem "rails", "~>3.0.19"
 
+gem 'american_date'
 gem 'dynamic_form'
 gem "gmaps4rails"
 gem "paperclip", "~> 2.4"

@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.19)
       activesupport (= 3.0.19)
     activesupport (3.0.19)
+    american_date (1.0.0)
     archive-tar-minitar (0.5.2)
     arel (2.0.10)
     bcrypt-ruby (3.0.1)
@@ -127,6 +128,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  american_date
   capistrano
   dynamic_form
   gmaps4rails
