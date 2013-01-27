@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   
   
   def create
+    # TODO: csrf_token was getting cleared out.  Find a better way to do this.
+    csrf_token = session[:_csrf_token]
     user = login(params[:email], params[:password], params[:remember_me])
-    
+    session[:_csrf_token] = csrf_token
     respond_to do |format|
       format.html do
         if user
