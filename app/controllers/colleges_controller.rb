@@ -16,6 +16,7 @@ class CollegesController < ApplicationController
 
   def show
     @college = College.find(params[:id])
+    session[:college_id] = @college.id
 
     # TODO: Show all Listings for the college!!    
     # @map = @college.listings.to_gmaps4rails do |user, marker|
