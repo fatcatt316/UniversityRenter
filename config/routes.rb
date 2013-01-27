@@ -9,6 +9,11 @@ Ur3::Application.routes.draw do
   end
   resources :colleges do
     get :select, on: :member
+    resources :listings
+    resources :communities do
+      get :contact, on: :member
+      post :send_email, on: :member
+    end
   end
   resources :communities do
     collection do

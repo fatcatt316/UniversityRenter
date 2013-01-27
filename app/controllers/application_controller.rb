@@ -3,8 +3,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_college  
   
-  def current_college    
-    @current_college ||= College.find_by_id(session[:college_id]) if session[:college_id].present?
+  def current_college
+    if @current_college.blank?
+      session[:college_id] = params[:college_id] if params[:college_id].present?
+      @current_college = College.find_by_id(session[:college_id]) if session[:college_id].present?
+    end
     return @current_college
   end
   

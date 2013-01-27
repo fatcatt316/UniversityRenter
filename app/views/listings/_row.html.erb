@@ -4,7 +4,8 @@
       <%= show_primary_image(listing) %>
     </div>
   
-  <%= link_to listing, listing %></td>
+    <%= link_to listing, college_listing_path(listing.college, listing) %>
+  </td>
   <% unless current_college %>
     <td><%= link_to listing.college, listing.college %></td>
   <% end %>

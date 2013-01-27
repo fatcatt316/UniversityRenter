@@ -1,10 +1,16 @@
 <%= link_to "Post an Ad", new_listing_path(:listing => {:college_id => current_college.try(:id)}), :class => "button orange medium" %>
-<%= link_to "Apartment Ads", listings_path, :class => "button black medium" %>
+
+<% if current_college %>
+  <%= link_to "#{current_college.short_name} Apartment Ads", college_listings_path(current_college), :class => "button black medium" %>
+  <%= link_to "#{current_college.short_name} Communities", college_communities_path(current_college), :class => "button black medium" %>
+<% else %>
+  <%= link_to "Apartment Ads", listings_path, :class => "button black medium" %>
+  <%= link_to "Communities", communities_path, :class => "button black medium" %>
+<% end %>
 <%= link_to "Colleges", colleges_path, :class => "button black medium" %>
-<%= link_to "Communities", communities_path, :class => "button black medium" %>
 
 <% if current_user %>
-  <%= link_to "My Ads", listings_path(:filter => {:creator_id => current_user.id}), :class => "button black medium" %>
+  <%#= link_to "My Ads", listings_path(:filter => {:creator_id => current_user.id}), :class => "button black medium" %>
   
   <% if current_user.admin? %>
     <%= link_to "Users", users_path, :class => "button black medium" %>

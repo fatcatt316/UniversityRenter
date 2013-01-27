@@ -1,28 +1,33 @@
 <div>
   <div class="big_column">
     <h1>
-      <%= @listing.college %>
+      <%= link_to "#{@listing.college.short_name}", college_listings_url(@listing.college) %>
+      <% if @listing.community %>
+         > <%= link_to @listing.community, college_community_path(@listing.college, @listing.community) %>
+      <% end %>
+    </h1>
+    <h2>
       <span style="font-size: 0.9em;font-weight:normal;"><%= @listing %></span>
       <span style="font-size: 0.8em;color: orange;font-weight:bold;"><%= number_to_currency(@listing.price_per_month) %></span>
-    </h1>
+    </h2>
     
-    <%= render :partial => "addresses/map", :locals => {:address => @listing.address} %>
+    <% if @listing.images.any? %>
+      <div style="border: 1px solid green">
+        <!-- Lightbox and shadowbox -->
+        <% @listing.images.each do |image| %>
+          <%= image_tag image.doc.url(:medium), :class => "picture_frame" %>
+          <br />
+        <% end %>
+      </div>
+    <% end %>
     
-    <div style="border: 1px solid green">
-      <!-- Lightbox and shadowbox -->
-      <% @listing.images.each do |image| %>
-        <%= image_tag image.doc.url(:medium), :class => "picture_frame" %>
-        <br />
-      <% end %>
-    </div>
-    
-    <table class="form">
+    <table class="list_table">
       <% if @listing.community %>
         <tr>
           <th>Community:</th>
           <td>
             <%= @listing.community %> (see all <%= link_to "#{@listing.community} ads", 
-              listings_path(:filter => {:community_id => @listing.community_id}) %> )
+              college_listings_path(@listing.college, filter: {community_id: @listing.community_id}) %> )
           </td>
         </tr>
       <% end %>
@@ -36,7 +41,8 @@
       
       <% if @listing.available_bedrooms || @listing.total_bedrooms %>
         <tr>
-          <td colspan="2">
+          <th>Rooms</th>
+          <td>
             <% if @listing.total_bedrooms %>
               <%= pluralize(@listing.total_bedrooms, "room") %> available 
               <% if @listing.available_bedrooms %>
@@ -63,17 +69,19 @@
       <tr>
         <th>Contact:</th>
         <td>
-          <% if @listing.contact_email %>
+          <% if @listing.contact_email.present? %>
             <%= image_tag("email.png") %>
             <%= @listing.contact_email %>
           <% end %>
-          <% if @listing.contact_phone %>
+          <% if @listing.contact_phone.present? %>
             <%= image_tag("phone.png") %>
             <%= @listing.contact_phone %>
           <% end %>  
         </td>
       </tr>
     </table>
+    
+    <%= render :partial => "addresses/map", :locals => {:address => @listing.address} %>
   </div>
   
   <%= render partial: "shared/feature_box", locals: {subject: @listing, editable: false, css_class: "for_rent"} %>
