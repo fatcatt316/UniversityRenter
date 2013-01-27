@@ -74,7 +74,7 @@
       </tr>
       <tr class="wanted">
         <th><%= f.label :preferred_gender_id, "Are you a Guy or Girl?" %></th>
-        <td><%= f.select :preferred_gender_id, Gender.select_options(include_blank: true) %></td>
+        <td><%= f.select :preferred_gender_id, Gender.select_options %></td>
       </tr>
       
       <tr>
