@@ -1,20 +1,5 @@
 class AddressesController < ApplicationController
   
-  
-  def select_state
-    @colleges = College.search(:state_id => params[:state_id]).all
-    
-    respond_to do |format|
-      format.js { render :locals => { :state_id => params[:state_id] } }
-    end
-  end
-  
-  
-  def select_city
-    @colleges = College.search(:state_id => params[:state_id], :city => params[:city]).all
-  end
-  
-  
   def get_city_and_state
     postal_result = params[:zip_code].blank? ? {} : PostalCodeLookup.usps_lookup(params[:zip_code])
     state = State.find_by_abbreviation(postal_result[:state]) if postal_result
