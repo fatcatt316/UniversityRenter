@@ -2,7 +2,11 @@ class CommunitiesController < ApplicationController
   before_filter :admin_only, :except => [:index, :show, :contact, :send_email, :update_dropdown]
 
   def index
-    @communities = Community.order(:name).all
+    if current_college
+      @communities = Community.where(college_id: current_college.id).order(:name).all
+    else
+      @communities = Community.order(:name).all
+    end
   end
 
 
