@@ -337,8 +337,29 @@ select.search_select{
 .required{
   color: orange;
 }
-.rent_or_wanted_label{
+
+#for_rent_or_wanted {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid green;
+  background-color: #BEE9BE;
+  margin-left: 10px;
+  padding: 5px;
+  color: black;
+}
+
+#for_rent_or_wanted div{
+  display: inline;
+  padding: 2px 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.rent_or_wanted_label {
   font-size: 16px;
+  padding
+}
+.chosen_label {
+  background: #ABD2AB;
 }
 
 .big_column{
@@ -371,6 +392,7 @@ select.search_select{
   padding: 5px;
   font-weight: bold;
 }
+
 .feature_box {
   float: left;
   width: 310px;

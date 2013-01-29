@@ -32,14 +32,18 @@ jQuery(document).ready(function() {
   var selected_id = jQuery("input[name=\"listing[wanted]\"]:checked").attr('id');
   
   jQuery('#listing_wanted_false').change(function() {
-    jQuery('.wanted :input').attr('disabled', true)
+    jQuery('#wanted_label').removeClass("chosen_label");
+    jQuery('#for_rent_label').addClass("chosen_label");
+    jQuery('.wanted :input').attr('disabled', true);
     jQuery(".wanted").hide();
     jQuery(".for_rent :input").removeAttr('disabled');
     jQuery(".for_rent").show();
   });
     
   jQuery('#listing_wanted_true').change(function() {
-    jQuery('.for_rent :input').attr('disabled', true)
+    jQuery('#for_rent_label').removeClass("chosen_label");
+    jQuery('#wanted_label').addClass("chosen_label");
+    jQuery('.for_rent :input').attr('disabled', true);
     jQuery(".for_rent").hide();
     jQuery(".wanted :input").removeAttr('disabled');
     jQuery(".wanted").show();

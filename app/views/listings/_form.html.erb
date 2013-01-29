@@ -1,9 +1,15 @@
 <div>
   <div class="big_column">
-    <%= f.radio_button :wanted, false %> 
-    <%= f.label 'wanted_false', "for rent", :class => "rent_or_wanted_label" %> 
-    <%= f.radio_button :wanted, true %> 
-    <%= f.label 'wanted_true', "wanted", :class => "rent_or_wanted_label" %><br />
+    <div id="for_rent_or_wanted">
+      <div id="for_rent_label">
+        <%= f.radio_button :wanted, false %>
+        <%= f.label 'wanted_false', "for rent", class: "rent_or_wanted_label" %>
+      </div>
+      <div id="wanted_label">
+        <%= f.radio_button :wanted, true %>
+        <%= f.label 'wanted_true', "wanted", class: "rent_or_wanted_label" %>
+      </div>
+    </div>
     
     <table class="form">
       <tr>
