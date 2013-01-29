@@ -58,7 +58,7 @@ class ListingsController < ApplicationController
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully created.'
       flash[:notice] += ' Since you weren\'t signed in, your ad will need to be approved before it shows up.' if current_user.blank?
-      redirect_to college_community_path(@listing.college, @listing)
+      redirect_to college_listings_path(@listing.college)
     else
       @user = User.new if current_user.blank?
       @listing.build_address unless @listing.address
@@ -78,7 +78,7 @@ class ListingsController < ApplicationController
     if @listing.update_attributes(params[:listing])
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully updated.'
-      redirect_to college_community_path(@listing.college, @listing)
+      redirect_to college_listing_path(@listing.college, @listing)
     else
       render :action => "edit"
     end
