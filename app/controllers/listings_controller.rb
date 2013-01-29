@@ -50,7 +50,7 @@ class ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(params[:listing])
-    @listing.ad_status = current_user.present? ? AdStatus.find_by_name("Approved") : AdStatus.find_by_name("Pending")
+    @listing.ad_status = current_user.present? ? AdStatus.approved : AdStatus.find_by_name("Pending")
     @listing.creator = current_user
     
     if @listing.save

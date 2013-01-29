@@ -72,7 +72,7 @@ class Listing < ActiveRecord::Base
     listing_search = self
     
     # unless current_user.try(:admin?)
-    listing_search = listing_search.where(:ad_status_id => AdStatus.where("name = 'Approved'").first)
+    listing_search = listing_search.where(ad_status_id: AdStatus.approved)
     if options[:college_id]
       listing_search = listing_search.where(:college_id => options[:college_id])
     end

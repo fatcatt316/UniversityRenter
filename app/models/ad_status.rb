@@ -8,6 +8,10 @@ class AdStatus < ActiveRecord::Base
     return name
   end
   
+  def self.approved
+    return self.where("name = 'Approved'").first
+  end
+  
   
   def self.select_options(options={})
     order = (options[:order_by])? options[:order_by]: "name ASC"
