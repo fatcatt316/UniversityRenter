@@ -15,7 +15,7 @@ class Listing < ActiveRecord::Base
   accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
   
   validates_presence_of :title, :college
-  validates_presence_of :price_per_month, :address, :if => :for_rent?
+  validates_presence_of :price_per_month, :address, :available_on, :if => :for_rent?
   validate :contact_email_or_contact_phone
   
   def to_s
