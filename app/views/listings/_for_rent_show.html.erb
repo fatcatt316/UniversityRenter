@@ -26,8 +26,7 @@
         <tr>
           <th>Community:</th>
           <td>
-            <%= @listing.community %> (see all <%= link_to "#{@listing.community} ads", 
-              college_listings_path(@listing.college, filter: {community_id: @listing.community_id}) %> )
+            <%= link_to "#{@listing.community}", college_community_path(@listing.community, @listing.college) %>
           </td>
         </tr>
       <% end %>
