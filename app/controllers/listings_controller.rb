@@ -2,11 +2,11 @@ class ListingsController < ApplicationController
   before_filter :require_user, only: [:edit, :update, :destroy]
   
   def index
-    filter = {}
-    filter[:college_id] = current_college.try(:id)
-    
+    params[:filter] ||= {}
+    params[:filter][:college_id] = current_college.try(:id)
+
     @colleges = College.order(:name).all if current_college.blank?
-    @listings = Listing.search(filter).paginate(:page => (params[:page] || 1), :per_page => 20)
+    @listings = Listing.search(params[:filter]).paginate(:page => (params[:page] || 1), :per_page => 20)
     
     respond_to do |format|
       format.html # index.html.erb

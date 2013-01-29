@@ -74,7 +74,10 @@ class Listing < ActiveRecord::Base
     # unless current_user.try(:admin?)
     listing_search = listing_search.where(ad_status_id: AdStatus.approved)
     if options[:college_id]
-      listing_search = listing_search.where(:college_id => options[:college_id])
+      listing_search = listing_search.where(college_id: options[:college_id])
+    end
+    if options[:community_id]
+      listing_search = listing_search.where(community_id: options[:community_id])
     end
     
     options[:order] ||= "created_at DESC"
