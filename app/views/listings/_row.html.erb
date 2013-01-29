@@ -10,7 +10,7 @@
     <td><%= link_to listing.college, listing.college %></td>
   <% end %>
   <td><%= number_to_currency(listing.price_per_month) %></td>
-  <td class="date_cell"><%= listing.created_at.strftime("%m/%d/%y") %></td>
+  <td class="date_cell"><%= listing.available_on.strftime("%m/%d/%y") if listing.available_on.present? %></td>
 
   <% if current_user %>
     <td class="icons">
