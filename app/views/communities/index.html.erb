@@ -1,6 +1,8 @@
 <h1>
   <%= current_college if current_college %> Student Apartment Communities
-  <span class="new_link_holder"><%= link_to 'New Community', new_community_path, :class => 'add_link' %></span>
+  <% if current_user && current_user.admin? %>
+    <span class="new_link_holder"><%= link_to 'New Community', new_community_path, :class => 'add_link' %></span>
+  <% end %>
 </h1>
 
 <%= render partial: "communities/table", locals: {communities: @communities} %>
