@@ -1,0 +1,68 @@
+<div>
+  <div class="big_column">
+    <h1>
+      <%= link_to "#{@listing.college.short_name}", college_listings_url(@listing.college) %>
+      <% if @listing.community %>
+         > <%= link_to @listing.community, college_community_path(@listing.college, @listing.community) %>
+      <% end %><br />
+      <%= @listing %>
+    </h1>
+    <h2 style="border: none;">
+      <span style="font-size: 0.8em;color: orange;font-weight:bold;">Wanted Ad</span>
+    </h2>
+    
+    <table class="list_table">
+      <% if @listing.community %>
+        <tr>
+          <th>Community:</th>
+          <td>
+            <%= link_to "#{@listing.community}", college_community_path(@listing.community, @listing.college) %>
+          </td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.preferred_gender %>
+        <tr>
+          <th>I am a:</th>
+          <td><%= @listing.preferred_gender %></td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.available_bedrooms %>
+        <tr>
+          <th>Bedrooms needed:</th>
+          <td><%= @listing.available_bedrooms %></td>
+        </tr>
+      <% end %>
+      
+      <% if @listing.available_on %>
+        <tr>
+          <th>Date Needed:</th>
+          <td><%= @listing.available_on.strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+      
+      <tr>
+        <th>Description:</th>
+        <td><%= @listing.description %></td>
+      </tr>
+      <tr>
+        <th>Contact:</th>
+        <td>
+          <% if @listing.contact_email.present? %>
+            <%= image_tag("email.png") %>
+            <%= @listing.contact_email %>
+          <% end %>
+          <% if @listing.contact_phone.present? %>
+            <%= image_tag("phone.png") %>
+            <%= @listing.contact_phone %>
+          <% end %>  
+        </td>
+      </tr>
+    </table>
+    
+    <%= render :partial => "addresses/map", :locals => {:address => @listing.address} %>
+  </div>
+
+  <div class="clear"></div>
+</div>
