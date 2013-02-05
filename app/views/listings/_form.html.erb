@@ -72,7 +72,7 @@
       
       <tr class="wanted">
         <th><%= f.label :available_bedrooms, "# of Bedrooms Needed:" %></th>
-        <td><%= f.select :available_bedrooms, [""] + (0..10).to_a %></td>
+        <td><%= f.select :available_bedrooms, [""] + (1..10).to_a %></td>
       </tr>
       <tr class="wanted">
         <th><%= f.label :available_on, "Date needed:" %></th>
