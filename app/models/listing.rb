@@ -35,6 +35,11 @@ class Listing < ActiveRecord::Base
   end
   
   
+  def approved?
+    return "Approved" == ad_status.to_s
+  end
+  
+  
   def editable?(user=nil)
     return self.new_record? || (user && (user.admin? || self.creator_id == user))
   end
@@ -71,8 +76,9 @@ class Listing < ActiveRecord::Base
     joins = []
     listing_search = self
     
-    # unless current_user.try(:admin?)
-    listing_search = listing_search.where(ad_status_id: AdStatus.approved)
+    unless options[:show_all]
+      listing_search = listing_search.where(ad_status_id: AdStatus.approved)
+    end
     if options[:college_id]
       listing_search = listing_search.where(college_id: options[:college_id])
     end

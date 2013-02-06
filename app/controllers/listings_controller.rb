@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
   
   def index
     params[:filter] ||= {}
+    params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
     @colleges = College.order(:name).all if current_college.blank?
@@ -72,6 +73,9 @@ class ListingsController < ApplicationController
     unless @listing.editable?(current_user)
       flash[:warning] = "Whoops, looks like you can't edit that ad!"
       return redirect_to listings_path
+    end
+    unless current_user && current_user.admin?
+      params[:listing][:ad_status_id] = @listing.ad_status_id
     end
     
     params[:feature_ids] ||= {} # TODO: Better way to do this

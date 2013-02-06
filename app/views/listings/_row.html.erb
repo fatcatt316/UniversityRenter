@@ -1,4 +1,6 @@
-<tr id="listing_row_<%= listing.id %>" class="listing_row <%= cycle('even', 'odd') %>">
+<% row_class = listing.approved? ? "#{cycle('even', 'odd')}" : "status_#{listing.ad_status.to_s.downcase}" %>
+
+<tr id="listing_row_<%= listing.id %>" class="listing_row <%= row_class %>">
   <td>
     <div style="float: left;margin-right: 10px;">
       <%= show_primary_image(listing) %>

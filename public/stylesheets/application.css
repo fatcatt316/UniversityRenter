@@ -294,6 +294,14 @@ div#listings_list{
   padding-left: 10px;
 }
 
+.status_denied {
+  background: #F6CECE;
+}
+
+.status_pending {
+  background: #F2F5A9;
+}
+
 /** v Search Box v**/
 div#search_box{
   float: left;

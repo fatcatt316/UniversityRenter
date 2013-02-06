@@ -14,8 +14,8 @@ class AdStatus < ActiveRecord::Base
   
   
   def self.select_options(options={})
-    order = (options[:order_by])? options[:order_by]: "name ASC"
-    select = self.find(:all, :order => order).map {|u| [u.to_s, u.id]}
+    options[:order_by] ||= "name ASC"
+    select = self.order(options[:order_by]).all.map{|u| [u.to_s, u.id]}
     select = [""].concat(select) if options[:include_blank]
     return select
   end

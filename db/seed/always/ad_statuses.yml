@@ -1,4 +1,9 @@
 pending:
+  id: 1
   name: Pending
 approved:
+  id: 2
   name: Approved
+denied:
+  id: 3
+  name: Denied
