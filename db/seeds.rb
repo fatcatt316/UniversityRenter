@@ -37,7 +37,7 @@ college_info = [
   address_attributes: {line1: "1400 Spring Garden St", zip: "27412", city: "Greensboro", state_id: nc_state.id}},
   
   # Duke
-  {id: 8, name: "Duke University", short_name: "NCSU", mascot: "Wolfpack", description: "Duke is a private university situated in Durham, AKA the Bull City.  In 2013, \"U.S. News & World Report\" ranked Duke's undergrad program 8th best in the whole United States.",
+  {id: 8, name: "Duke University", short_name: "Duke", mascot: "Wolfpack", description: "Duke is a private university situated in Durham, AKA the Bull City.  In 2013, \"U.S. News & World Report\" ranked Duke's undergrad program 8th best in the whole United States.",
   address_attributes: {line1: "2138 Campus Drive", zip: "27705", city: "Durham", state_id: nc_state.id}}
 ]
 
