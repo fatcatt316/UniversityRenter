@@ -2,8 +2,8 @@ class College < ActiveRecord::Base
   has_many :communities, order: :name, dependent: :destroy
   has_many :listings, dependent: :destroy
   
-  has_one :address, :as => :subject, :dependent => :destroy
-  accepts_nested_attributes_for :address, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  has_one :address, as: :subject, dependent: :destroy
+  accepts_nested_attributes_for :address, reject_if: lambda { |a| a.values.all?(&:blank?) }, allow_destroy: true
   
   validates_presence_of :name, :short_name, :description
   validates_uniqueness_of :name
