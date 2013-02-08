@@ -1,6 +1,6 @@
 class College < ActiveRecord::Base
-  has_many :communities, order: :name
-  has_many :listings
+  has_many :communities, order: :name, dependent: :destroy
+  has_many :listings, dependent: :destroy
   
   has_one :address, :as => :subject, :dependent => :destroy
   accepts_nested_attributes_for :address, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
