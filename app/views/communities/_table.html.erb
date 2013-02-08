@@ -29,7 +29,7 @@
       <% if current_user && current_user.admin? %>
         <td class="icons">
           <%= link_to '', edit_community_path(community), :class => "edit_link" %>
-          <%= link_to '', community, confirm: 'Are you sure?', method: :delete, class: "delete_link" %>
+          <%= link_to '', community, confirm: "Are you sure you want to delete #{community}?", method: :delete, class: "delete_link" %>
         </td>
       <% end %>
     </tr>

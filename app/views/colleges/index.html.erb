@@ -22,7 +22,7 @@
       <% if current_user && current_user.admin? %>
         <td class="icons">
           <%= link_to '', edit_college_path(college), :class => "edit_link" %>
-          <%= link_to '', college, :confirm => 'Are you sure?', :method => :delete, :class => "delete_link" %>
+          <%= link_to '', college, :confirm => "Are you sure you want to delete #{college}? This will delete ALL its communities and ads, too.", :method => :delete, :class => "delete_link" %>
         </td>
       <% end %>
     </tr>

@@ -18,7 +18,7 @@
     <td class="icons">
       <% if listing.editable?(current_user) %>
         <%= link_to '', edit_listing_path(listing), :class => "edit_link"  %>
-        <%= link_to '', listing, :confirm => 'Are you sure?', :method => :delete, :class => "delete_link" %>
+        <%= link_to '', listing, :confirm => 'Are you sure you want to delete this ad?', :method => :delete, :class => "delete_link" %>
       <% end %>
     </dh>
   <% end %>
