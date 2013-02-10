@@ -320,7 +320,7 @@ duke_communities = [
 asu_communities + uncc_communities + ecu_communities + duke_communities).each do |community_attrs|
   puts "Looking for Community \"#{community_attrs[:name]}\"..."
   community = Community.find_by_name(community_attrs[:name])
-  
+  sleep 5
   if community
     puts "...found it, and updating it!"
     community.update_attributes(community_attrs)
