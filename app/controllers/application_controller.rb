@@ -12,6 +12,21 @@ class ApplicationController < ActionController::Base
   end
   
   
+  # Used to redirect links that were to the old, static UniversityRenter (such as universityrenter.com/ncsu, or universityrenter.com/ncsu/averyClose)
+  def legacy_redirect
+    community = Community.where("lower(legacy_url) = ?", params[:legacy_community_name].to_s.downcase).first
+    
+    if community
+      redirect_to community, :status => 301
+    elsif college = College.where("lower(short_name) = ?", params[:legacy_college_name].to_s.downcase).first
+      redirect_to college, :status => 301
+    else
+      flash[:notice] = "The link you clicked is out of date!  We couldn't figure out where you wanted to go..."
+      redirect_to listings_path, :status => 301
+    end
+  end
+  
+  
   private
   
   

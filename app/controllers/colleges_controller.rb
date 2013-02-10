@@ -1,19 +1,10 @@
 class CollegesController < ApplicationController
-  before_filter :admin_only, :except => [:index, :show, :select, :short_name]
+  before_filter :admin_only, :except => [:index, :show, :select]
 
   def index
     @colleges = College.all
   end
-  
-  # Used to redirect links that were to the old, static UniversityRenter (such as universityrenter.com/ncsu)
-  def short_name
-    college = College.where("lower(short_name) = ?", params[:short_name].to_s.downcase).first
-    if college
-      redirect_to college, :status => 301
-    else
-      redirect_to colleges_path, :status => 301
-    end
-  end
+
 
   # NOT IN USE  
   def select
