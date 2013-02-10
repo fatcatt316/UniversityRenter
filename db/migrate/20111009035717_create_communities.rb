@@ -2,6 +2,7 @@ class CreateCommunities < ActiveRecord::Migration
   def self.up
     create_table :communities do |t|
       t.string :name
+      t.string :legacy_url
       t.references :college
       t.decimal :price_per_month, :precision => 7, :scale => 2
       t.text :description
