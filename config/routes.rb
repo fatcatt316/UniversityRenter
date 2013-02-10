@@ -9,7 +9,6 @@ Ur3::Application.routes.draw do
   end
   resources :colleges do
     get :select, on: :member
-    get :short_name
     resources :listings
     resources :communities do
       get :contact, on: :member
@@ -89,17 +88,12 @@ Ur3::Application.routes.draw do
 
   # See how all your routes lay out with "rake routes"
   
-  # Match legacy routes that old static version of UniversityRenter used
-  # TODO: Find a cleaner, less brittle way to do this
-  match "ncsu", controller: :colleges, action: :short_name, short_name: "ncsu"
-  match "ecu",  controller: :colleges, action: :short_name, short_name: "ecu"
-  match "unc",  controller: :colleges, action: :short_name, short_name: "unc"
-  match "uncg", controller: :colleges, action: :short_name, short_name: "uncg"
-  match "uncw", controller: :colleges, action: :short_name, short_name: "uncw"
-  match "uncc", controller: :colleges, action: :short_name, short_name: "uncc"
-  match "asu",  controller: :colleges, action: :short_name, short_name: "asu"
-  match "duke", controller: :colleges, action: :short_name, short_name: "duke"
-
+  
+  ### Legacy redirects - Match legacy routes that old static version of UniversityRenter used
+  [ "ncsu", "ecu", "unc", "uncg", "uncw", "uncc", "asu", "duke"].each do |short_name|
+    match "#{short_name}/(:legacy_community_name)/*params", controller: :application, action: :legacy_redirect, legacy_college_name: short_name
+  end
+  
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
