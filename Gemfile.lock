@@ -50,7 +50,7 @@ GEM
     highline (1.6.15)
     httpauth (0.2.0)
     i18n (0.5.0)
-    json (1.7.6)
+    json (1.7.7)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     mail (2.2.19)
@@ -132,6 +132,7 @@ DEPENDENCIES
   capistrano
   dynamic_form
   gmaps4rails
+  json (~> 1.7.7)
   paperclip (~> 2.4)
   pg
   rails (~> 3.0.20)

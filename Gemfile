@@ -5,6 +5,7 @@ gem "rails", "~>3.0.20"
 gem 'american_date'
 gem 'dynamic_form'
 gem "gmaps4rails"
+gem "json", "~> 1.7.7"
 gem "paperclip", "~> 2.4"
 gem "pg"
 gem "rake", "~>0.9.2"
@@ -16,7 +17,6 @@ group :development, :test do
   gem "capistrano"
   gem 'ruby-debug19'
 end
-
 
 # Bundle the extra gems:
 # gem "bj"
