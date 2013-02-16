@@ -91,7 +91,7 @@ Ur3::Application.routes.draw do
   
   ### Legacy redirects - Match legacy routes that old static version of UniversityRenter used
   [ "ncsu", "ecu", "unc", "uncg", "uncw", "uncc", "asu", "duke"].each do |short_name|
-    match "#{short_name}/(:legacy_community_name)/*params", controller: :application, action: :legacy_redirect, legacy_college_name: short_name
+    match "/#{short_name}(/:legacy_community_name(/:community_page))", controller: :application, action: :legacy_redirect, legacy_college_name: short_name
   end
   
   # This is a legacy wild controller route that's not recommended for RESTful applications.
