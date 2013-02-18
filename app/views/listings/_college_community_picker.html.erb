@@ -1,17 +1,15 @@
 <% filter ||= {} %>
 
-<% if current_college %>
-  <div>
+<div>
+  <% if current_college %>
     <h3><%= current_college %><br><%= current_college.city_state %></h3>
-    <div style="font-weight: bold;font-size: 1.4em;">Communities</div>
-    <%= render :partial => "communities/list", :locals => {:communities => current_college.communities.order(:name)} %>
-  </div>
-<% else %>
-  <div>
-    <h3>Choose a College</h3>
-    
-    <% @colleges.each do |college| %>
-      <%= link_to college, college %><br />
-    <% end %>
-  </div>
-<% end %>
+    <div class="community_college_picker_header">Communities</div>
+    <div class="community_list_container">
+      <%= render :partial => "communities/list", :locals => {:communities => current_college.communities.order(:name)} %>
+    </div>
+  <% end %>
+  <div class="community_college_picker_header">Colleges</div>
+  <% @colleges.each do |college| %>
+    <%= link_to college, college %><br />
+  <% end %>
+</div>

@@ -291,6 +291,13 @@ div#listings_list{
   width: 32%;
   padding-left: 10px;
 }
+.community_college_picker_header {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+.community_list_container {
+  padding-bottom: 50px;
+}
 
 .status_denied {
   background: #F6CECE;

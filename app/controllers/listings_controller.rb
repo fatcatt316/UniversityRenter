@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
     params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
-    @colleges = College.order(:name).all if current_college.blank?
+    @colleges = College.order(:name).all
     @listings = Listing.search(params[:filter]).paginate(:page => (params[:page] || 1), :per_page => 20)
     
     respond_to do |format|
