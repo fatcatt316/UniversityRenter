@@ -62,11 +62,13 @@
     <%= yield :scripts %>
     <div id="footer">
       <div class="container" style="padding-top: 20px;">
-        <div class="copyright_info">
-          UniversityRenter &copy;2005-<%= Date.today.year %>
+        <div class="feedback_link">
+          <%= mail_to "vanessa@universityreenter.com", "Feedback?  Comments?  Let us know!",
+            body: "-- Feedback" %>
         </div>
         
         <div class="bj_web_development">
+          UniversityRenter &copy;2005-<%= Date.today.year %><br />
           Created by <a href="http://www.bjwebdevelopment.com/">BJ Web Development</a>
         </div>
       </div>

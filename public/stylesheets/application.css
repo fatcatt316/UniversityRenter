@@ -167,23 +167,29 @@ select, textarea, input {
   height: 24px;
 }
 
-#footer a {
+#footer bj_web_development a {
   text-decoration:none;
   border-bottom: dotted white;
   color: white;
 }
 
-#footer a:hover {
+#footer bj_web_development a:hover {
   border-bottom: dashed white;
   color: white;
 }
 
 #footer .bj_web_development {
   float: right;
+  text-align: right;
 }
 
-#footer .copyright_info {
+#footer .feedback_link {
   float: left;
+}
+#footer .feedback_link a{
+  float: left;
+  text-decoration: none;
+  color: white;
 }
 
 .login_form .fieldWithErrors{
