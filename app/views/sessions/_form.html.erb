@@ -3,14 +3,22 @@
   <%= link_to "Logout", logout_path %>
 <% else %>
   <%= form_tag sessions_path do %>
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email], :size => 15 %>
+    <div class="login-fields-wrapper">
+      <div class="field-with-label">
+        <%= text_field_tag :email, params[:email], :size => 20, :placeholder => "Email" %><br />
+        <%= label_tag :email %>
+      </div>
     
-    <%= label_tag :password %>
-    <%= password_field_tag :password, nil, :size => 7 %>
+      <div class="field-with-label">
+        <%= password_field_tag :password, nil, :size => 11, :placeholder => "Password" %><br />
+        <%= label_tag :password %>
+      </div>
     
-    <%= submit_tag "Log in" %>
-    <br />
+      <div class="field-with-label">
+        <%= submit_tag "Log in" %>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
     No account? <%= link_to "Sign up here", signup_path %>
     <%#= check_box_tag :remember_me, 1, params[:remember_me] %>
     <%#= label_tag :remember_me %>

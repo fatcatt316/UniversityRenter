@@ -147,12 +147,33 @@ select, textarea, input {
   text-align: right;
 }
 
-.right_header h1{
+.right_header h1 {
   display:inline;
 }
 
-#upper_login{
+#upper_login {
   padding-top: 8px;
+}
+
+#upper_login a {
+  text-decoration: none;
+  border-bottom: 1px dashed black;
+}
+
+#upper_login label {
+  color: #326B3A;
+  font-size: 0.8em;
+}
+
+#upper_login .login-fields-wrapper {
+  float: right;
+  padding-bottom: 10px;
+}
+
+#upper_login .login-fields-wrapper .field-with-label {
+  float: left;
+  text-align: left;
+  padding-right: 5px;
 }
 
 #main_content{
