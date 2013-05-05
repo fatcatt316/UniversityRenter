@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem "rails", "~>3.0.20"
 
 gem 'american_date'
+gem 'aws-sdk'
 gem 'dynamic_form'
 gem "gmaps4rails"
 gem "json", "~> 1.7.7"
