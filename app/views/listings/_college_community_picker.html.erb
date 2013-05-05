@@ -10,6 +10,6 @@
   <% end %>
   <div class="community_college_picker_header">Colleges</div>
   <% @colleges.each do |college| %>
-    <%= link_to college, college %><br />
+    <%= link_to college, listings_path(college_id: college.id) %><br />
   <% end %>
 </div>
