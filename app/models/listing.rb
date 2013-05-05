@@ -22,6 +22,10 @@ class Listing < ActiveRecord::Base
     return title
   end
   
+  def to_title
+    "#{college} | #{self}"
+  end
+  
   
   def primary_document
     return documents.select{|d| d.primary}.first
@@ -70,7 +74,6 @@ class Listing < ActiveRecord::Base
       ad_feature ||= self.ad_features.create(:feature_id => feature_id)
     end
   end
-  
   
   def self.search(options={})
     joins = []

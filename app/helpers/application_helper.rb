@@ -1,26 +1,29 @@
 module ApplicationHelper
   
   # TODO: Better SEO
-  def show_title
-    title = "University Renter - "
-    if current_college
-      title << "#{current_college.short_name} student apartments in #{current_college.city_state} "
+  def page_title
+    title = "University Renter | "
+    
+    page_object = @listing || @community || current_college
+    
+    if page_object
+      title << page_object.to_title
     else
-      title << "Student Apartments, Subleases, and Roommates "
+      title << "Student Apartments, Subleases, and Roommates"
+      title << controller.controller_name.titleize
     end
-    title << controller.controller_name.titleize
     return title
   end
   
   
-  def show_keywords
+  def meta_keywords
     keywords = [current_college.try(:name), "college student apartments", "off-campus townhomes", 
       current_college.try(:short_name), current_college.try(:city_state), "roommate", "sublease", "rent"]
     return keywords.compact.join(",")
   end
   
   
-  def show_description
+  def meta_description
     if current_college
       description = "#{current_college.short_name} student apartments and townhomes in #{current_college.city_state} to rent or sublease near #{current_college.name}"
     else
@@ -34,7 +37,7 @@ module ApplicationHelper
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document
     
-    if image_file && image_file.image?
+    if image_file.try(:image?)
       return image_tag image_file.doc.url(options[:size].to_sym), :title => image_file.to_s, :class => "picture_frame"
     end
   end

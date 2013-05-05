@@ -14,6 +14,9 @@ class College < ActiveRecord::Base
     return name
   end
   
+  def to_title
+    "#{short_name} roommates and student apartments in #{city_state}"
+  end
   
   def city_state
     return "#{address.city}, #{address.state.abbreviation}"

@@ -22,6 +22,9 @@ class Community < ActiveRecord::Base
     return name
   end
   
+  def to_title
+    "#{self} | #{college} student housing in #{self.address.try(:city)}"
+  end
   
   def primary_document
     return documents.select{|d| d.primary}.first
