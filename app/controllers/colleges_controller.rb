@@ -3,6 +3,7 @@ class CollegesController < ApplicationController
 
   def index
     @colleges = College.all
+    session[:college_id] = nil
   end
 
 
