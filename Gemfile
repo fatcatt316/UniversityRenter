@@ -7,6 +7,7 @@ gem 'aws-sdk'
 gem 'dynamic_form'
 gem "gmaps4rails"
 gem "json", "~> 1.7.7"
+gem 'jquery-rails'
 gem "paperclip", "~> 2.4"
 gem "pg"
 gem "rake", "~>0.9.2"
@@ -17,6 +18,14 @@ gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
 group :development, :test do
   gem "capistrano"
   gem 'ruby-debug19'
+end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails', " ~> 3.1.0"
+  gem 'coffee-rails', " ~> 3.1.0"
+  gem 'uglifier'
 end
 
 # Bundle the extra gems:

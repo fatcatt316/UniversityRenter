@@ -15,17 +15,14 @@ Ur3::Application.configure do
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
 
-  # If you have no front-end server that supports something like X-Sendfile,
-  # just comment this out and Rails will serve the files
+  # Compress JavaScript and CSS
+  config.assets.compress = true
 
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
+  # Don't fallback to assets pipeline
+  config.assets.compile = false
 
-  # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
-
-  # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
+  # Generate digests for assets URLs
+  config.assets.digest = true
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
