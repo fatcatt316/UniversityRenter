@@ -32,16 +32,7 @@ class CommunitiesController < ApplicationController
   
   # Ajax action
   def update_dropdown
-    college = College.find_by_id(params[:college_id])
-
-    respond_to do |format|
-      format.js {
-        render :update do |page|
-          page.replace_html('community_dropdown', :partial => 'dropdown', 
-            :locals => {:college => college, :search_box => params[:search_box]} )
-        end
-      }
-    end    
+    @college = College.find_by_id(params[:college_id])
   end
 
 

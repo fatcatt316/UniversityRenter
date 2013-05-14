@@ -15,12 +15,7 @@
       <tr>
         <th class="required">* <%= f.label :college_id, "College:" %></th>
         <td>
-          <%= f.select :college_id, College.select_options(:include_blank => true), {}, 
-             :onchange => remote_function(
-             :with => "'college_id=' + this.value",
-             :url => {:controller => :communities, :action => :update_dropdown}, 
-             :method => :get), 
-             :class => "search_select" %>
+          <%= f.select :college_id, College.select_options(:include_blank => true), {}, class: "search_select college_dropdown" %>
         </td>
       </tr>
       
