@@ -7,7 +7,7 @@ gem 'aws-sdk'
 gem 'dynamic_form'
 gem "gmaps4rails"
 gem "json", "~> 1.7.7"
-gem "paperclip", "~> 2.4"
+gem "paperclip", "~> 3.4.1"
 gem "pg"
 gem "rake", "~>0.9.2"
 gem "sorcery", "~>0.7.6"
