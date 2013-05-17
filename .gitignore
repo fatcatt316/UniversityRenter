@@ -3,5 +3,7 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 config/database.yml
+public/system/documents/*
 public/system/docs/*
 .DS_Store
+*.sh
