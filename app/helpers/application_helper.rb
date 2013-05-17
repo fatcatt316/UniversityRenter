@@ -42,8 +42,6 @@ module ApplicationHelper
     end
   end
   
-  ### TODO: Have link somewhere for icons: http://p.yusukekamiyamane.com
-  
   
   def line_break(string)
     return raw((h string).gsub("\n", '<br />')) rescue ""
