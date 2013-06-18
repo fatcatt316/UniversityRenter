@@ -45,6 +45,16 @@ jQuery(document).ready(function() {
       data: 'college_id=' + this.value
     });
   });
+  
+  // ZIP code city and state populator
+  jQuery('input.zip_field').live('keyup', function() {
+    if (this.value.length == 5) {
+      jQuery.ajax({
+        url: '/addresses/get_city_and_state',
+        data: 'zip_code=' + this.value
+      });
+    }
+  });
 
   jQuery('.datepicker').live('focus', function () {
     jQuery(this).not('.hasDatePicker').datepicker();
