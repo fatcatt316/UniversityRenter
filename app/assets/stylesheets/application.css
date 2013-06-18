@@ -9,7 +9,7 @@ body {
   margin: 0px 0 0 0;
   font: 16px Helvetica, Sans-Serif;
   color: #333;
-  background: url('/images/top-sliver1.png') repeat-x;
+  background: url('/assets/top-sliver1.png') repeat-x;
   position: relative;
 }
 
@@ -263,40 +263,40 @@ select, textarea, input {
 }
 
 .college_link {
-  background: url(/images/college_icon.png) 0 2px no-repeat;
+  background: url(/assets/college_icon.png) 0 2px no-repeat;
   padding: 2px 2px 2px 20px;
   text-decoration: none;
 }
 .college_link:hover {
-  background-image: url(/images/college_icon.png) 0 2px no-repeat;
+  background-image: url(/assets/college_icon.png) 0 2px no-repeat;
   border-bottom: 1px dashed #990000;
 }
 .add_link {
-  background: url(/images/add.png) 0 2px no-repeat;
+  background: url(/assets/add.png) 0 2px no-repeat;
   padding: 2px 2px 2px 20px;
   text-decoration: none;
 }
 .add_link:hover {
-  background-image: url(/images/add.png) 0 2px no-repeat;
+  background-image: url(/assets/add.png) 0 2px no-repeat;
   border-bottom: 1px dashed #990000;
 }
 
 .edit_link {
-  background: url(/images/edit_icon.gif) 0 2px no-repeat;
+  background: url(/assets/edit_icon.gif) 0 2px no-repeat;
   padding: 2px 2px 2px 20px;
   text-decoration: none;
 }
 .edit_link:hover {
-  background-image: url(/images/edit_icon.gif) 0 2px no-repeat;
+  background-image: url(/assets/edit_icon.gif) 0 2px no-repeat;
   border-bottom: 1px dashed #990000;
 }
 .delete_link {
-  background: url(/images/cross.png) 0 2px no-repeat;
+  background: url(/assets/cross.png) 0 2px no-repeat;
   padding: 2px 2px 2px 20px;
   text-decoration: none;
 }
 .delete_link:hover {
-  background-image: url(/images/cross.png) 0 2px no-repeat;
+  background-image: url(/assets/cross.png) 0 2px no-repeat;
   border-bottom: 1px dashed #990000;
 }
 

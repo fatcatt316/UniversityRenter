@@ -1,0 +1,13 @@
+(function($) {
+  zip_div = $('.address_form')
+  
+  <% if @postal_result.present? %>
+    $('.city_field').value = <%= @postal_result[:city] %>;
+    $('.city').html("<%= @postal_result[:city] %>");
+    
+    <% if @state.present? %>
+      $('.state').html(<%= @postal_result[:state] %>);
+      $('.state_id').html(<%= @state.id %>);
+    <% end %>
+  <% end %>
+})(jQuery);
