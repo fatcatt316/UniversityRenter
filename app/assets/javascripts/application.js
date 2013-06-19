@@ -40,7 +40,7 @@ jQuery(document).ready(function() {
     });
   });
   
-  jQuery('select.college_dropdown').live('change', function() {
+  jQuery('select.college_dropdown').on('change', function() {
     jQuery.ajax({
       url: '/communities/update_dropdown',
       data: 'college_id=' + this.value
@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
   });
   
   // ZIP code city and state populator
-  jQuery('input.zip_field').live('keyup', function() {
+  jQuery('input.zip_field').on('keyup', function() {
     if (this.value.length == 5) {
       jQuery.ajax({
         url: '/addresses/get_city_and_state',
@@ -57,11 +57,17 @@ jQuery(document).ready(function() {
     }
   });
 
-  jQuery('.datepicker').live('focus', function () {
-    jQuery(this).not('.hasDatePicker').datepicker();
+  // jQuery('.datepicker').on('focus', function () {
+  //   jQuery(this).not('.hasDatePicker').datepicker();
+  // });
+  
+  jQuery(function() {
+    jQuery('.datepicker').datepicker({
+      dateFormat : "yy-mm-dd"
+    });
   });
 
-  jQuery('select#city').live("change", function(){
+  jQuery('select#city').on("change", function(){
     var state_id = jQuery('select#state_id').val();
     var city = jQuery(this).val();
     
@@ -97,5 +103,3 @@ jQuery(document).ready(function() {
   
   jQuery('#' + selected_id).change();
 });
-
-jQuery.noConflict();
