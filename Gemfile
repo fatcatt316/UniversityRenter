@@ -8,6 +8,7 @@ gem 'dynamic_form'
 gem "gmaps4rails"
 gem "json", "~> 1.7.7"
 gem 'jquery-rails'
+gem 'jquery_datepicker'
 gem "paperclip", "~> 2.4"
 gem "pg"
 gem "rake", "~>0.9.2"
