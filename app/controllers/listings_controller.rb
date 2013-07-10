@@ -11,11 +11,12 @@ class ListingsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.js {
-        render :update do |page|
-          page.replace_html 'listings_list', :partial => 'listings/list', :locals => {:listings => @listings}
-        end
-      }
+      # TODO: Front page searching
+      # format.js {
+      #         render :update do |page|
+      #           page.replace_html 'listings_list', :partial => 'listings/list', :locals => {:listings => @listings}
+      #         end
+      #       }
     end
   end
 
