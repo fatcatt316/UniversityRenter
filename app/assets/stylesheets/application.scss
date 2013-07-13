@@ -4,11 +4,13 @@
 *= require_tree .
 */
 
-* { margin: 0px; padding: 0px; }
+$footer-color-one: #60AB64;
+$footer-color-two: #72D578;
+
 
 body {
   margin: 0px 0 0 0;
-  font: 16px Helvetica, Sans-Serif;
+  font: 16px Helvetica Sans-Serif;
   color: #333;
   background: url('/assets/top-sliver1.png') repeat-x;
   position: relative;
@@ -31,18 +33,18 @@ html, body {height: 100%;}
   
 /*  background: #72D579;*/
   min-width: 100%;
-  background-image: linear-gradient(top, #60AB64 30%, #72D578 62%);
-  background-image: -o-linear-gradient(top, #60AB64 30%, #72D578 62%);
-  background-image: -moz-linear-gradient(top, #60AB64 30%, #72D578 62%);
-  background-image: -webkit-linear-gradient(top, #60AB64 30%, #72D578 62%);
-  background-image: -ms-linear-gradient(top, #60AB64 30%, #72D578 62%);
+  background-image: linear-gradient(top, $footer-color-one 30%, $footer-color-two 62%);
+  background-image: -o-linear-gradient(top, $footer-color-one 30%, $footer-color-two 62%);
+  background-image: -moz-linear-gradient(top, $footer-color-one 30%, $footer-color-two 62%);
+  background-image: -webkit-linear-gradient(top, $footer-color-one 30%, $footer-color-two 62%);
+  background-image: -ms-linear-gradient(top, $footer-color-one 30%, $footer-color-two 62%);
 
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    color-stop(0.3, #60AB64),
-    color-stop(0.62, #72D578)
+    color-stop(0.3, $footer-color-one),
+    color-stop(0.62, $footer-color-two)
   );
   
   color: white;
@@ -159,27 +161,26 @@ select, textarea, input {
 
 #upper_login {
   padding-top: 8px;
-}
-
-#upper_login a {
-  text-decoration: none;
-  border-bottom: 1px dashed black;
-}
-
-#upper_login label {
-  color: #326B3A;
-  font-size: 0.8em;
-}
-
-#upper_login .login-fields-wrapper {
-  float: right;
-  padding-bottom: 10px;
-}
-
-#upper_login .login-fields-wrapper .field-with-label {
-  float: left;
-  text-align: left;
-  padding-right: 5px;
+  
+  a {
+    text-decoration: none;
+    border-bottom: 1px dashed black;
+  }
+  label {
+    color: #326B3A;
+    font-size: 0.8em;
+  }
+  
+  .login-fields-wrapper {
+    float: right;
+    padding-bottom: 10px;
+    
+    .field-with-label {
+      float: left;
+      text-align: left;
+      padding-right: 5px;
+    }
+  }
 }
 
 #main_content{
@@ -402,7 +403,6 @@ select.search_select{
 }
 .rent_or_wanted_label {
   font-size: 16px;
-  padding
 }
 .chosen_label {
   background: #ABD2AB;
