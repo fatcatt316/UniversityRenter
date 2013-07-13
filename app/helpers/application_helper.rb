@@ -2,8 +2,7 @@ module ApplicationHelper
   
   # TODO: Better SEO
   def page_title
-    title = "University Renter | "
-    
+    title = ["University Renter"]
     page_object = @listing || @community || current_college
     
     if page_object
@@ -12,7 +11,7 @@ module ApplicationHelper
       title << "Student Apartments, Subleases, and Roommates"
       title << controller.controller_name.titleize
     end
-    return title
+    return title.join(" | ")
   end
   
   
