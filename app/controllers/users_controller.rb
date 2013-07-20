@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
 
   def finalize_signup
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     
     respond_to do |format|
       if verify_recaptcha(:model => @user, :message => "Incorrect captcha message") && @user.save
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
       redirect_to @user, :notice => "User created!"
     else
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       flash[:warning] = "Hey now, you can't edit that person!"
       return redirect_to listings_path
     end
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = 'User was successfully updated.'
       redirect_to(@user)
     else
@@ -81,4 +81,15 @@ class UsersController < ApplicationController
 
     redirect_to(users_url)
   end
+  
+  private
+  
+    def user_params
+      if current_user.try(:admin?)
+        params.require(:user).permit!
+      else
+        params.require(:user).permit(:gender_id, :email, :remember_me_token, :password, :password_confirmation)
+      end
+    end
+
 end

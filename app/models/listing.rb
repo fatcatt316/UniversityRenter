@@ -100,7 +100,7 @@ class Listing < ActiveRecord::Base
   
   def contact_email_or_contact_phone
     if self.contact_email.blank? && self.contact_phone.blank?
-      errors.add_to_base("Fill in an email or phone number where people can reach you, por favor")
+      errors.add(:base, "Fill in an email or phone number where people can reach you, por favor")
     end
   end
 end

@@ -11,11 +11,12 @@ class ListingsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.js {
-        render :update do |page|
-          page.replace_html 'listings_list', :partial => 'listings/list', :locals => {:listings => @listings}
-        end
-      }
+      # TODO: Front page searching
+      # format.js {
+      #         render :update do |page|
+      #           page.replace_html 'listings_list', :partial => 'listings/list', :locals => {:listings => @listings}
+      #         end
+      #       }
     end
   end
 
@@ -29,11 +30,11 @@ class ListingsController < ApplicationController
 
 
   def new
-    params[:listing] ||= {}
-    params[:listing][:contact_email] ||= current_user.email if current_user
-    params[:listing][:available_on] ||= Date.today
+    listing_params ||= {}
+    listing_params[:contact_email] ||= current_user.email if current_user
+    listing_params[:available_on] ||= Date.today
     
-    @listing = Listing.new(params[:listing])
+    @listing = Listing.new(listing_params)
     @listing.build_address
     @user = User.new if current_user.blank?
   end
@@ -50,7 +51,7 @@ class ListingsController < ApplicationController
 
 
   def create
-    @listing = Listing.new(params[:listing])
+    @listing = Listing.new(listing_params)
     @listing.ad_status = current_user.present? ? AdStatus.approved : AdStatus.find_by_name("Pending")
     @listing.creator = current_user
     
@@ -75,11 +76,11 @@ class ListingsController < ApplicationController
       return redirect_to listings_path
     end
     unless current_user && current_user.admin?
-      params[:listing][:ad_status_id] = @listing.ad_status_id
+      listing_params[:ad_status_id] = @listing.ad_status_id
     end
     
     params[:feature_ids] ||= {} # TODO: Better way to do this
-    if @listing.update_attributes(params[:listing])
+    if @listing.update_attributes(listing_params)
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully updated.'
       redirect_to college_listing_path(@listing.college, @listing)
@@ -98,4 +99,15 @@ class ListingsController < ApplicationController
     end
     redirect_to(listings_url)
   end
+  
+  private
+  
+    def listing_params
+      if current_user.try(:admin?)
+        params.require(:listing).permit!
+      else
+        
+        params.require(:listing).permit({:address_attributes => [:line1, :zip, :city, :state_id]}, {:documents => []}, {:features => []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id, :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on)
+      end
+    end
 end

@@ -48,7 +48,7 @@ class CollegesController < ApplicationController
 
 
   def create
-    @college = College.new(params[:college])
+    @college = College.new(college_params)
 
     if @college.save
       flash[:notice] = 'College was successfully created.'
@@ -62,7 +62,7 @@ class CollegesController < ApplicationController
 
   def update
     @college = College.find(params[:id])
-    if @college.update_attributes(params[:college])
+    if @college.update_attributes(college_params)
       flash[:notice] = 'College was successfully updated.'
       redirect_to(@college)
     else
@@ -77,4 +77,12 @@ class CollegesController < ApplicationController
 
     redirect_to(colleges_url)
   end
+  
+  private
+  
+    def college_params
+      if current_user.try(:admin?)
+        params.require(:college).permit!
+      end
+    end
 end

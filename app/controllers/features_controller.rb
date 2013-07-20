@@ -22,7 +22,7 @@ class FeaturesController < ApplicationController
 
 
   def create
-    @feature = Feature.new(params[:feature])
+    @feature = Feature.new(feature_params)
 
     if @feature.save
       redirect_to(@feature, :notice => 'Feature was successfully created.')    
@@ -35,7 +35,7 @@ class FeaturesController < ApplicationController
   def update
     @feature = Feature.find(params[:id])
 
-    if @feature.update_attributes(params[:feature])
+    if @feature.update_attributes(feature_params)
       redirect_to(@feature, :notice => 'Feature was successfully updated.')
     else
       render :action => "edit"
@@ -48,4 +48,12 @@ class FeaturesController < ApplicationController
     @feature.destroy
     redirect_to(features_url)
   end
+  
+  private
+  
+    def feature_params
+      if current_user.try(:admin?)
+        params.require(:feature).permit!
+      end
+    end
 end
