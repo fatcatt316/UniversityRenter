@@ -46,3 +46,7 @@ gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
 group :production do
   gem "pg"
 end
+
+group :development do
+  gem 'debugger'
+end

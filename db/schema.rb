@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 20120902190530) do
 
   create_table "communities", force: true do |t|
     t.string   "name"
-    t.string   "legacy_url"
     t.integer  "college_id"
     t.decimal  "price_per_month", precision: 7, scale: 2
     t.text     "description"
@@ -62,6 +61,7 @@ ActiveRecord::Schema.define(version: 20120902190530) do
     t.string   "external_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "legacy_url"
   end
 
   create_table "documents", force: true do |t|
