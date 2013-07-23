@@ -19,11 +19,11 @@ class Listing < ActiveRecord::Base
   validate :contact_email_or_contact_phone
   
   def to_s
-    return title
+    title.present? ? title : "New Listing"
   end
   
   def to_title
-    "#{college} | #{self}"
+    [college.to_s, to_s].select{|str| str.present?}.join(" | ")
   end
   
   
