@@ -40,8 +40,9 @@ gem "gmaps4rails"
 gem 'jquery_datepicker'
 gem "paperclip", "~> 2.4"
 gem "sorcery"
-gem 'will_paginate', '~> 3.0.pre4'
+gem 'will_paginate', '~> 3.0.pre4' # TODO: Consider switching to Kaminari
 gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
+gem 'therubyracer'
 
 group :production do
   gem "pg"
