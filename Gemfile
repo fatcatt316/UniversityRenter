@@ -6,27 +6,6 @@ gem 'rails', '4.0.0'
 # Use sqlite3 as the database for Active Record
 gem "pg"
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -34,19 +13,21 @@ end
 
 gem 'american_date'
 gem 'aws-sdk'
+gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 gem 'dynamic_form'
 gem "gmaps4rails"
 # gem "json", "~> 1.7.7"
 gem 'jquery_datepicker'
+gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jquery-rails' # Use jquery as the JavaScript library
 gem "paperclip", "~> 2.4"
-gem "sorcery"
-gem 'will_paginate', '~> 3.0.pre4' # TODO: Consider switching to Kaminari
 gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
-gem 'therubyracer'
-
-group :production do
-  gem "pg"
-end
+gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+gem "sorcery"
+gem 'therubyracer' # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
+gem 'will_paginate', '~> 3.0.pre4' # TODO: Consider switching to Kaminari
 
 group :development do
   gem 'debugger'
