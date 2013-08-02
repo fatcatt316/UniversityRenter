@@ -3,8 +3,8 @@
 <% if current_user.blank? %>
   <div id="absent_user" class="orange_notice">
     <span class="login_or_register_to_edit">
-      <%= link_to_function "Login", "$('new_user_form').hide();$('login_form').show();", :title => "Click to login" %> or 
-      <%= link_to_function "register", "$('login_form').hide();$('new_user_form').show();", :title => "Click to register" %> 
+      <%= link_to "Login", "#", class: "login_link", title: "Click to login" %> or 
+      <%= link_to "register", "#", class: "register_link", title: "Click to register" %> 
       if you want to edit or delete your ad later!
     </span>
     

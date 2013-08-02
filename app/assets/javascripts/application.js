@@ -27,7 +27,6 @@ function remove_fields(link) {
   jQuery(link).closest(".fields").hide();
 }
 
-
 function add_fields(link, association, content, where) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + association, "g")
@@ -46,6 +45,18 @@ function add_fields(link, association, content, where) {
 
 // TODO: Change "jQuery" to "$"
 jQuery(document).ready(function() {
+  
+  jQuery('.login_or_register_to_edit .login_link').click(function(e) {
+    jQuery('#new_user_form').hide();
+    jQuery('#login_form').show();
+    e.preventDefault();
+  });
+  
+  jQuery('.login_or_register_to_edit .register_link').click(function(e) {
+    jQuery('#login_form').hide();
+    jQuery('#new_user_form').show();
+    e.preventDefault();
+  });
   
   // Used on listings/community_college_picker
   // TODO: Consider loading this JS only on pages that use this partial.
