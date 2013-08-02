@@ -1,5 +1,5 @@
 class College < ActiveRecord::Base
-  has_many :communities, order: :name, dependent: :destroy
+  has_many :communities, -> { order :name }, dependent: :destroy
   has_many :listings, dependent: :destroy
   
   has_one :address, as: :subject, dependent: :destroy
