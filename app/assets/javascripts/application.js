@@ -12,9 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
 //= require turbolinks
 //= require_self
 //= require_tree .
+
+// $(document).on('ready page:load', function() {
+//   $(document).trigger('turbo:ready');
+// });
 
 /////// Nested forms //////////
 function remove_fields(link) {
