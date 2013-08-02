@@ -68,7 +68,9 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery_datepicker (0.4)
+    jquery-ui-rails (4.0.4)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     jwt (0.1.8)
       multi_json (>= 1.5)
@@ -168,7 +170,7 @@ DEPENDENCIES
   gmaps4rails
   jbuilder (~> 1.2)
   jquery-rails
-  jquery_datepicker
+  jquery-ui-rails
   paperclip (~> 2.4)
   pg
   rails (= 4.0.0)

@@ -17,9 +17,9 @@ gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and view
 gem 'dynamic_form'
 gem "gmaps4rails"
 # gem "json", "~> 1.7.7"
-gem 'jquery_datepicker'
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
+gem 'jquery-ui-rails'
 gem "paperclip", "~> 2.4"
 gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
 gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
