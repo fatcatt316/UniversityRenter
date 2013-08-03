@@ -60,12 +60,10 @@ UniversityRenter::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"  
   get "signup" => "users#signup", :as => "signup"  
   
-
-#   TODO for ecoJoe
   ### Legacy redirects - Match legacy routes that old static version of UniversityRenter used
-  # [ "ncsu", "ecu", "unc", "uncg", "uncw", "uncc", "asu", "duke"].each do |short_name|
-  #   match "/#{short_name}(/:legacy_community_name(/:community_page))", controller: :application, action: :legacy_redirect, legacy_college_name: short_name
-  # end
+  ["ncsu", "ecu", "unc", "uncg", "uncw", "uncc", "asu", "duke"].each do |short_name|
+    get "/#{short_name}(/:legacy_community_name(/:community_page))", controller: :application, action: :legacy_redirect, legacy_college_name: short_name
+  end
 
   # Example resource route with sub-resources:
   #   resources :products do
