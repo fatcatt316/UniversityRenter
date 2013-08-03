@@ -44,64 +44,58 @@ function add_fields(link, association, content, where) {
 /////// END Nested forms END //////////
 
 
-// TODO: Change "jQuery" to "$"
-jQuery(document).ready(function() {
+jQuery(document).ready(function($) {
   
-  jQuery('.login_or_register_to_edit .login_link').click(function(e) {
-    jQuery('#new_user_form').hide();
-    jQuery('#login_form').show();
+  $('.login_or_register_to_edit .login_link').click(function(e) {
+    $('#new_user_form').hide();
+    $('#login_form').show();
     e.preventDefault();
   });
   
-  jQuery('.login_or_register_to_edit .register_link').click(function(e) {
-    jQuery('#login_form').hide();
-    jQuery('#new_user_form').show();
+  $('.login_or_register_to_edit .register_link').click(function(e) {
+    $('#login_form').hide();
+    $('#new_user_form').show();
     e.preventDefault();
   });
   
   // Used on listings/community_college_picker
   // TODO: Consider loading this JS only on pages that use this partial.
-  jQuery('select#state_id').change(function(){
+  $('select#state_id').change(function(){
     var state_id = jQuery(this).val();
-    jQuery.ajax({
+    $.ajax({
       url: '/addresses/select_state',
       data: 'state_id=' + state_id
     });
   });
-  
-  jQuery('select.college_dropdown').on('change', function() {
-    jQuery.ajax({
+
+  $('select.college_dropdown').on('change', function() {
+    $.ajax({
       url: '/communities/update_dropdown',
       data: 'college_id=' + this.value
     });
   });
   
   // ZIP code city and state populator
-  jQuery('input.zip_field').on('keyup', function() {
+  $('input.zip_field').on('keyup', function() {
     if (this.value.length == 5) {
-      jQuery.ajax({
+      $.ajax({
         url: '/addresses/get_city_and_state',
         data: 'zip_code=' + this.value
       });
     }
   });
-
-  // jQuery('.datepicker').on('focus', function () {
-  //   jQuery(this).not('.hasDatePicker').datepicker();
-  // });
   
-  jQuery(function() {
-    jQuery('.datepicker').datepicker({
+  $(function() {
+    $('.datepicker').datepicker({
       dateFormat : "yy-mm-dd"
     });
   });
 
-  jQuery('select#city').on("change", function(){
+  $('select#city').on("change", function(){
     var state_id = jQuery('select#state_id').val();
     var city = jQuery(this).val();
     
-    // console.log("state_id:" + state_id + " city:" + city);
-    jQuery.ajax({
+    $.ajax({
       url: '/addresses/select_city',
       data: 'city=' + city + '&state_id=' + state_id
     });
@@ -110,25 +104,25 @@ jQuery(document).ready(function() {
   
   // Used on listings/_form
   // TODO: Consider loading this only on pages that use this partial.
-  var selected_id = jQuery("input[name=\"listing[wanted]\"]:checked").attr('id');
+  var selected_id = $("input[name=\"listing[wanted]\"]:checked").attr('id');
   
-  jQuery('#listing_wanted_false').change(function() {
-    jQuery('#wanted_label').removeClass("chosen_label");
-    jQuery('#for_rent_label').addClass("chosen_label");
-    jQuery('.wanted :input').attr('disabled', true);
-    jQuery(".wanted").hide();
-    jQuery(".for_rent :input").removeAttr('disabled');
-    jQuery(".for_rent").show();
+  $('#listing_wanted_false').change(function() {
+    $('#wanted_label').removeClass("chosen_label");
+    $('#for_rent_label').addClass("chosen_label");
+    $('.wanted :input').attr('disabled', true);
+    $(".wanted").hide();
+    $(".for_rent :input").removeAttr('disabled');
+    $(".for_rent").show();
   });
     
-  jQuery('#listing_wanted_true').change(function() {
-    jQuery('#for_rent_label').removeClass("chosen_label");
-    jQuery('#wanted_label').addClass("chosen_label");
-    jQuery('.for_rent :input').attr('disabled', true);
-    jQuery(".for_rent").hide();
-    jQuery(".wanted :input").removeAttr('disabled');
-    jQuery(".wanted").show();
+  $('#listing_wanted_true').change(function() {
+    $('#for_rent_label').removeClass("chosen_label");
+    $('#wanted_label').addClass("chosen_label");
+    $('.for_rent :input').attr('disabled', true);
+    $(".for_rent").hide();
+    $(".wanted :input").removeAttr('disabled');
+    $(".wanted").show();
   });
   
-  jQuery('#' + selected_id).change();
+  $('#' + selected_id).change();
 });
