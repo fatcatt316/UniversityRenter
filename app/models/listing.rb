@@ -16,6 +16,8 @@ class Listing < ActiveRecord::Base
   has_many :documents, :as => :owner, :dependent => :destroy
   accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
   
+  before_create :set_ad_status
+  
   validates_presence_of :title, :college
   validates_presence_of :price_per_month, :address, :available_on, :if => :for_rent?
   validate :contact_email_or_contact_phone
@@ -105,5 +107,9 @@ class Listing < ActiveRecord::Base
     if self.contact_email.blank? && self.contact_phone.blank?
       errors.add(:base, "Fill in an email or phone number where people can reach you, por favor")
     end
+  end
+  
+  def set_ad_status
+    self.ad_status = creator.present? ? AdStatus.approved : AdStatus.where(name: "Pending").first
   end
 end
