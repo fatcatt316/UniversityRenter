@@ -18,9 +18,9 @@
 //= require_self
 //= require_tree .
 
-// $(document).on('ready page:load', function() {
-//   $(document).trigger('turbo:ready');
-// });
+$(document).on('ready page:load', function() {
+  $(document).trigger('turbo:ready');
+});
 
 /////// Nested forms //////////
 function remove_fields(link) {

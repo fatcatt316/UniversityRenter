@@ -13,6 +13,7 @@ gem 'aws-sdk'
 gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 gem 'dynamic_form'
 gem 'gmaps4rails'
+# gem 'gmaps4rails', '>= 2.0.0.pre', git: 'https://github.com/fiedl/Google-Maps-for-Rails.git'
 # gem 'json', '~> 1.7.7'
 gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
@@ -28,4 +29,8 @@ gem 'will_paginate', '~> 3.0.pre4' # TODO: Consider switching to Kaminari
 
 group :development do
   gem 'debugger'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
