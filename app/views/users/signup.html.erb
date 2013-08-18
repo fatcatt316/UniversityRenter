@@ -25,11 +25,7 @@
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
     <tr>
-      <th></th>
-      <td><%= recaptcha_tags %></td>
-    </tr>
-    <tr>
-      <th></th>
+      <th><%= spam_prevention_field(f) %></th>
       <td><%= f.submit "Sign me on up!" %></td>
     </tr>
   </table>

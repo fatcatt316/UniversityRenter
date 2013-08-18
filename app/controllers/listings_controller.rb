@@ -106,8 +106,9 @@ class ListingsController < ApplicationController
       if current_user.try(:admin?)
         params.require(:listing).permit!
       else
-        
-        params.require(:listing).permit({:address_attributes => [:line1, :zip, :city, :state_id]}, {:documents => []}, {:features => []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id, :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on)
+        params.require(:listing).permit({:address_attributes => [:line1, :zip, :city, :state_id]}, {:documents => []},
+          {:features => []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id,
+          :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on, :full_name)
       end
     end
 end

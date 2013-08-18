@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  include SpamSniffer
+  
   belongs_to :ad_status
   belongs_to :community
   belongs_to :college

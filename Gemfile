@@ -22,7 +22,6 @@ gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'jquery-turbolinks'
 gem 'jquery-ui-rails'
 gem "paperclip", '~> 2.4'
-gem 'recaptcha', '~> 0.3.4', :require => "recaptcha/rails"
 gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
 gem "sorcery"
 gem 'therubyracer' # See https://github.com/sstephenson/execjs#readme for more supported runtimes

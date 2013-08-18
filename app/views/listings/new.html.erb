@@ -35,11 +35,7 @@
             <td><%= f.password_field :password %></td>
           </tr>
           <tr>
-            <th></th>
-            <td><%= recaptcha_tags %></td>
-          </tr>
-          <tr>
-            <th></th>
+            <th><%= spam_prevention_field(f) %></th>
             <td><%= f.submit "Register" %></td>
           </tr>
         </table>
@@ -52,6 +48,10 @@
 
 <%= form_for(@listing, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
+  
+  <% if current_user.blank? %>
+    <%= spam_prevention_field(f) %>
+  <% end %>
   
   <%= render :partial => "form", :locals => {:f => f} %>
   

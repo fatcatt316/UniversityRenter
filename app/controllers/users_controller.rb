@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     
     respond_to do |format|
-      if verify_recaptcha(:model => @user, :message => "Incorrect captcha message") && @user.save
+      if @user.save
         auto_login(@user)
         format.html { redirect_to root_url, :notice => "You're logged in and good to go!" }
       else
@@ -88,7 +88,7 @@ class UsersController < ApplicationController
       if current_user.try(:admin?)
         params.require(:user).permit!
       else
-        params.require(:user).permit(:gender_id, :email, :remember_me_token, :password, :password_confirmation)
+        params.require(:user).permit(:gender_id, :email, :remember_me_token, :password, :password_confirmation, :full_name)
       end
     end
 

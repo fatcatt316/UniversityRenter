@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include SpamSniffer
+  
   authenticates_with_sorcery!
   
   belongs_to :user_status
