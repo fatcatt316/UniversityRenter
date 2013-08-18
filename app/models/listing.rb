@@ -45,7 +45,7 @@ class Listing < ActiveRecord::Base
   
   
   def approved?
-    return "Approved" == ad_status.to_s
+    ad_status.approved?
   end
   
   

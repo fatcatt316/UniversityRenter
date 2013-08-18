@@ -5,7 +5,11 @@ class AdStatus < ActiveRecord::Base
   validates_presence_of :name
   
   def to_s
-    return name
+    "#{name}"
+  end
+  
+  def approved?
+    name == "Approved"
   end
   
   def self.approved
