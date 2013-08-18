@@ -4,8 +4,7 @@
     $('#not_signed_in_warning').hide();
     $("#upper_login").html("<%= escape_javascript(render(:partial => 'sessions/form')) %>");
   <% elsif @user.errors.any? %>
-    <% error_message = @user.errors.map{|k,v| k == :base ? v : "#{k.to_s.titleize}: #{v}"}.join("<br />") %>
-    Recaptcha.reload();
-    $('#login_error_message').show().html('<strong>Please fix your errors</strong><br /><%= escape_javascript(error_message) %>');
+    <% error_message = @user.errors.map{|k,v| k == :base ? v : "#{k.to_s.titleize}: #{v}"}.join("<br>") %>
+    $('#login_error_message').show().html('<%= raw(escape_javascript(error_message)) %>');
   <% end %>
 })(jQuery);
