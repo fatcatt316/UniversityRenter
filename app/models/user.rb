@@ -18,21 +18,21 @@ class User < ActiveRecord::Base
   
   
   def to_s
-    return email.to_s
+    email.to_s
   end
   
 
   def has_role?(role_name)
-    return self.roles.map(&:name).include?(role_name.to_s.capitalize)
+    roles.map(&:name).include?(role_name.to_s.capitalize)
   end
   
   
   def admin?
-    return self.has_role?("admin")
+    has_role?("admin")
   end
   
   
   def editable?(user=nil)
-    return user && (user.admin? || user.id == self.id)
+    user && (user.admin? || user.id == id)
   end
 end

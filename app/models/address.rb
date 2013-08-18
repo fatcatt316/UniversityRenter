@@ -7,11 +7,7 @@ class Address < ActiveRecord::Base
   validates_presence_of :line1, :state, :city, :zip
   
   def to_s
-    str = "#{self.line1}\n"
-    
-    str += "#{self.city}, #{self.state.abbreviation} "
-    str += self.zip
-    return str
+    "#{line1}\n#{city}, #{state.abbreviation} #{zip}"
   end
   
   

@@ -20,6 +20,7 @@ class Listing < ActiveRecord::Base
   validates_presence_of :price_per_month, :address, :available_on, :if => :for_rent?
   validate :contact_email_or_contact_phone
   
+  
   def to_s
     title.present? ? title : "New Listing"
   end
@@ -30,7 +31,7 @@ class Listing < ActiveRecord::Base
   
   
   def primary_document
-    return documents.select{|d| d.primary}.first
+    documents.detect(&:primary?)
   end
   
   
@@ -47,23 +48,23 @@ class Listing < ActiveRecord::Base
   
   
   def editable?(user=nil)
-    return self.new_record? || (user && (user.admin? || self.creator_id == user.id))
+    new_record? || (user && (user.admin? || creator_id == user.id))
   end
   
   
   def destroyable?(user=nil)
-    return (user && (user.admin? || self.creator_id == user))
+    (user && (user.admin? || self.creator_id == user))
   end
   
   
   def for_rent?
-    return !self.wanted?
+    !wanted?
   end
   
   
   def has_feature?(feature)
     @ad_feature_ids = self.ad_features.map(&:feature_id)
-    return @ad_feature_ids.include?(feature.id)
+    @ad_feature_ids.include?(feature.id)
   end
   
   
