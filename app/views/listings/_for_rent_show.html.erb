@@ -69,7 +69,7 @@
         <th>Contact:</th>
         <td>
           <% if @listing.contact_email.present? %>
-            <%=mail_to @listing.contact_email, image_tag("email.png", class: "contact_icon") + raw("Email #{@listing.contact_email.to_ascii}"),
+            <%= mail_to @listing.contact_email, raw(email_icon) + raw(" Email #{@listing.contact_email.to_ascii}"),
               subject: "UniversityRenter: #{@listing}",
               body: "\n\n-- Sent from http://www.UniversityRenter.com" %>
           <% end %>

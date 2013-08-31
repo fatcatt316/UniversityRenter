@@ -50,9 +50,9 @@
         <th>Contact:</th>
         <td>
           <% if @listing.contact_email.present? %>
-            <%=mail_to @listing.contact_email, image_tag("email.png", class: "contact_icon") + "Email #{@listing.contact_email}",
-            subject: "UniversityRenter: #{@listing}",
-            body: "-- Sent from http://www.UniversityRenter.com" %>
+            <%= mail_to @listing.contact_email, raw(email_icon) + " Email #{@listing.contact_email.to_ascii}",
+              subject: "UniversityRenter: #{@listing}",
+              body: "-- Sent from http://www.UniversityRenter.com" %>
           <% end %>
           <% if @listing.contact_phone.present? %>
             <%= image_tag("phone.png") %>

@@ -43,6 +43,10 @@ module ApplicationHelper
     raw("<i class='icon-large icon-plus-sign'></i>")
   end
   
+  def email_icon
+    raw("<i class='icon-envelope'></i>")
+  end
+  
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document
