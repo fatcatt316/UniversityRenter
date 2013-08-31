@@ -30,7 +30,7 @@
       <p><%= mail_to @community.email, raw(email_icon) + " Email #{@community}", body: "-- Sent from http://www.UniversityRenter.com" %></p>
     <% end %>
     <% if @community.phone.present? %>
-      <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
+      <p><%= phone_icon %> Phone: <%= @community.phone %></p>
     <% end %>
     <% if @community.fax.present? %>
       <p><%= image_tag("fax.gif", class: "contact_icon") %>Fax: <%= @community.fax %></p>

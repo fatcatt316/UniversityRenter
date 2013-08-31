@@ -55,8 +55,7 @@
               body: "-- Sent from http://www.UniversityRenter.com" %>
           <% end %>
           <% if @listing.contact_phone.present? %>
-            <%= image_tag("phone.png") %>
-            <%= @listing.contact_phone %>
+            <%= phone_icon %> <%= @listing.contact_phone %>
           <% end %>  
         </td>
       </tr>

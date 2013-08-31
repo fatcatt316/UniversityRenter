@@ -47,6 +47,10 @@ module ApplicationHelper
     raw("<i class='icon-envelope'></i>")
   end
   
+  def phone_icon
+    raw("<i class='icon-phone'></i>")
+  end
+  
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document
