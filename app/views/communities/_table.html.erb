@@ -18,16 +18,16 @@
       <% unless @college || current_college %>
         <td><%= community.college %></td>
       <% end %>
-      <td><%= link_to community, college_community_path(community.college, community) %></td>
+      <td><%= link_to community, college_community_url(community.college, community) %></td>
       <td><%= community.address %></td>
       <td>
         <%= link_to "#{community.listings.count} Ads", 
-          college_listings_path(community.college, filter: {community_id: community.id}) %>
+          college_listings_url(community.college, filter: {community_id: community.id}) %>
       </td>
       
       <% if current_user && current_user.admin? %>
         <td>
-          <%= link_to edit_icon, edit_community_path(community) %>
+          <%= link_to edit_icon, edit_community_url(community) %>
           <%= link_to destroy_icon, community, confirm: "Are you sure you want to delete #{community}?", method: :delete %>
         </td>
       <% end %>

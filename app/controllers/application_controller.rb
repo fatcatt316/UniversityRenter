@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       redirect_to college, :status => 301
     else
       flash[:notice] = "The link you clicked is out of date!  We couldn't figure out where you wanted to go..."
-      redirect_to listings_path, :status => 301
+      redirect_to listings_url, :status => 301
     end
   end
   
@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       flash[:notice] = "You must be logged in to access this page"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
   end
   
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
   def admin_only
     unless current_user && current_user.admin?
       flash[:notice] = "This page is not meant for you"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
   end
 end

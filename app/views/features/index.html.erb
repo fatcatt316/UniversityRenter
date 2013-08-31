@@ -10,7 +10,7 @@
 <% @features.each do |feature| %>
   <tr>
     <td><%= link_to 'Show', feature %></td>
-    <td><%= link_to 'Edit', edit_feature_path(feature) %></td>
+    <td><%= link_to 'Edit', edit_feature_url(feature) %></td>
     <td><%= link_to 'Destroy', feature, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
@@ -18,4 +18,4 @@
 
 <br />
 
-<%= link_to 'New Feature', new_feature_path %>
+<%= link_to 'New Feature', new_feature_url %>

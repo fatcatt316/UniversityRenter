@@ -55,7 +55,7 @@ class CommunitiesController < ApplicationController
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully created.'
-      redirect_to college_community_path(@community.college, @community)
+      redirect_to college_community_url(@community.college, @community)
     else
       render :action => "new"
     end
@@ -69,7 +69,7 @@ class CommunitiesController < ApplicationController
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully updated.'
-      redirect_to college_community_path(@community.college, @community)
+      redirect_to college_community_url(@community.college, @community)
     else
       @community.address ||= @community.build_address
       render :action => "edit"

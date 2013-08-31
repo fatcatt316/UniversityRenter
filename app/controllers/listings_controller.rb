@@ -43,7 +43,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     unless @listing.editable?(current_user)
       flash[:warning] = "Whoops, looks like you can't edit that ad!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
     @listing.build_address unless @listing.address
   end
@@ -58,7 +58,7 @@ class ListingsController < ApplicationController
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully created.'
       flash[:notice] += ' Since you weren\'t signed in, your ad will need to be approved before it shows up.' if current_user.blank?
-      redirect_to college_listings_path(@listing.college)
+      redirect_to college_listings_url(@listing.college)
     else
       @user = User.new if current_user.blank?
       @listing.build_address unless @listing.address
@@ -71,7 +71,7 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
     unless @listing.editable?(current_user)
       flash[:warning] = "Whoops, looks like you can't edit that ad!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
     unless current_user && current_user.admin?
       listing_params[:ad_status_id] = @listing.ad_status_id
@@ -81,7 +81,7 @@ class ListingsController < ApplicationController
     if @listing.update_attributes(listing_params)
       @listing.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Listing was successfully updated.'
-      redirect_to college_listing_path(@listing.college, @listing)
+      redirect_to college_listing_url(@listing.college, @listing)
     else
       render :action => "edit"
     end
@@ -107,13 +107,13 @@ class ListingsController < ApplicationController
         @site_menu_items  += [{
           :menu_header => "Communities",
           :menu_items => current_college.communities.order(:name).map{|community|
-            {:text => community.to_s, :url => college_community_path(community.college, community) }
+            {:text => community.to_s, :url => college_community_url(community.college, community) }
           }
         }]
       end
       @site_menu_items += [{
         :menu_header => "Colleges",
-        :menu_items => College.order(:name).map{|college| {:text => college.to_s, :url => listings_path(college_id: college.id) } }
+        :menu_items => College.order(:name).map{|college| {:text => college.to_s, :url => listings_url(college_id: college.id) } }
       }]
     end
   

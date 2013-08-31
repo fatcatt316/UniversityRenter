@@ -2,9 +2,9 @@
 
 <% if current_user %>
   <%= current_user %>
-  <%= link_to "Logout", logout_path %>
+  <%= link_to "Logout", logout_url %>
 <% else %>
-  <%= form_tag sessions_path do %>
+  <%= form_tag sessions_url do %>
     <div class="login-fields-wrapper">
       <div class="field-with-label">
         <%= label_tag :email %>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div style="clear:both;"></div>
-    No account? <%= link_to "Sign up here", signup_path %>
+    No account? <%= link_to "Sign up here", signup_url %>
     <%#= check_box_tag :remember_me, 1, params[:remember_me] %>
     <%#= label_tag :remember_me %>
   <% end %>

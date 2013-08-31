@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.editable?(current_user)
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
   end
   
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.editable?(current_user)
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
     if @user.update_attributes(user_params)
       flash[:notice] = 'User was successfully updated.'
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
     @user.destroy
 

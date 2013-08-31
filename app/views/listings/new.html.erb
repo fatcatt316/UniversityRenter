@@ -11,7 +11,7 @@
     <div id="login_error_message" class="message warning" style="display:none;"></div>
     
     <div id="login_form" style="display: none;">
-      <%= form_tag sessions_path, :remote => true, :html => { :id => 'new-session-form' } do %>
+      <%= form_tag sessions_url, :remote => true, :html => { :id => 'new-session-form' } do %>
         <%= label_tag :email %>
         <%= text_field_tag :email, params[:email], :size => 30 %>
 

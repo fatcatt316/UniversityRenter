@@ -3,7 +3,7 @@
     <h1>
       <%= link_to "#{@listing.college.short_name}", college_listings_url(@listing.college) %>
       <% if @listing.community %>
-         > <%= link_to @listing.community, college_community_path(@listing.college, @listing.community) %>
+         > <%= link_to @listing.community, college_community_url(@listing.college, @listing.community) %>
       <% end %><br />
       <%= @listing %>
     </h1>
@@ -16,7 +16,7 @@
         <tr>
           <th>Community:</th>
           <td>
-            <%= link_to "#{@listing.community}", college_community_path(@listing.community, @listing.college) %>
+            <%= link_to "#{@listing.community}", college_community_url(@listing.community, @listing.college) %>
           </td>
         </tr>
       <% end %>

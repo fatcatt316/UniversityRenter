@@ -13,14 +13,14 @@
 
   <% @colleges.each do |college| %>
     <tr class="<%= cycle('even', 'odd') %>">
-      <td><%= link_to college, listings_path(college_id: college.id) %></td>
+      <td><%= link_to college, listings_url(college_id: college.id) %></td>
       <td><%= college.address.try(:city) %></td>
       <td><%= college.address.try(:state).try(:abbreviation) %></td>
-      <td><%= link_to "#{college.listings.count} Ads", listings_path(:filter => {:college_id => college.id}) %></td>
+      <td><%= link_to "#{college.listings.count} Ads", listings_url(:filter => {:college_id => college.id}) %></td>
       
       <% if current_user && current_user.admin? %>
         <td>
-          <%= link_to edit_icon, edit_college_path(college) %>
+          <%= link_to edit_icon, edit_college_url(college) %>
           <%= link_to destroy_icon, college, :confirm => "Are you sure you want to delete #{college}? This will delete ALL its communities and ads, too.", :method => :delete %>
         </td>
       <% end %>
@@ -31,5 +31,5 @@
 <br />
 
 <% if current_user && current_user.admin? %>
-  <%= link_to 'New college', new_college_path %>
+  <%= link_to 'New college', new_college_url %>
 <% end %>

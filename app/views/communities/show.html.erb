@@ -47,6 +47,6 @@
 
 
 <% if @community.editable?(current_user) %>
-  <%= link_to 'Edit', edit_community_path(@community) %> |
+  <%= link_to 'Edit', edit_community_url(@community) %> |
 <% end %>
-<%= link_to "Student Apartment Communities near #{@community.college}", college_communities_path(@community.college) %>
+<%= link_to "Student Apartment Communities near #{@community.college}", college_communities_url(@community.college) %>

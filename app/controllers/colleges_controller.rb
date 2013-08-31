@@ -12,7 +12,7 @@ class CollegesController < ApplicationController
     college              = College.find_by_id(params[:id])
     session[:college_id] = college.try(:id)
     flash[:warning]      = "Dang, try picking a college again." if college.blank?
-    redirect_to listings_path
+    redirect_to listings_url
   end
 
 
