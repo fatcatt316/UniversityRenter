@@ -6,9 +6,8 @@
     <th>City</th>
     <th>State</th>
     <th>Ads</th>
-    
     <% if current_user && current_user.admin? %>
-      <th class="icons"></th>
+      <th></th>
     <% end %>
   </tr>
 
@@ -20,7 +19,7 @@
       <td><%= link_to "#{college.listings.count} Ads", listings_path(:filter => {:college_id => college.id}) %></td>
       
       <% if current_user && current_user.admin? %>
-        <td class="icons">
+        <td>
           <%= link_to '', edit_college_path(college), :class => "edit_link" %>
           <%= link_to '', college, :confirm => "Are you sure you want to delete #{college}? This will delete ALL its communities and ads, too.", :method => :delete, :class => "delete_link" %>
         </td>

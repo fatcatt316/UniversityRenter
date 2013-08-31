@@ -7,9 +7,8 @@
     <th>Community Name</th>
     <th>Address</th>
     <th>Ads</th>
-    
     <% if current_user && current_user.admin? %>
-      <th class="icons">&nbsp;</th>
+      <th></th>
     <% end %>
   </tr>
 
@@ -27,7 +26,7 @@
       </td>
       
       <% if current_user && current_user.admin? %>
-        <td class="icons">
+        <td>
           <%= link_to '', edit_community_path(community), :class => "edit_link" %>
           <%= link_to '', community, confirm: "Are you sure you want to delete #{community}?", method: :delete, class: "delete_link" %>
         </td>
