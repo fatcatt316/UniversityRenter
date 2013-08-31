@@ -51,6 +51,10 @@ module ApplicationHelper
     raw("<i class='icon-phone'></i>")
   end
   
+  def fax_icon
+    raw("<i class='icon-print'></i>")
+  end
+  
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document

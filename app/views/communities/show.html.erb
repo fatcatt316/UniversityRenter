@@ -33,7 +33,7 @@
       <p><%= phone_icon %> Phone: <%= @community.phone %></p>
     <% end %>
     <% if @community.fax.present? %>
-      <p><%= image_tag("fax.gif", class: "contact_icon") %>Fax: <%= @community.fax %></p>
+      <p><%= fax_icon %> Fax: <%= @community.fax %></p>
     <% end %>
     <% if @community.external_url.present? %>
       <p><%= image_tag("link.gif", class: "contact_icon") %><%= link_to "External website", @community.external_url %></p>
