@@ -39,6 +39,10 @@ module ApplicationHelper
     raw("<i class='icon-large icon-trash'></i>")
   end
   
+  def add_icon
+    raw("<i class='icon-large icon-plus-sign'></i>")
+  end
+  
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document
@@ -58,7 +62,7 @@ module ApplicationHelper
   ########### Complex forms helpers ##########
   
   def add_child_link(name, f, association, options={})
-    options[:class]   ||= "add_link"
+    options[:class]   ||= ""
     options[:where]   ||= "before"
     options[:partial] ||= "#{association.to_s.singularize}_fields"
     new_object = f.object.class.reflect_on_association(association).klass.new
