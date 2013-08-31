@@ -1,17 +1,28 @@
-<h1>Log in</h1>  
-  
-<%= form_tag sessions_path do %>  
-  <div class="field">  
-    <%= label_tag :email %>  
-    <%= text_field_tag :email, params[:email] %>  
-  </div>  
-  <div class="field">  
-    <%= label_tag :password %>  
-    <%= password_field_tag :password %>  
-  </div>  
-  <div class="field">  
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>  
-    <%= label_tag :remember_me %>  
-  </div>  
-  <div class="actions"><%= submit_tag "Log in" %></div>  
+<h1>Log in</h1>
+
+<% if current_user %>
+  <%= current_user %>
+  <%= link_to "Logout", logout_path %>
+<% else %>
+  <%= form_tag sessions_path do %>
+    <div class="login-fields-wrapper">
+      <div class="field-with-label">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, params[:email], :size => 20, :placeholder => "Email" %>
+      </div>
+    
+      <div class="field-with-label">
+        <%= label_tag :password %>
+        <%= password_field_tag :password, nil, :size => 11, :placeholder => "Password" %>
+      </div>
+    
+      <div class="field-with-label">
+        <%= submit_tag "Log in" %>
+      </div>
+    </div>
+    <div style="clear:both;"></div>
+    No account? <%= link_to "Sign up here", signup_path %>
+    <%#= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <%#= label_tag :remember_me %>
+  <% end %>
 <% end %>

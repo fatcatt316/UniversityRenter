@@ -6,7 +6,6 @@ class ListingsController < ApplicationController
     params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
-    @colleges = College.order(:name)
     @listings = Listing.search(params[:filter]).paginate(:page => (params[:page] || 1), :per_page => 20)
     
     respond_to do |format|
@@ -100,6 +99,23 @@ class ListingsController < ApplicationController
   end
   
   private
+  
+  # TODO: Consider making a class to handle this.
+    def setup_side_menu_items
+      @site_menu_items =  []
+      if current_college
+        @site_menu_items  += [{
+          :menu_header => "Communities",
+          :menu_items => current_college.communities.order(:name).map{|community|
+            {:text => community.to_s, :url => college_community_path(community.college, community) }
+          }
+        }]
+      end
+      @site_menu_items += [{
+        :menu_header => "Colleges",
+        :menu_items => College.order(:name).map{|college| {:text => college.to_s, :url => listings_path(college_id: college.id) } }
+      }]
+    end
   
     def listing_params
       if current_user.try(:admin?)
