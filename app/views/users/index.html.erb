@@ -14,9 +14,8 @@
       <td><%= user.roles.map(&:to_s).to_sentence %></td>
       <td>
         <%= link_to 'Show', user %>
-        <%= link_to 'Edit', edit_user_path(user), class: 'edit_link' %>
-        <%= link_to 'Delete', user, confirm: "Are you sure you want to delete #{user}?  This will remove their ads, too.", 
-          method: :delete, class: 'delete_link' %>
+        <%= link_to edit_icon, edit_user_path(user) %>
+        <%= link_to destroy_icon, user, confirm: "Are you sure you want to delete #{user}?  This will remove their ads, too.", method: :delete %>
       </td>
     </tr>
   <% end %>

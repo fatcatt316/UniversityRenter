@@ -1,6 +1,4 @@
-<% row_class = listing.approved? ? "#{cycle('even', 'odd')}" : "status_#{listing.ad_status.to_s.downcase}" %>
-
-<tr id="listing_row_<%= listing.id %>" class="listing_row <%= row_class %>">
+<tr>
   <td>
     <div style="float: left;margin-right: 10px;">
       <%= show_primary_image(listing) %>
@@ -17,8 +15,8 @@
   <% if current_user %>
     <td>
       <% if listing.editable?(current_user) %>
-        <%= link_to '', edit_listing_path(listing), :class => "edit_link"  %>
-        <%= link_to '', listing, :confirm => 'Are you sure you want to delete this ad?', :method => :delete, :class => "delete_link" %>
+        <%= link_to edit_icon, edit_listing_path(listing) %>
+        <%= link_to destroy_icon, listing, :confirm => 'Are you sure you want to delete this ad?', method: :delete %>
       <% end %>
     </dh>
   <% end %>

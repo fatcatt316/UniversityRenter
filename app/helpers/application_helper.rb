@@ -31,6 +31,13 @@ module ApplicationHelper
     return description
   end
   
+  def edit_icon
+    raw("<i class='icon-large icon-edit'></i>")
+  end
+  
+  def destroy_icon
+    raw("<i class='icon-large icon-trash'></i>")
+  end
   
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
