@@ -55,6 +55,10 @@ module ApplicationHelper
     raw("<i class='icon-print'></i>")
   end
   
+  def link_icon
+    raw("<i class='icon-external-link-sign'></i>")
+  end
+  
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
     image_file = owner.images.first #owner.primary_document
