@@ -32,31 +32,31 @@ module ApplicationHelper
   end
   
   def edit_icon
-    raw("<i class='icon-large icon-edit'></i>")
+    raw("<i title='Edit' class='icon-large icon-edit'></i>")
   end
   
   def destroy_icon
-    raw("<i class='icon-large icon-trash'></i>")
+    raw("<i title='Delete' class='icon-large icon-trash'></i>")
   end
   
   def add_icon
-    raw("<i class='icon-large icon-plus-sign'></i>")
+    raw("<i title='Add' class='icon-large icon-plus-sign'></i>")
   end
   
   def email_icon
-    raw("<i class='icon-envelope'></i>")
+    raw("<i title='Email' class='icon-envelope'></i>")
   end
   
   def phone_icon
-    raw("<i class='icon-phone'></i>")
+    raw("<i title='Phone' class='icon-phone'></i>")
   end
   
   def fax_icon
-    raw("<i class='icon-print'></i>")
+    raw("<i title='Fax' class='icon-print'></i>")
   end
   
   def link_icon
-    raw("<i class='icon-external-link-sign'></i>")
+    raw("<i title='Link' class='icon-external-link-sign'></i>")
   end
   
   def show_primary_image(owner, options={})
