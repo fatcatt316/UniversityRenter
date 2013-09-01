@@ -20,7 +20,10 @@ class UsersController < ApplicationController
         auto_login(@user)
         format.html { redirect_to root_url, :notice => "You're logged in and good to go!" }
       else
-        format.html { render :signup, :warning => "Please fix your errors!" }
+        format.html do
+          flash.now[:warning] = "Please fix your mistakes!<br>#{@user.errors.full_messages.join('<br>')}"
+          render :signup
+        end
       end
       format.js
     end
