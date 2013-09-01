@@ -37,7 +37,7 @@ class CommunitiesController < ApplicationController
 
 
   def new
-    @community = Community.new(community_params)
+    @community = Community.new
     @community.build_address
   end
 
