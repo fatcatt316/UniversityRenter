@@ -27,15 +27,15 @@
         <!-- <li><%#= link_to "My Ads", listings_url(:filter => {:creator_id => current_user.id}), :class => "button black medium" %></li> -->
   
         <% if current_user.admin? %>
-          <li><%= link_to "Users", users_url %></li>
+          <li <%= "class=active" if controller.controller_name == "users" %>><%= link_to "Users", users_url %></li>
         <% end %>
       <% end %>
       
       <li <%= "class=active" if controller.controller_name == "listings" && ["new", "create", "edit", "update"].include?(controller.action_name) %>>
         <%= link_to "Post an Ad", new_listing_url(:listing => {:college_id => current_college.try(:id)}) %>
       </li>
-      
-      <%= render partial: "sessions/nav_form" %>
     </ul>
+    
+    <%= render partial: "sessions/nav_form" %>
   </div><!--/.nav-collapse -->
 </div>

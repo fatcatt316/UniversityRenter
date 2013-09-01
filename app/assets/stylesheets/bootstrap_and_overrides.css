@@ -2,6 +2,74 @@
   =require twitter-bootstrap-static/bootstrap
 
   Use Font Awesome
-  To use Glyphicons instead of Font Awesome sprites, replace with "=require twitter-bootstrap-static/sprites"
+  (To use Glyphicons instead of Font Awesome sprites, replace with "=require twitter-bootstrap-static/sprites")
   =require twitter-bootstrap-static/fontawesome
-  */
+*/
+
+/*$nav-top-color: #75D279;*/
+
+
+.navbar-inner {
+  background-color: #75D279;
+  background-image: none; /* remove the gradient */
+  background-image: linear-gradient(to bottom, #75D279, #5ec562);
+  color: white;
+}
+
+/* menu items */
+.navbar .nav > li > a {
+  background-color: #60AB64;
+  color: white;
+}
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: #60AB64;
+  color: white;
+  box-shadow:inset 0px 0px 8px #407343;
+  -webkit-box-shadow:inset 0px 0px 8px #407343;
+  -moz-box-shadow:inset 0px 0px 8px #407343;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: #407343;
+  color: white;
+}
+
+.navbar .brand {
+  color: white;
+}
+
+/* Dropdown menu */
+.btn-primary {
+  background-color: #407343;
+  background-image: none;
+}
+
+a.dropdown-title:hover {
+  background-color: #407343;
+  background-image: none;
+  text-decoration: none;
+  transition: none;
+}
+
+a.dropdown-toggle:hover {
+  background-image: none;
+  background-color: #60AB64;
+  color: white;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-image: none;
+  background-color: #60AB64;
+  color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  color: white;
+  background-image: none;
+  background-color: #407343;
+  filter: none;
+}
