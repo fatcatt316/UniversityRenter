@@ -8,7 +8,48 @@
 
 /*$nav-top-color: #75D279;*/
 
+html, body {
+  height: 100%
+}
 
+/* Sticky Footer */
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+footer {
+  height: 60px;
+}
+footer {
+  background-image: linear-gradient(to bottom, #5ec562, darkgreen);
+  color: white;
+  font-weight: bold;
+  padding: 15px 40px;
+}
+
+footer a{
+  color: #005580;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Navigation bar */
 .navbar-inner {
   background-color: #75D279;
   background-image: none; /* remove the gradient */
@@ -16,7 +57,6 @@
   color: white;
 }
 
-/* menu items */
 .navbar .nav > li > a {
   background-color: #60AB64;
   color: white;
