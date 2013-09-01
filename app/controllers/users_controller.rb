@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         auto_login(@user)
-        format.html { redirect_to root_url, :notice => "You're logged in and good to go!" }
+        format.html { redirect_to root_url, notice: "You're logged in and good to go!" }
       else
         format.html do
           flash.now[:warning] = "Please fix your mistakes!<br>#{@user.errors.full_messages.join('<br>')}"
@@ -38,9 +38,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user, :notice => "User created!"
+      redirect_to @user, notice: "User created!"
     else
-      render :new, :warning => "Dangit, fix your errors!"
+      render :new, warning: "Dangit, fix your errors!"
     end
   end
   
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'User was successfully updated.'
       redirect_to(@user)
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 

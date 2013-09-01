@@ -6,17 +6,7 @@ class ListingsController < ApplicationController
     params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
-    @listings = Listing.search(params[:filter]).paginate(:page => (params[:page] || 1), :per_page => 20)
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      # TODO: Front page searching
-      # format.js {
-      #         render :update do |page|
-      #           page.replace_html 'listings_list', :partial => 'listings/list', :locals => {:listings => @listings}
-      #         end
-      #       }
-    end
+    @listings = Listing.search(params[:filter]).order(:available_on).paginate(:page => (params[:page] || 1), :per_page => 20)
   end
 
 
