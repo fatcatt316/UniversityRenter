@@ -1,10 +1,11 @@
 <div id="document_wrapper">
-  <strong>Pictures:</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+  <h2>Pictures</h2>
+
   <% if editable %>
-    <span><%= add_child_link "New Image", f, :documents, {:partial => 'documents/form', :where => 'bottom'} %></span><br />
+    <p><%= add_child_link raw("#{add_icon} Add Picture"), f, :documents, {partial: 'documents/form', where: 'bottom'} %></p>
   <% end -%>
 
   <%= f.fields_for :documents do |document_form| %>
-    <%= render :partial => 'documents/form', :locals => { :f => document_form, :where => 'bottom', :editable => editable } %>
+    <%= render partial: 'documents/form', locals: { f: document_form, where: 'bottom', editable: editable } %>
   <% end %>
 </div>

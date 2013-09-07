@@ -1,67 +1,69 @@
 <h1>New Ad</h1>
 
-<% if current_user.blank? %>
-  <div id="absent_user" class="orange_notice">
-    <span class="login_or_register_to_edit">
-      <%= link_to "Login", "#", class: "login_link", title: "Click to login" %> or 
-      <%= link_to "register", "#", class: "register_link", title: "Click to register" %> 
-      if you want to edit or delete your ad later!
-    </span>
-    
-    <div id="login_error_message" class="message warning" style="display:none;"></div>
-    
-    <div id="login_form" style="display: none;">
-      <%= form_tag sessions_url, :remote => true, :html => { :id => 'new-session-form' } do %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email, params[:email], :size => 30 %>
-
-        <%= label_tag :password %>
-        <%= password_field_tag :password, :size => 10 %>
-
-        <%= submit_tag "Log in" %>
-      <% end %>
-    </div>
-  
-    <div id="new_user_form" style="display: none;">
-      <%= form_for @user, :url => {:controller => :users, :action => :finalize_signup}, :remote => true,
-        :html => {:method => :post, :id => 'new-user-form'} do |f| %>
-        <table class="form">
-          <tr>
-            <th><%= f.label :email %></th>
-            <td><%= f.text_field :email %></td>
-          </tr>
-          <tr>
-            <th><%= f.label :password %></th>
-            <td><%= f.password_field :password %></td>
-          </tr>
-          <tr>
-            <th><%= spam_prevention_field(f) %></th>
-            <td><%= f.submit "Register" %></td>
-          </tr>
-        </table>
-      <% end %>
-    </div>
-  </div>
-  <div class="clear" style="padding-bottom: 10px;"></div>
-<% end %>
-
-
-<%= form_for(@listing, :html => { :multipart => true }) do |f| %>
-  <%= f.error_messages %>
-  
+<div>
   <% if current_user.blank? %>
-    <%= spam_prevention_field(f) %>
-  <% end %>
+    <div id="absent_user" class="orange_notice">
+      <span class="login_or_register_to_edit">
+        <%= link_to "Login", "#", class: "login_link", title: "Click to login" %> or 
+        <%= link_to "register", "#", class: "register_link", title: "Click to register" %> 
+        if you want to edit or delete your ad later!
+      </span>
+    
+      <div id="login_error_message" class="message warning" style="display:none;"></div>
+    
+      <div id="login_form" style="display: none;">
+        <%= form_tag sessions_url, remote: true, html: { id: 'new-session-form' } do %>
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email], :size => 30 %>
+
+          <%= label_tag :password %>
+          <%= password_field_tag :password, :size => 10 %>
+
+          <%= submit_tag "Log in" %>
+        <% end %>
+      </div>
   
-  <%= render :partial => "form", :locals => {:f => f} %>
-  
-  <% if current_user.blank? %>
-    <div id="not_signed_in_warning" class="orange_notice">
-      Are you sure you want to create an ad without <%= link_to "logging in", "#absent_user", :"data-no-turbolink" => true %>?<br />You won't be able to edit it later on!
+      <div id="new_user_form" style="display: none;">
+        <%= form_for @user, url: {controller: :users, action: :finalize_signup}, remote: true, html: {method: :post, id: 'new-user-form'} do |f| %>
+          <table class="form">
+            <tr>
+              <th><%= f.label :email %></th>
+              <td><%= f.text_field :email %></td>
+            </tr>
+            <tr>
+              <th><%= f.label :password %></th>
+              <td><%= f.password_field :password %></td>
+            </tr>
+            <tr>
+              <th><%= spam_prevention_field(f) %></th>
+              <td><%= f.submit "Register" %></td>
+            </tr>
+          </table>
+        <% end %>
+      </div>
     </div>
     <div class="clear" style="padding-bottom: 10px;"></div>
   <% end %>
+
+  <div>
+    <%= form_for(@listing, html: { multipart: true, class: "form-horizontal" }) do |f| %>
+      <%= f.error_messages %>
   
-  <p><%= f.submit 'Post Ad' %></p>
+      <% if current_user.blank? %>
+        <%= spam_prevention_field(f) %>
+      <% end %>
   
-<% end %>
+      <%= render :partial => "form", :locals => {:f => f} %>
+  
+      <% if current_user.blank? %>
+        <div id="not_signed_in_warning" class="orange_notice">
+          Are you sure you want to create an ad without <%= link_to "logging in", "#absent_user", :"data-no-turbolink" => true %>?<br />You won't be able to edit it later on!
+        </div>
+        <div class="clear" style="padding-bottom: 10px;"></div>
+      <% end %>
+  
+      <p><%= f.submit 'Post Ad' %></p>
+  
+    <% end %>
+  </div>
+</div>

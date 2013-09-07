@@ -12,6 +12,10 @@ html, body {
   height: 100%
 }
 
+.clear {
+  clear: both;
+}
+
 /* Sticky Footer */
 
 /* Wrapper for page content to push down footer */
@@ -112,4 +116,82 @@ a.dropdown-toggle:hover {
   background-image: none;
   background-color: #407343;
   filter: none;
+}
+
+/* New ad */
+.login_or_register_to_edit {
+  font-size: 18px;
+}
+
+.login_or_register_to_edit a {
+  text-decoration: underline;
+}
+
+.login_or_register_to_edit a:hover {
+  text-decoration: none;
+}
+
+.orange_notice {
+  float: left;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid orange;
+  background-color: #FFCD79;
+  padding: 5px;
+  font-weight: bold;
+}
+
+#for_rent_or_wanted {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid green;
+  background-color: #BEE9BE;
+  margin-left: 10px;
+  padding: 5px;
+  color: black;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+#for_rent_or_wanted div{
+  display: inline;
+  padding: 2px 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#for_rent_or_wanted label {
+  font-size: 16px;
+  display: inline;
+}
+
+.chosen_label {
+  background: #ABD2AB;
+}
+
+.required {
+  color: orange;
+}
+
+.feature_box {
+  margin-bottom: 20px;
+}
+
+.small_info {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.feature_box label {
+  display: inline-block;
+}
+
+table.form td {
+  padding: 10px 0px;
+}
+
+table.form th {
+  padding: 10px 10px 10px 0px;
+  text-align: right;
+  vertical-align: top;
 }
