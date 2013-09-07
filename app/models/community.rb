@@ -19,7 +19,7 @@ class Community < ActiveRecord::Base
   validates_format_of :email, with: /\A\S+@\w+\.\w+/, on: :create, message: "is invalid", allow_blank: true
   
   def to_s 
-    return name
+    "#{name}"
   end
   
   def to_title

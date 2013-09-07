@@ -4,7 +4,7 @@ class Role < ActiveRecord::Base
   
   
   def to_s
-    return name
+    "#{name}"
   end
   
   

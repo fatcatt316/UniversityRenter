@@ -11,7 +11,7 @@ class College < ActiveRecord::Base
   
   
   def to_s 
-    return name
+    "#{name}"
   end
   
   def to_title

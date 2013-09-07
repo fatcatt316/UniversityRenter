@@ -6,7 +6,7 @@ class Feature < ActiveRecord::Base
   validates_uniqueness_of :name
   
   def to_s
-    return name
+    "#{name}"
   end
   
   
