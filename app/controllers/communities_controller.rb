@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
     if current_college
       @communities = Community.where(college_id: current_college.id).order(:name).all
     else
-      @communities = Community.order(:name).all
+      @communities = Community.joins(:college).order("colleges.name ASC, communities.name ASC").all
     end
   end
 
