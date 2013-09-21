@@ -4,14 +4,14 @@
   <h2>Features</h2>
   
   <% Feature.where("utility IS NOT TRUE").each do |feature| %>
-    <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, subject.has_feature?(feature), :disabled => !editable %>
+    <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, subject.has_feature?(feature), disabled: !editable %>
     <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
   <% end %>
-  <p>&nbsp;</p>
+  
   <h2>Utilities <span class="small_info">(included in cost)</span></h2>
   
   <% Feature.where(utility: true).each do |feature| %>
-    <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, subject.has_feature?(feature), :disabled => !editable %>
+    <%= check_box_tag "feature_ids[#{feature.id}]", feature.id, subject.has_feature?(feature), disabled: !editable %>
     <%= label_tag "feature_ids[#{feature.id}]", feature.name.titleize %><br />
   <% end %>
 </div>

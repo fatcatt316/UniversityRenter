@@ -13,14 +13,17 @@ class UsersController < ApplicationController
 
 
   def finalize_signup
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     
     respond_to do |format|
-      if verify_recaptcha(:model => @user, :message => "Incorrect captcha message") && @user.save
+      if @user.save
         auto_login(@user)
-        format.html { redirect_to root_url, :notice => "You're logged in and good to go!" }
+        format.html { redirect_to root_url, notice: "You're logged in and good to go!" }
       else
-        format.html { render :signup, :warning => "Please fix your errors!" }
+        format.html do
+          flash.now[:warning] = "Please fix your mistakes!<br>#{@user.errors.full_messages.join('<br>')}"
+          render :signup
+        end
       end
       format.js
     end
@@ -33,11 +36,11 @@ class UsersController < ApplicationController
   
   
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params)
     if @user.save
-      redirect_to @user, :notice => "User created!"
+      redirect_to @user, notice: "User created!"
     else
-      render :new, :warning => "Dangit, fix your errors!"
+      render :new, warning: "Dangit, fix your errors!"
     end
   end
   
@@ -51,7 +54,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.editable?(current_user)
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
   end
   
@@ -60,13 +63,13 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user.editable?(current_user)
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params)
       flash[:notice] = 'User was successfully updated.'
       redirect_to(@user)
     else
-      render :action => "edit"
+      render action: "edit"
     end
   end
 
@@ -75,10 +78,21 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     unless current_user.admin?
       flash[:warning] = "Hey now, you can't edit that person!"
-      return redirect_to listings_path
+      return redirect_to listings_url
     end
     @user.destroy
 
     redirect_to(users_url)
   end
+  
+  private
+  
+    def user_params
+      if current_user.try(:admin?)
+        params.require(:user).permit!
+      else
+        params.require(:user).permit(:gender_id, :email, :remember_me_token, :password, :password_confirmation, :full_name)
+      end
+    end
+
 end

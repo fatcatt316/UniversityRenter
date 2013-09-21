@@ -1,4 +1,4 @@
-<table class="list_table">
+<table class="table table-striped table-bordered table-hover">
   <tr>
     <th><%= label :name, "Name:" %></th>
     <td><%= @college.name %></td>
@@ -24,6 +24,6 @@
 </div>
 
 <% if @college.can_edit?(current_user) %>
-  <%= link_to 'Edit', edit_college_path(@college) %> |
+  <%= link_to 'Edit', edit_college_url(@college) %> |
 <% end %>
-<%= link_to 'College list', colleges_path %>
+<%= link_to 'College list', colleges_url %>

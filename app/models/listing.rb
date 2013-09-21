@@ -1,4 +1,6 @@
 class Listing < ActiveRecord::Base
+  include SpamSniffer
+  
   belongs_to :ad_status
   belongs_to :community
   belongs_to :college
@@ -14,21 +16,24 @@ class Listing < ActiveRecord::Base
   has_many :documents, :as => :owner, :dependent => :destroy
   accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
   
+  before_create :set_ad_status
+  
   validates_presence_of :title, :college
   validates_presence_of :price_per_month, :address, :available_on, :if => :for_rent?
   validate :contact_email_or_contact_phone
   
+  
   def to_s
-    return title
+    title.present? ? title : "New Listing"
   end
   
   def to_title
-    "#{college} | #{self}"
+    [college.to_s, to_s].select{|str| str.present?}.join(" | ")
   end
   
   
   def primary_document
-    return documents.select{|d| d.primary}.first
+    documents.detect(&:primary?)
   end
   
   
@@ -40,28 +45,28 @@ class Listing < ActiveRecord::Base
   
   
   def approved?
-    return "Approved" == ad_status.to_s
+    ad_status.approved?
   end
   
   
   def editable?(user=nil)
-    return self.new_record? || (user && (user.admin? || self.creator_id == user.id))
+    new_record? || (user && (user.admin? || creator_id == user.id))
   end
   
   
   def destroyable?(user=nil)
-    return (user && (user.admin? || self.creator_id == user))
+    (user && (user.admin? || self.creator_id == user))
   end
   
   
   def for_rent?
-    return !self.wanted?
+    !wanted?
   end
   
   
   def has_feature?(feature)
     @ad_feature_ids = self.ad_features.map(&:feature_id)
-    return @ad_feature_ids.include?(feature.id)
+    @ad_feature_ids.include?(feature.id)
   end
   
   
@@ -100,7 +105,11 @@ class Listing < ActiveRecord::Base
   
   def contact_email_or_contact_phone
     if self.contact_email.blank? && self.contact_phone.blank?
-      errors.add_to_base("Fill in an email or phone number where people can reach you, por favor")
+      errors.add(:base, "Fill in an email or phone number where people can reach you, por favor")
     end
+  end
+  
+  def set_ad_status
+    self.ad_status = creator.present? ? AdStatus.approved : AdStatus.where(name: "Pending").first
   end
 end

@@ -1,6 +1,6 @@
 <h1>Manage Users</h1>
 
-<table class="list_table">
+<table class="table table-striped table-bordered table-hover">
   <tr>
     <th>Email</th>
     <th>Status</th>
@@ -9,14 +9,12 @@
   </tr>
   <% @users.each do |user| %>
     <tr class="<%= cycle('odd', 'even') %>">
-      <td><%= user.email %></td>
+      <td><%= link_to user.email, user %></td>
       <td><%= user.user_status %></td>
       <td><%= user.roles.map(&:to_s).to_sentence %></td>
       <td>
-        <%= link_to 'Show', user %>
-        <%= link_to 'Edit', edit_user_path(user), class: 'edit_link' %>
-        <%= link_to 'Delete', user, confirm: "Are you sure you want to delete #{user}?  This will remove their ads, too.", 
-          method: :delete, class: 'delete_link' %>
+        <%= link_to edit_icon, edit_user_url(user) %>
+        <%= link_to destroy_icon, user, confirm: "Are you sure you want to delete #{user}?  This will remove their ads, too.", method: :delete %>
       </td>
     </tr>
   <% end %>
@@ -26,4 +24,4 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path, class: 'add_link' %>
+<%= link_to raw("#{add_icon} New User"), new_user_url %>

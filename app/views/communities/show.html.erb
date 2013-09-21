@@ -27,18 +27,16 @@
   <div class="small_column" style="float: right;margin-right: 10px; padding: 5px;">
     <h2>Contact Info</h2>
     <% if @community.email.present? %>
-      <p>
-        <%=mail_to @community.email, image_tag("email.png", class: "contact_icon") + "Email #{@community}", body: "-- Sent from http://www.UniversityRenter.com" %>
-      </p>
+      <p><%= email_icon %> <%= mail_to @community.email, "Email #{@community}", body: "-- Sent from http://www.UniversityRenter.com" %></p>
     <% end %>
     <% if @community.phone.present? %>
-      <p><%= image_tag("phone.png", class: "contact_icon") %>Phone: <%= @community.phone %></p>
+      <p><%= phone_icon %> Phone: <%= @community.phone %></p>
     <% end %>
     <% if @community.fax.present? %>
-      <p><%= image_tag("fax.gif", class: "contact_icon") %>Fax: <%= @community.fax %></p>
+      <p><%= fax_icon %> Fax: <%= @community.fax %></p>
     <% end %>
     <% if @community.external_url.present? %>
-      <p><%= image_tag("link.gif", class: "contact_icon") %><%= link_to "External website", @community.external_url %></p>
+      <p><%= link_icon %> <%= link_to "External website", @community.external_url %></p>
     <% end %>
   </div>
 
@@ -47,6 +45,6 @@
 
 
 <% if @community.editable?(current_user) %>
-  <%= link_to 'Edit', edit_community_path(@community) %> |
+  <%= link_to 'Edit', edit_community_url(@community) %> |
 <% end %>
-<%= link_to "Student Apartment Communities near #{@community.college}", college_communities_path(@community.college) %>
+<%= link_to "Student Apartment Communities near #{@community.college}", college_communities_url(@community.college) %>

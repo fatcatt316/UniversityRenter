@@ -1,7 +1,7 @@
 <h1>
   <%= current_college if current_college %> Student Apartment Communities
   <% if current_user && current_user.admin? %>
-    <span class="new_link_holder"><%= link_to 'New Community', new_community_path, :class => 'add_link' %></span>
+    <span class="new_link_holder"><%= link_to raw("#{add_icon} New Community"), new_community_url %></span>
   <% end %>
 </h1>
 
@@ -10,5 +10,5 @@
 <br />
 
 <% if current_user && current_user.admin? %>
-  <%= link_to 'New Community', new_community_path %>
+  <%= link_to raw("#{add_icon} New Community"), new_community_url %>
 <% end %>

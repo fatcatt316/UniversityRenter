@@ -1,16 +1,16 @@
 <% if listings.empty? %>
-  <h3>Dang, no ads found</h3>
+  <h3>Dang, no ads found :(</h3>
 <% else %>
-  <table class="list_table">
+  <table class="table table-striped table-bordered table-hover ">
     <tr>
       <th>Title</th>
       <% unless current_college %>
         <th>College</th>
       <% end %>
       <th>Price</th>
-      <th class="date_cell">Date Available</th>
+      <th>Date Available</th>
       <% if current_user %>
-        <th class="icons">&nbsp;</th>
+        <th></th>
       <% end %>
     </tr>
     <% listings.each do |listing| %>

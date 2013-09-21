@@ -1,0 +1,197 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome
+  (To use Glyphicons instead of Font Awesome sprites, replace with "=require twitter-bootstrap-static/sprites")
+  =require twitter-bootstrap-static/fontawesome
+*/
+
+/*$nav-top-color: #75D279;*/
+
+html, body {
+  height: 100%
+}
+
+.clear {
+  clear: both;
+}
+
+/* Sticky Footer */
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+footer {
+  height: 60px;
+}
+footer {
+  background-image: linear-gradient(to bottom, #5ec562, darkgreen);
+  color: white;
+  font-weight: bold;
+  padding: 15px 40px;
+}
+
+footer a{
+  color: #005580;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* Navigation bar */
+.navbar-inner {
+  background-color: #75D279;
+  background-image: none; /* remove the gradient */
+  background-image: linear-gradient(to bottom, #75D279, #5ec562);
+  color: white;
+}
+
+.navbar .nav > li > a {
+  background-color: #60AB64;
+  color: white;
+}
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+  background-color: #60AB64;
+  color: white;
+  box-shadow:inset 0px 0px 8px #407343;
+  -webkit-box-shadow:inset 0px 0px 8px #407343;
+  -moz-box-shadow:inset 0px 0px 8px #407343;
+}
+
+.navbar .nav > .active > a,
+.navbar .nav > .active > a:hover,
+.navbar .nav > .active > a:focus {
+  background-color: #407343;
+  color: white;
+}
+
+.navbar .brand {
+  color: white;
+}
+
+/* Dropdown menu */
+.btn-primary {
+  background-color: #407343;
+  background-image: none;
+}
+
+a.dropdown-title:hover {
+  background-color: #407343;
+  background-image: none;
+  text-decoration: none;
+  transition: none;
+}
+
+a.dropdown-toggle:hover {
+  background-image: none;
+  background-color: #60AB64;
+  color: white;
+}
+
+.btn-group.open .btn-primary.dropdown-toggle {
+  background-image: none;
+  background-color: #60AB64;
+  color: white;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  color: white;
+  background-image: none;
+  background-color: #407343;
+  filter: none;
+}
+
+/* New ad */
+.login_or_register_to_edit {
+  font-size: 18px;
+}
+
+.login_or_register_to_edit a {
+  text-decoration: underline;
+}
+
+.login_or_register_to_edit a:hover {
+  text-decoration: none;
+}
+
+.orange_notice {
+  float: left;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid orange;
+  background-color: #FFCD79;
+  padding: 5px;
+  font-weight: bold;
+}
+
+#for_rent_or_wanted {
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid green;
+  background-color: #BEE9BE;
+  margin-left: 10px;
+  padding: 5px;
+  color: black;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+#for_rent_or_wanted div{
+  display: inline;
+  padding: 2px 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#for_rent_or_wanted label {
+  font-size: 16px;
+  display: inline;
+}
+
+.chosen_label {
+  background: #ABD2AB;
+}
+
+.required {
+  color: orange;
+}
+
+.feature_box {
+  margin-bottom: 20px;
+}
+
+.small_info {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.feature_box label {
+  display: inline-block;
+}
+
+table.form td {
+  padding: 10px 0px;
+}
+
+table.form th {
+  padding: 10px 10px 10px 0px;
+  text-align: right;
+  vertical-align: top;
+}

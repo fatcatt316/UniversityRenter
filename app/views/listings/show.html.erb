@@ -1,6 +1,6 @@
 <%= render :partial => "listings/#{@listing.for_rent? ? 'for_rent' : 'wanted'}_show" %>
 
 <% if @listing.editable?(current_user) %>
-  <%= link_to 'Edit', edit_listing_path(@listing) %> | 
+  <%= link_to 'Edit', edit_listing_url(@listing) %> | 
 <% end %>
-<%= link_to "More #{@listing.college} apartments ", college_listings_path(@listing.college) %>
+<%= link_to "More #{@listing.college} apartments ", college_listings_url(@listing.college) %>

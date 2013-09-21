@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
     if current_college
       @communities = Community.where(college_id: current_college.id).order(:name).all
     else
-      @communities = Community.order(:name).all
+      @communities = Community.joins(:college).order("colleges.name ASC, communities.name ASC").all
     end
   end
 
@@ -32,21 +32,12 @@ class CommunitiesController < ApplicationController
   
   # Ajax action
   def update_dropdown
-    college = College.find_by_id(params[:college_id])
-
-    respond_to do |format|
-      format.js {
-        render :update do |page|
-          page.replace_html('community_dropdown', :partial => 'dropdown', 
-            :locals => {:college => college, :search_box => params[:search_box]} )
-        end
-      }
-    end    
+    @college = College.find_by_id(params[:college_id])
   end
 
 
   def new
-    @community = Community.new(params[:community])
+    @community = Community.new
     @community.build_address
   end
 
@@ -58,13 +49,13 @@ class CommunitiesController < ApplicationController
 
 
   def create
-    @community = Community.new(params[:community])
+    @community = Community.new(community_params)
 
     if @community.save
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully created.'
-      redirect_to college_community_path(@community.college, @community)
+      redirect_to college_community_url(@community.college, @community)
     else
       render :action => "new"
     end
@@ -74,11 +65,11 @@ class CommunitiesController < ApplicationController
   def update
     @community = Community.find(params[:id])
 
-    if @community.update_attributes(params[:community])
+    if @community.update_attributes(community_params)
       params[:feature_ids] ||= {} # TODO: Better way to do this
       @community.update_features(params[:feature_ids].keys)
       flash[:notice] = 'Community was successfully updated.'
-      redirect_to college_community_path(@community.college, @community)
+      redirect_to college_community_url(@community.college, @community)
     else
       @community.address ||= @community.build_address
       render :action => "edit"
@@ -92,4 +83,12 @@ class CommunitiesController < ApplicationController
 
     redirect_to(communities_url)
   end
+  
+  private
+  
+    def community_params
+      if current_user.try(:admin?)
+        params.require(:community).permit!
+      end
+    end
 end

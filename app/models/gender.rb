@@ -6,7 +6,7 @@ class Gender < ActiveRecord::Base
   validates_presence_of :name
   
   def to_s
-    return name
+    "#{name}"
   end
   
   

@@ -27,11 +27,7 @@ class SessionsController < ApplicationController
     logout
     respond_to do |format|
       format.html { redirect_to root_url, notice: "Logged out!" }
-      format.js do
-        render :update do |page|
-          page.replace_html('upper_login', partial: 'sessions/form')
-        end
-      end
+      format.js
     end
   end
 end

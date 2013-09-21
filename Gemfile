@@ -1,33 +1,38 @@
-source "http://rubygems.org"
+source 'https://rubygems.org'
 
-gem "rails", "~>3.0.20"
+gem 'rails', '4.0.0'
+gem "pg" # Use postgresql as the database for Active Record
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end
 
 gem 'american_date'
 gem 'aws-sdk'
+gem 'coffee-rails', '~> 4.0.0' # Use CoffeeScript for .js.coffee assets and views
 gem 'dynamic_form'
-gem "gmaps4rails"
-gem "json", "~> 1.7.7"
-gem "paperclip", "~> 3.4.1"
-gem "pg"
-gem "rake", "~>0.9.2"
-gem "sorcery", "~>0.7.6"
-gem 'will_paginate', '~> 3.0.pre4'
-gem "recaptcha", "~> 0.3.4", :require => "recaptcha/rails"
+gem 'gmaps4rails'
+# gem 'gmaps4rails', '>= 2.0.0.pre', git: 'https://github.com/fiedl/Google-Maps-for-Rails.git'
+# gem 'json', '~> 1.7.7'
+gem 'jbuilder', '~> 1.2' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jquery-rails' # Use jquery as the JavaScript library
+gem 'jquery-turbolinks'
+gem 'jquery-ui-rails'
+gem "paperclip", '~> 2.4'
+gem 'sass-rails', '~> 4.0.0' # Use SCSS for stylesheets
+gem "sorcery"
+gem 'therubyracer' # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+gem 'turbolinks' # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'twitter-bootstrap-rails'
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
+gem 'will_paginate', '~> 3.0.pre4' # TODO: Consider switching to Kaminari
 
-group :development, :test do
-  gem "capistrano"
-  gem 'ruby-debug19'
+
+group :development do
+  gem 'debugger'
 end
 
-# Bundle the extra gems:
-# gem "bj"
-# gem "nokogiri"
-# gem "sqlite3-ruby", :require => "sqlite3"
-# gem "aws-s3", :require => "aws/s3"
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem "webrat"
-# end
+group :production do
+  gem 'rails_12factor'
+end

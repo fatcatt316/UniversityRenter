@@ -15,10 +15,9 @@
   </tr>
   <tr>
     <th>Listings:</th>
-    <td><%= link_to @user.listings.size, listings_path(:search => {:creator_id => @user.id}) %></td>
+    <td><%= link_to @user.listings.size, listings_url(:search => {:creator_id => @user.id}) %></td>
   </tr>
 </table>
 
-<%= link_to 'Edit', edit_user_path(@user), class: 'edit_link' %><br>
-<%= link_to 'Delete', @user, confirm: "Are you sure you want to delete #{@user}?  This will remove their ads, too.", 
-  method: :delete, class: 'delete_link' %>
+<%= link_to edit_icon, edit_user_url(@user) %><br>
+<%= link_to destroy_icon, @user, confirm: "Are you sure you want to delete #{@user}?  This will remove their ads, too.", method: :delete %>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="wrap">
+      <div id="main" class="container">
+        <div id="header">
+          <div id="logo_box">
+            <%= link_to image_tag("logo.png", alt: "University Renter", title: "University Renter"), listings_url %>
+          </div>
+        
+          <div class="right_header">
+            <div id="upper_login" class='login_form'>
+              <%= render partial: "sessions/form" %>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      
+        <div id="navbar">
+          <%= render partial: "shared/navbar" %>
+        </div>
+      
+        <div id="flash">
+          <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, id: "#{name}", class: "message" %>
+          <% end %>
+        </div>
+      
+        <div id="main_content">
+          <%= yield %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div id="footer">
+      <div class="container" style="padding-top: 20px;">
+        <div class="feedback_link">
+          <%= mail_to "vanessa@universityreenter.com", "Feedback?  Comments?  Let us know!", body: "-- Feedback" %>
+        </div>
+        
+        <div class="bj_web_development">
+          UniversityRenter &copy;2006-<%= Date.today.year %><br />
+          Created by <a href="http://www.bjwebdevelopment.com/">BJ Web Development</a>
+        </div>
+      </div>
+    </div>
+    <%= yield :scripts %>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      var pluginUrl = 
+       '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+      _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+      _gaq.push(['_setAccount', 'UA-1163113-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>

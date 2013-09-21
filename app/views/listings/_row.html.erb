@@ -1,24 +1,22 @@
-<% row_class = listing.approved? ? "#{cycle('even', 'odd')}" : "status_#{listing.ad_status.to_s.downcase}" %>
-
-<tr id="listing_row_<%= listing.id %>" class="listing_row <%= row_class %>">
+<tr>
   <td>
     <div style="float: left;margin-right: 10px;">
       <%= show_primary_image(listing) %>
     </div>
   
-    <%= link_to listing, college_listing_path(listing.college, listing) %>
+    <%= link_to listing, college_listing_url(listing.college, listing) %>
   </td>
   <% unless current_college %>
     <td><%= link_to listing.college, listing.college %></td>
   <% end %>
   <td><%= number_to_currency(listing.price_per_month) %></td>
-  <td class="date_cell"><%= listing.available_on.strftime("%m/%d/%y") if listing.available_on.present? %></td>
+  <td><%= listing.available_on.strftime("%m/%d/%Y") if listing.available_on.present? %></td>
 
   <% if current_user %>
-    <td class="icons">
+    <td>
       <% if listing.editable?(current_user) %>
-        <%= link_to '', edit_listing_path(listing), :class => "edit_link"  %>
-        <%= link_to '', listing, :confirm => 'Are you sure you want to delete this ad?', :method => :delete, :class => "delete_link" %>
+        <%= link_to edit_icon, edit_listing_url(listing) %>
+        <%= link_to destroy_icon, listing, :confirm => 'Are you sure you want to delete this ad?', method: :delete %>
       <% end %>
     </dh>
   <% end %>

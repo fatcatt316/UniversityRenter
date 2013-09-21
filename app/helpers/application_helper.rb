@@ -2,8 +2,7 @@ module ApplicationHelper
   
   # TODO: Better SEO
   def page_title
-    title = "University Renter | "
-    
+    title = ["University Renter"]
     page_object = @listing || @community || current_college
     
     if page_object
@@ -12,7 +11,7 @@ module ApplicationHelper
       title << "Student Apartments, Subleases, and Roommates"
       title << controller.controller_name.titleize
     end
-    return title
+    return title.join(" | ")
   end
   
   
@@ -32,6 +31,33 @@ module ApplicationHelper
     return description
   end
   
+  def edit_icon
+    raw("<i title='Edit' class='icon-large icon-edit'></i>")
+  end
+  
+  def destroy_icon
+    raw("<i title='Delete' class='icon-large icon-trash'></i>")
+  end
+  
+  def add_icon
+    raw("<i title='Add' class='icon-large icon-plus-sign'></i>")
+  end
+  
+  def email_icon
+    raw("<i title='Email' class='icon-envelope'></i>")
+  end
+  
+  def phone_icon
+    raw("<i title='Phone' class='icon-phone'></i>")
+  end
+  
+  def fax_icon
+    raw("<i title='Fax' class='icon-print'></i>")
+  end
+  
+  def link_icon
+    raw("<i title='Link' class='icon-external-link-sign'></i>")
+  end
   
   def show_primary_image(owner, options={})
     options[:size] ||= "thumb"
@@ -42,6 +68,8 @@ module ApplicationHelper
     end
   end
   
+  ### TODO: Have link somewhere for icons: http://p.yusukekamiyamane.com
+  
   
   def line_break(string)
     return raw((h string).gsub("\n", '<br />')) rescue ""
@@ -50,7 +78,7 @@ module ApplicationHelper
   ########### Complex forms helpers ##########
   
   def add_child_link(name, f, association, options={})
-    options[:class]   ||= "add_link"
+    options[:class]   ||= ""
     options[:where]   ||= "before"
     options[:partial] ||= "#{association.to_s.singularize}_fields"
     new_object = f.object.class.reflect_on_association(association).klass.new

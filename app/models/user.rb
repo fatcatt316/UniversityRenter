@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include SpamSniffer
+  
   authenticates_with_sorcery!
   
   belongs_to :user_status
@@ -8,8 +10,6 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :user_roles
   has_many :documents
   has_many :listings, :foreign_key => "creator_id"
-  
-  attr_accessible :email, :password, :password_confirmation, :gender_id, :user_status_id # user_roles?
 
   validates_confirmation_of :password  
   validates_presence_of :password, :on => :create  
@@ -18,21 +18,21 @@ class User < ActiveRecord::Base
   
   
   def to_s
-    return email.to_s
+    email.to_s
   end
   
 
   def has_role?(role_name)
-    return self.roles.map(&:name).include?(role_name.to_s.capitalize)
+    roles.map(&:name).include?(role_name.to_s.capitalize)
   end
   
   
   def admin?
-    return self.has_role?("admin")
+    has_role?("admin")
   end
   
   
   def editable?(user=nil)
-    return user && (user.admin? || user.id == self.id)
+    user && (user.admin? || user.id == id)
   end
 end

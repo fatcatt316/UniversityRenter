@@ -5,7 +5,7 @@
     <div id="errorExplanation">
       <h2>Whoops, fix your mistakes!</h2>
       <ul>
-        <% for message in @user.errors.full_messages %>
+        <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -25,11 +25,7 @@
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
     <tr>
-      <th></th>
-      <td><%= recaptcha_tags %></td>
-    </tr>
-    <tr>
-      <th></th>
+      <th><%= spam_prevention_field(f) %></th>
       <td><%= f.submit "Sign me on up!" %></td>
     </tr>
   </table>
