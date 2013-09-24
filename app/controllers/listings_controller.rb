@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
     params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
-    @listings = Listing.search(params[:filter]).order(:available_on).paginate(:page => (params[:page] || 1), :per_page => 20)
+    @listings = Listing.search(params[:filter]).order("created_at DESC").paginate(:page => (params[:page] || 1), :per_page => 20)
   end
 
 
