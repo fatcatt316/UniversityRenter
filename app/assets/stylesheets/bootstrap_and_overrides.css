@@ -64,6 +64,7 @@ footer a{
 .navbar .nav > li > a {
   background-color: #60AB64;
   color: white;
+  text-shadow: 0 1px 0 darkgreen;
 }
 
 .navbar .nav > li > a:focus,
@@ -84,6 +85,7 @@ footer a{
 
 .navbar .brand {
   color: white;
+  text-shadow: 0 1px 0 darkgreen;
 }
 
 /* Dropdown menu */
