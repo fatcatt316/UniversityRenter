@@ -1,5 +1,5 @@
 <% if !defined?(editable) || editable %>
-  <div class="fields">
+  <div class="fields image_holder">
     <% if f.object.image? %>
       <%= image_tag f.object.doc.url(:medium) %><br />
       <%= f.object.to_s %>
@@ -10,7 +10,7 @@
     <%= remove_child_link destroy_icon, f %>
   </div>
 <% elsif f.object.image? %>
-  <div>
+  <div class="image_holder">
     <%= image_tag f.object.doc.url(:medium) %>
   </div>
 <% end -%>

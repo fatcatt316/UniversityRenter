@@ -197,3 +197,13 @@ table.form th {
   text-align: right;
   vertical-align: top;
 }
+
+.image_holder {
+  background-color: #BEE9BE;
+  border: 1px dotted black;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 10px 20px;
+  width: 300px;
+}

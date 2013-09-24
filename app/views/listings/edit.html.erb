@@ -2,13 +2,13 @@
 
 <%= form_for(@listing, :html => { :multipart => true }) do |f| %>
   <%= f.error_messages %>
-
-  <%= render :partial => "form", :locals => {:f => f} %>
   
   <% if current_user && current_user.admin? %>
     <p><%= f.select :ad_status_id, AdStatus.select_options %></p>
   <% end %>
 
+  <%= render :partial => "form", :locals => {:f => f} %>
+  
   <p>
     <%= f.submit 'Update' %>
   </p>
