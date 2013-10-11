@@ -57,6 +57,10 @@ footer a{
   }
 }
 
+.center-stage {
+  margin-bottom: 30px;
+}
+
 /* Navigation bar */
 .navbar-inner {
   background-image: none; /* remove the gradient */
