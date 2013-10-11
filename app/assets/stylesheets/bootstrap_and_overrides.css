@@ -33,9 +33,13 @@ footer {
   height: 60px;
 }
 footer {
-  background-image: linear-gradient(to bottom, #5ec562, darkgreen);
+  background-color: #75D279;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5ec562), to(darkgreen));
+  background-image: -webkit-linear-gradient(top, #5ec562, darkgreen);
+  background-image:    -moz-linear-gradient(top, #5ec562, darkgreen);
+  background-image:      -o-linear-gradient(top, #5ec562, darkgreen);
+  background-image:         linear-gradient(to bottom, #5ec562, darkgreen);
   color: white;
-  font-weight: bold;
   padding: 15px 40px;
 }
 
@@ -55,9 +59,15 @@ footer a{
 
 /* Navigation bar */
 .navbar-inner {
-  background-color: #75D279;
   background-image: none; /* remove the gradient */
-  background-image: linear-gradient(to bottom, #75D279, #5ec562);
+  background-color: #75D279;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#75D279), to(#5ec562));
+  background-image: -webkit-linear-gradient(top, #75D279, #5ec562);
+  background-image:    -moz-linear-gradient(top, #75D279, #5ec562);
+  background-image:      -o-linear-gradient(top, #75D279, #5ec562);
+  background-image:         linear-gradient(to bottom, #75D279, #5ec562);
+  
+  
   color: white;
 }
 
