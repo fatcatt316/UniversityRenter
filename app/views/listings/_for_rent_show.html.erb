@@ -43,12 +43,12 @@
           <th>Rooms</th>
           <td>
             <% if @listing.total_bedrooms %>
-              <%= pluralize(@listing.total_bedrooms, "room") %> available 
+              <%= pluralize(@listing.available_bedrooms, "room") %> available 
               <% if @listing.available_bedrooms %>
-                out of <%= @listing.available_bedrooms %> total <%= pluralize(@listing.available_bedrooms, "bedroom") %>
+                out of <%= pluralize(@listing.total_bedrooms, "bedroom") %>
               <% end %>
             <% else %>
-              <%= @listing.available_bedrooms %> total <%= pluralize(@listing.available_bedrooms, "bedroom") %>
+              <%= @listing.available_bedrooms %>
             <% end %>
           </td>
         </tr>
