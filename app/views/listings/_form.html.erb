@@ -2,11 +2,11 @@
   <div id="for_rent_or_wanted">
     <div id="for_rent_label">
       <%= f.radio_button :wanted, false %>
-      <%= f.label 'wanted_false', "for rent" %>
+      <%= f.label 'wanted_false', "Room for rent" %>
     </div>
     <div id="wanted_label">
       <%= f.radio_button :wanted, true %>
-      <%= f.label 'wanted_true', "wanted" %>
+      <%= f.label 'wanted_true', "Room wanted" %>
     </div>
   </div>
   
@@ -71,7 +71,7 @@
     </tr>
     <tr class="wanted">
       <th><%= f.label :preferred_gender_id, "Are you a Guy or Girl?" %></th>
-      <td><%= f.select :preferred_gender_id, Gender.select_options %></td>
+      <td><%= f.select :preferred_gender_id, Gender.select_options, include_blank: true %></td>
     </tr>
     <tr>
       <th><%= f.label :description, "Description:" %></th>
