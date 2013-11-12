@@ -7,3 +7,6 @@ approved:
 denied:
   id: 3
   name: Denied
+retired:
+  id: 4
+  name: Retired
