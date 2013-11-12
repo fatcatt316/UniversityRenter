@@ -237,11 +237,11 @@ table.form th {
   padding: 3px;
 }
 
-.wanted {
+.listing-icon.wanted {
   background-color: #DFF0D8;
 }
   
-.for-rent {
+.listing-icon.for-rent {
   background-color: #80E6FF;
 }
 
