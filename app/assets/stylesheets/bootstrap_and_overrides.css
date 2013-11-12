@@ -223,8 +223,13 @@ table.form th {
 }
 
 /* Listings */
-.listing-pending {
-  background-color: yellow;
+.listing-pending td {
+  background-color: yellow !important;
+  color: grey !important;
+}
+
+.listing-retired td {
+  background-color: #E0C266 !important;
   color: grey !important;
 }
 

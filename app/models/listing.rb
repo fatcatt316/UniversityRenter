@@ -22,7 +22,9 @@ class Listing < ActiveRecord::Base
   validates_presence_of :price_per_month, :address, :available_on, if: :for_rent?
   validate :contact_email_or_contact_phone
   
-  delegate :pending?, :approved?, :denied?, to: :ad_status, allow_nil: true
+  scope :approved, where(ad_status_id: AdStatus.approved)
+  
+  delegate :pending?, :approved?, :denied?, :retired?, to: :ad_status, allow_nil: true
   
   
   def to_s

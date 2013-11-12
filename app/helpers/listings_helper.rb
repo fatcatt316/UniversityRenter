@@ -12,7 +12,11 @@ module ListingsHelper
   end
   
   def listing_class(listing)
-    "listing-pending" if listing.pending?
+    if listing.pending?
+      "listing-pending"
+    elsif listing.retired?
+      "listing-retired"
+    end
   end
   
   def listing_icon(listing)

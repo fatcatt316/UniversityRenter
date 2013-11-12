@@ -20,6 +20,10 @@ class AdStatus < ActiveRecord::Base
     name == "Pending"
   end
   
+  def retired?
+    name == "Retired"
+  end
+  
   def self.approved
     where("name = 'Approved'").first
   end
