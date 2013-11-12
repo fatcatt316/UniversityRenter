@@ -10,4 +10,8 @@ module ListingsHelper
   def spam_prevention_field(f)
     f.text_field :full_name, autocomplete: :off, style: "display: none;"
   end
+  
+  def listing_class(listing)
+    "listing-pending" if listing.pending?
+  end
 end

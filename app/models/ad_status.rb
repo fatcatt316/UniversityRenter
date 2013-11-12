@@ -12,6 +12,14 @@ class AdStatus < ActiveRecord::Base
     name == "Approved"
   end
   
+  def denied?
+    name == "Denied"
+  end
+  
+  def pending?
+    name == "Pending"
+  end
+  
   def self.approved
     where("name = 'Approved'").first
   end

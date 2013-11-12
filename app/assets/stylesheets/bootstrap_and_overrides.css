@@ -221,3 +221,13 @@ table.form th {
   padding: 10px 20px;
   width: 300px;
 }
+
+/* Listings */
+.listing-pending {
+  background-color: yellow;
+  color: grey !important;
+  
+  a {
+    color: grey !important;
+  }
+}
