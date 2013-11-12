@@ -4,22 +4,22 @@ class Listing < ActiveRecord::Base
   belongs_to :ad_status
   belongs_to :community
   belongs_to :college
-  belongs_to :creator, :class_name => "User"
-  belongs_to :preferred_gender, :class_name => "Gender"
+  belongs_to :creator, class_name: "User"
+  belongs_to :preferred_gender, class_name: "Gender"
   
-  has_one :address, :as => :subject, :dependent => :destroy
-  accepts_nested_attributes_for :address, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  has_one :address, as: :subject, dependent: :destroy
+  accepts_nested_attributes_for :address, reject_if: lambda { |a| a.values.all?(&:blank?) }, allow_destroy: true
   
-  has_many :ad_features, :as => :subject, :dependent => :destroy
-  has_many :features, :through => :ad_features
+  has_many :ad_features, as: :subject, dependent: :destroy
+  has_many :features, through: :ad_features
   
-  has_many :documents, :as => :owner, :dependent => :destroy
-  accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  has_many :documents, as: :owner, dependent: :destroy
+  accepts_nested_attributes_for :documents, reject_if: lambda { |a| a.values.all?(&:blank?) }, allow_destroy: true
   
   before_create :set_ad_status
   
   validates_presence_of :title, :college
-  validates_presence_of :price_per_month, :address, :available_on, :if => :for_rent?
+  validates_presence_of :price_per_month, :address, :available_on, if: :for_rent?
   validate :contact_email_or_contact_phone
   
   delegate :pending?, :approved?, :denied?, to: :ad_status, allow_nil: true
