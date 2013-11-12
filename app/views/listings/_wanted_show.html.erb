@@ -50,13 +50,13 @@
         <th>Contact:</th>
         <td>
           <% if @listing.contact_email.present? %>
-            <%= mail_to @listing.contact_email, raw(email_icon) + " Email #{@listing.contact_email.to_ascii}",
+            <%= mail_to @listing.contact_email, raw(email_icon) + raw(" Email #{@listing.contact_email.to_ascii}"),
               subject: "UniversityRenter: #{@listing}",
-              body: "-- Sent from http://www.UniversityRenter.com" %>
+              body: "\n\n-- Sent from http://www.UniversityRenter.com" %>
           <% end %>
           <% if @listing.contact_phone.present? %>
             <%= phone_icon %> <%= @listing.contact_phone %>
-          <% end %>  
+          <% end %>
         </td>
       </tr>
     </table>
