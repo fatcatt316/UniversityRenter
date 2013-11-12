@@ -5,6 +5,8 @@
     </div>
   
     <%= link_to listing, college_listing_url(listing.college, listing) %>
+    
+    <%= listing_icon(listing) %>
   </td>
   <% unless current_college %>
     <td><%= link_to listing.college, listing.college %></td>

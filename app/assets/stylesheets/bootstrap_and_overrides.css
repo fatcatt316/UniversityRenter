@@ -226,8 +226,22 @@ table.form th {
 .listing-pending {
   background-color: yellow;
   color: grey !important;
-  
-  a {
-    color: grey !important;
-  }
 }
+
+.listing-icon {
+  color: #555;
+  font-size: 0.8em;
+  float: right;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  padding: 3px;
+}
+
+.wanted {
+  background-color: #DFF0D8;
+}
+  
+.for-rent {
+  background-color: #80E6FF;
+}
+
