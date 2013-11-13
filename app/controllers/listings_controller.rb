@@ -12,6 +12,9 @@ class ListingsController < ApplicationController
 
   def show
     @listing = Listing.find_by_id(params[:id])
+    if !@listing.approved? && !@listing.editable?(current_user)
+      return redirect_to listings_url
+    end
     @map = @listing.address.blank? ? nil : @listing.address.to_gmaps4rails do |address, marker|
       marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
     end
