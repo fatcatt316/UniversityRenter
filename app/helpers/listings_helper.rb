@@ -26,4 +26,14 @@ module ListingsHelper
       raw("<span class='listing-icon for-rent'>For Rent</span>")
     end
   end
+  
+  def listing_status(listing)
+    if listing.denied?
+      raw("<span class='listing-status denied' title='This ad has been denied.'>Denied</span>")
+    elsif listing.pending?
+      raw("<span class='listing-status pending' title='This ad is pending approval by an admin.'>Pending</span>")
+    elsif listing.retired?
+      raw("<span class='listing-status deleted' title='This ad has been deleted.'>Deleted</span>")
+    end
+  end
 end

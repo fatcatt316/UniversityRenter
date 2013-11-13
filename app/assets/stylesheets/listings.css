@@ -1,0 +1,56 @@
+.listing-pending td {
+  background-color: yellow !important;
+  color: grey !important;
+}
+
+.listing-retired td {
+  background-color: #E0C266 !important;
+  color: grey !important;
+}
+
+.listing-icon {
+  color: #555;
+  font-size: 0.8em;
+  float: right;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  padding: 3px;
+}
+
+.listing-icon.wanted {
+  background-color: #DFF0D8;
+}
+  
+.listing-icon.for-rent {
+  background-color: #80E6FF;
+}
+
+.listing-status {
+  border: 2px solid black;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  float: right;
+  padding: 10px 20px;
+}
+
+.listing-status.pending {
+  background-color: yellow;
+}
+.listing-status.deleted {
+  background-color: #E0C266;
+}
+.listing-status.denied {
+  background-color: red;
+  color: white;
+}
+
+.listing-title {
+  font-size: 0.9em;
+  font-weight: normal;
+}
+
+.listing-monthly-price {
+  color: orange;
+  font-size: 0.8em;
+  font-weight: bold;
+}

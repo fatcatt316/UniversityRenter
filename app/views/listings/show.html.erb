@@ -1,3 +1,5 @@
+<%= listing_status(@listing) %>
+
 <%= render :partial => "listings/#{@listing.for_rent? ? 'for_rent' : 'wanted'}_show" %>
 
 <% if @listing.editable?(current_user) %>
