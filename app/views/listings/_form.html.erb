@@ -50,7 +50,7 @@
       <td><%= f.select :total_bedrooms, [""] + (1..10).to_a %></td>
     </tr>
     <tr class="for_rent required">
-      <th><%= f.label :price_per_month, "Price per month:" %></th>
+      <th><%= f.label :price_per_month, "Monthly rent:" %></th>
       <td><%= f.text_field :price_per_month, placeholder: "$", size: "4" %></td>
     </tr>
     <tr class="for_rent required">
