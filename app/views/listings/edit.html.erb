@@ -5,6 +5,11 @@
   
   <% if current_user && current_user.admin? %>
     <p><%= f.select :ad_status_id, AdStatus.select_options %></p>
+  <% elsif @listing.editable?(current_user) && @listing.editable_status? %>
+    <p>
+      Want to delete this ad? 
+      <%= f.select :ad_status_id, [["Nope", AdStatus.approved.id], ["Yep", AdStatus.retired.id]] %>
+    </p>
   <% end %>
 
   <%= render :partial => "form", :locals => {:f => f} %>

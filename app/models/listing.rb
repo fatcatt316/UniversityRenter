@@ -52,6 +52,9 @@ class Listing < ActiveRecord::Base
     new_record? || (user && (user.admin? || creator_id == user.id))
   end
   
+  def editable_status?
+    AdStatus.editable_status_names.include?(ad_status.to_s)
+  end
   
   def destroyable?(user=nil)
     (user && (user.admin? || self.creator_id == user))

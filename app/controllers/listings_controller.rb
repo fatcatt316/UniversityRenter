@@ -63,7 +63,7 @@ class ListingsController < ApplicationController
       flash[:warning] = "Whoops, looks like you can't edit that ad!"
       return redirect_to listings_url
     end
-    unless current_user && current_user.admin?
+    unless AdStatus.accessible_status?(current_user, listing_params[:ad_status_id])
       listing_params[:ad_status_id] = @listing.ad_status_id
     end
     
@@ -113,7 +113,7 @@ class ListingsController < ApplicationController
       else
         params.require(:listing).permit({:address_attributes => [:line1, :zip, :city, :state_id]}, {:documents => []},
           {:features => []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id,
-          :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on, :full_name)
+          :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on, :full_name, :ad_status_id)
       end
     end
 end

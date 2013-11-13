@@ -28,6 +28,20 @@ class AdStatus < ActiveRecord::Base
     where("name = 'Approved'").first
   end
   
+  def self.retired
+    where("name = 'Retired'").first
+  end
+  
+  def self.accessible_status?(current_user, ad_status_id)
+    return true if current_user.admin?
+    ad_status = where(id: ad_status_id).first
+    ad_status && editable_status_names.include?(ad_status.name)
+  end
+  
+  def self.editable_status_names
+    ["Approved", "Retired"]
+  end
+  
   def self.select_options(options={})
     options[:order_by] ||= "name ASC"
     select = order(options[:order_by]).all.map{|u| [u.to_s, u.id]}
