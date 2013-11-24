@@ -6,7 +6,7 @@ class ListingsController < ApplicationController
     params[:filter][:show_all] = current_user && current_user.admin?
     params[:filter][:college_id] = current_college.try(:id)
 
-    @listings = Listing.search(params[:filter]).order("available_on DESC, created_at DESC").paginate(:page => (params[:page] || 1), :per_page => 20)
+    @listings = Listing.search(params[:filter]).order("available_on DESC, created_at DESC").paginate(page: (params[:page] || 1), per_page: 20)
   end
 
 
@@ -16,7 +16,7 @@ class ListingsController < ApplicationController
       return redirect_to listings_url
     end
     @map = @listing.address.blank? ? nil : @listing.address.to_gmaps4rails do |address, marker|
-      marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
+      marker.infowindow render_to_string(partial: "/addresses/marker_infowindow", locals: { address: address })
     end
   end
 
@@ -55,7 +55,7 @@ class ListingsController < ApplicationController
     else
       @user = User.new if current_user.blank?
       @listing.build_address unless @listing.address
-      render :action => "new"
+      render action: :new
     end
   end
 
@@ -76,7 +76,7 @@ class ListingsController < ApplicationController
       flash[:notice] = 'Listing was successfully updated.'
       redirect_to college_listing_url(@listing.college, @listing)
     else
-      render :action => "edit"
+      render action: :edit
     end
   end
 
@@ -98,15 +98,15 @@ class ListingsController < ApplicationController
       @site_menu_items =  []
       if current_college
         @site_menu_items  += [{
-          :menu_header => "Communities",
-          :menu_items => current_college.communities.order(:name).map{|community|
-            {:text => community.to_s, :url => college_community_url(community.college, community) }
+          menu_header: "Communities",
+          menu_items: current_college.communities.order(:name).map{|community|
+            {text: community.to_s, url: college_community_url(community.college, community) }
           }
         }]
       end
       @site_menu_items += [{
-        :menu_header => "Colleges",
-        :menu_items => College.order(:name).map{|college| {:text => college.to_s, :url => listings_url(college_id: college.id) } }
+        menu_header: "Colleges",
+        menu_items: College.order(:name).map{|college| {text: college.to_s, url: listings_url(college_id: college.id) } }
       }]
     end
   
@@ -114,8 +114,8 @@ class ListingsController < ApplicationController
       if current_user.try(:admin?)
         params.require(:listing).permit!
       else
-        params.require(:listing).permit({:address_attributes => [:line1, :zip, :city, :state_id]}, {:documents => []},
-          {:features => []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id,
+        params.require(:listing).permit({address_attributes: [:line1, :zip, :city, :state_id]}, {documents: []},
+          {features: []}, :title, :contact_email, :contact_phone, :description, :wanted, :address_id, :college_id, :community_id,
           :creator_id, :preferred_gender_id, :available_bedrooms, :total_bedrooms, :price_per_month, :available_on, :full_name, :ad_status_id)
       end
     end

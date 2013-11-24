@@ -64,7 +64,7 @@ module ApplicationHelper
     image_file = owner.images.first #owner.primary_document
     
     if image_file.try(:image?)
-      return image_tag image_file.doc.url(options[:size].to_sym), :title => image_file.to_s, :class => "picture_frame"
+      return image_tag image_file.doc.url(options[:size].to_sym), title: image_file.to_s, class: "picture_frame"
     end
   end
   
@@ -83,12 +83,12 @@ module ApplicationHelper
     options[:partial] ||= "#{association.to_s.singularize}_fields"
     new_object = f.object.class.reflect_on_association(association).klass.new
     
-    fields = f.fields_for(association, new_object, :child_index => "new_#{association}") do |nested_form|
-      render(:partial => options[:partial], :locals => { :f => nested_form })
+    fields = f.fields_for(association, new_object, child_index: "new_#{association}") do |nested_form|
+      render(partial: options[:partial], locals: { f: nested_form })
     end
         
     link_to_function(name, ("add_fields(this, \"#{association}\", \"#{escape_javascript(fields)}\", \"#{options[:where]}\")"), 
-      :class => options[:class])
+      class: options[:class])
   end
   
   

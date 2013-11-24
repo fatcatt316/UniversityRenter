@@ -1,14 +1,14 @@
 class Community < ActiveRecord::Base
   has_many :listings
 
-  has_one :address, :as => :subject, :dependent => :destroy
-  accepts_nested_attributes_for :address, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  has_one :address, as: :subject, dependent: :destroy
+  accepts_nested_attributes_for :address, reject_if: lambda { |a| a.values.all?(&:blank?) }, allow_destroy: true
   
-  has_many :ad_features, :as => :subject, :dependent => :destroy
-  has_many :features, :through => :ad_features
+  has_many :ad_features, as: :subject, dependent: :destroy
+  has_many :features, through: :ad_features
   
-  has_many :documents, :as => :owner, :dependent => :destroy
-  accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  has_many :documents, as: :owner, dependent: :destroy
+  accepts_nested_attributes_for :documents, reject_if: lambda { |a| a.values.all?(&:blank?) }, allow_destroy: true
   
   belongs_to :college
   
@@ -55,7 +55,7 @@ class Community < ActiveRecord::Base
     existing_ad_features.select{|ad_feature| !feature_ids.include?(ad_feature.feature_id)}.each &:destroy
     feature_ids.each do |feature_id|
       ad_feature = existing_ad_features.find_by_feature_id(feature_id)
-      ad_feature ||= self.ad_features.create(:feature_id => feature_id)
+      ad_feature ||= self.ad_features.create(feature_id: feature_id)
     end
   end
   
@@ -70,7 +70,7 @@ class Community < ActiveRecord::Base
     end
     
     order = (options[:order_by])? options[:order_by]: "name ASC"
-    select = self.all(:conditions => [cond] + cond_crit, :order => order).map{|u| [u.to_s, u.id]}
+    select = self.all(conditions: [cond] + cond_crit, order: order).map{|u| [u.to_s, u.id]}
     select = [""].concat(select) if options[:include_blank]
     return select
   end

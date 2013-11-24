@@ -1,5 +1,5 @@
 class CollegesController < ApplicationController
-  before_filter :admin_only, :except => [:index, :show, :select]
+  before_filter :admin_only, except: [:index, :show, :select]
 
   def index
     @colleges = College.all
@@ -55,7 +55,7 @@ class CollegesController < ApplicationController
       redirect_to(@college)
     else
       @college.build_address
-      render :action => "new"
+      render action: :new
     end
   end
 
@@ -66,7 +66,7 @@ class CollegesController < ApplicationController
       flash[:notice] = 'College was successfully updated.'
       redirect_to(@college)
     else
-      render :action => "edit"
+      render action: :edit
     end
   end
 

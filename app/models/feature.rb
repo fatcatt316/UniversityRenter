@@ -1,5 +1,5 @@
 class Feature < ActiveRecord::Base
-  has_many :ad_features, :dependent => :destroy
+  has_many :ad_features, dependent: :destroy
   ### TODO: PAPERCLIP
   
   validates_presence_of :name
@@ -16,7 +16,7 @@ class Feature < ActiveRecord::Base
     conds += " AND utility IS NOT TRUE" if options[:non_utility]
     
     order = (options[:order_by])? options[:order_by]: "name ASC"
-    select = self.all(:conditions => conds, :order => order).map {|u| [u.to_s, u.id]}
+    select = self.all(conditions: conds, order: order).map {|u| [u.to_s, u.id]}
     select = [""].concat(select) if options[:include_blank]
     return select
   end

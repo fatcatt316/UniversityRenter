@@ -1,8 +1,8 @@
 <% if @map && false %>
   <%= gmaps({
-         :map_options => { :auto_zoom => false, :zoom => 17, :type => "HYBRID"},
-         :markers     => { :data => @map, :options => { :raw => '{ animation: google.maps.Animation.BOUNCE }' }},
-         :direction => {:data => {:to => address.location_string}}
+         map_options: { auto_zoom: false, zoom: 17, type: "HYBRID"},
+         markers: { data: @map, options: { raw: '{ animation: google.maps.Animation.BOUNCE }' }},
+         direction: {data: {to: address.location_string}}
       })
   %>
 <% end %>

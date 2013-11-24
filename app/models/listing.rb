@@ -78,7 +78,7 @@ class Listing < ActiveRecord::Base
     existing_ad_features.select{|ad_feature| !feature_ids.include?(ad_feature.feature_id)}.each &:destroy
     feature_ids.each do |feature_id|
       ad_feature = existing_ad_features.find_by_feature_id(feature_id)
-      ad_feature ||= self.ad_features.create(:feature_id => feature_id)
+      ad_feature ||= self.ad_features.create(feature_id: feature_id)
     end
   end
   

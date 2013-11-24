@@ -1,6 +1,6 @@
 class Gender < ActiveRecord::Base
   has_many :users
-  has_many :listings, :foreign_key => "preferred_gender_id"
+  has_many :listings, foreign_key: "preferred_gender_id"
   
   validates_uniqueness_of :name
   validates_presence_of :name

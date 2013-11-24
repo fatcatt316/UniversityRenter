@@ -1,2 +1,2 @@
-<strong><%= truncate(address.subject.to_s, :length => 50) %></strong><br>
+<strong><%= truncate(address.subject.to_s, length: 50) %></strong><br>
 <a href="https://maps.google.com/maps?hl=en&q=<%=raw CGI.escape(address.google_api_address) %>"><%= address %></a>

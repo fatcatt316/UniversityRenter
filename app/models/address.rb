@@ -1,7 +1,7 @@
 class Address < ActiveRecord::Base
   acts_as_gmappable
   
-  belongs_to :subject, :polymorphic => true
+  belongs_to :subject, polymorphic: true
   belongs_to :state
     
   validates_presence_of :line1, :state, :city, :zip
@@ -28,7 +28,7 @@ class Address < ActiveRecord::Base
   
   def self.city_select_options(options={})
     cities = order("city DESC").group(:city)
-    cities = cities.where(:state_id => options[:state_id]) if options[:state_id].present?
+    cities = cities.where(state_id: options[:state_id]) if options[:state_id].present?
     cities = cities.select("addresses.city").all.map{|city| [city.city, city.city] }
     if options[:include_blank]
       blank_option = cities.size.zero? ? "None found!" : ""

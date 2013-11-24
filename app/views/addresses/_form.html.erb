@@ -11,7 +11,7 @@
 <% if !defined?(editable) || (defined?(editable) && editable) %>
   <tbody id="<%= div_id %>" class="address_form fields <%= css_class %>">
     <tr>
-      <th><%= f.label :line1, "Address:" %></th><td><%= f.text_area :line1, :size => '32x3' %></td>
+      <th><%= f.label :line1, "Address:" %></th><td><%= f.text_area :line1, size: '32x3' %></td>
     </tr>
     <tr>
       <th><%= f.label :city_state, "City, ST:" %></th>
@@ -25,11 +25,11 @@
         <%= f.label :zip, "ZIP:" %>
       </th>
       <td>
-        <%= f.text_field :zip, :size => 5, :maxlength => 5, :id => "zip_#{div_id}", :class => "zip_field" %>
+        <%= f.text_field :zip, size: 5, maxlength: 5, id: "zip_#{div_id}", class: "zip_field" %>
       </td>
     </tr>
-    <%= f.hidden_field :city, :id => "#{div_id}_city", :class => 'city_field' %>
-    <%= f.hidden_field :state_id, :id => "#{div_id}_state_id", :class => 'state_id' %>
+    <%= f.hidden_field :city, id: "#{div_id}_city", class: 'city_field' %>
+    <%= f.hidden_field :state_id, id: "#{div_id}_state_id", class: 'state_id' %>
   </tbody>
   
 <% else %>

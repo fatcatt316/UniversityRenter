@@ -4,5 +4,5 @@
   City:
 </div>
 <%= select_tag :city, 
-  options_for_select(Address.city_select_options(:include_blank => true, :state_id => state_id)), 
-  :class => "short_select" %>
+  options_for_select(Address.city_select_options(include_blank: true, state_id: state_id)),
+  class: "short_select" %>

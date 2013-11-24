@@ -25,9 +25,9 @@ class FeaturesController < ApplicationController
     @feature = Feature.new(feature_params)
 
     if @feature.save
-      redirect_to(@feature, :notice => 'Feature was successfully created.')    
+      redirect_to(@feature, notice: 'Feature was successfully created.')
     else
-      render :action => "new"
+      render action: :new
     end
   end
 
@@ -36,9 +36,9 @@ class FeaturesController < ApplicationController
     @feature = Feature.find(params[:id])
 
     if @feature.update_attributes(feature_params)
-      redirect_to(@feature, :notice => 'Feature was successfully updated.')
+      redirect_to(@feature, notice: 'Feature was successfully updated.')
     else
-      render :action => "edit"
+      render action: :edit
     end
   end
 

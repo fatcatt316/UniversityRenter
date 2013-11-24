@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_filter :admin_only, :except => [:index, :show, :contact, :send_email, :update_dropdown]
+  before_filter :admin_only, except: [:index, :show, :contact, :send_email, :update_dropdown]
 
   def index
     if current_college
@@ -13,7 +13,7 @@ class CommunitiesController < ApplicationController
   def show
     @community = Community.find(params[:id])
     @map = @community.address.blank? ? nil : @community.address.to_gmaps4rails do |address, marker|
-      marker.infowindow render_to_string(:partial => "/addresses/marker_infowindow", :locals => { :address => address })
+      marker.infowindow render_to_string(partial: "/addresses/marker_infowindow", locals: { address: address })
     end
   end
   
@@ -57,7 +57,7 @@ class CommunitiesController < ApplicationController
       flash[:notice] = 'Community was successfully created.'
       redirect_to college_community_url(@community.college, @community)
     else
-      render :action => "new"
+      render action: :new
     end
   end
 
@@ -72,7 +72,7 @@ class CommunitiesController < ApplicationController
       redirect_to college_community_url(@community.college, @community)
     else
       @community.address ||= @community.build_address
-      render :action => "edit"
+      render action: :edit
     end
   end
 

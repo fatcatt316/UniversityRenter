@@ -1,5 +1,5 @@
 class ContactMailer < ActionMailer::Base
-  default :from => "from@example.com"
+  default from: "from@example.com"
   
   def email_community(community, from, subject, body)
     @subject = "UniversityRenter: #{subject}"
