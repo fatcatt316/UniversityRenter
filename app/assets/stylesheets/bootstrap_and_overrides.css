@@ -189,6 +189,22 @@ a.dropdown-toggle:hover {
   color: orange;
 }
 
+.picture-container {
+  padding: 0 0 10px 0;
+}
+
+.picture-container img {
+  vertical-align: top;
+  float: left;
+  margin-right: 10px;
+}
+
+.picture_frame {
+  padding: 5px;
+  background-color: #DDD;
+  border: 1px solid grey;
+}
+
 .feature_box {
   margin-bottom: 20px;
 }

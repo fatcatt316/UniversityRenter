@@ -12,12 +12,13 @@
     </h2>
     
     <% if @listing.images.any? %>
-      <div style="border: 1px solid green">
-        <!-- Lightbox and shadowbox -->
+      <div class="picture-container">
         <% @listing.images.each do |image| %>
-          <%= image_tag image.doc.url(:medium), :class => "picture_frame" %>
-          <br />
+          <a href="<%= image.doc.url(:original) %>">
+            <%= image_tag image.doc.url(:medium), class: 'picture_frame' %>
+          </a>
         <% end %>
+        <div class="clear"></div>
       </div>
     <% end %>
     
