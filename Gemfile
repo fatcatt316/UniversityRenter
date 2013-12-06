@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "2.0.0"
 
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 gem "pg" # Use postgresql as the database for Active Record
 
 group :doc do
