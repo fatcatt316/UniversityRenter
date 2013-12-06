@@ -57,7 +57,7 @@ class Listing < ActiveRecord::Base
   end
   
   def destroyable?(user=nil)
-    (user && (user.admin? || self.creator_id == user))
+    (user && (user.admin? || self.creator_id == user.id))
   end
   
   
