@@ -36,4 +36,10 @@ module ListingsHelper
       raw("<span class='listing-status deleted' title='This ad has been deleted.'>Deleted</span>")
     end
   end
+  
+  def available_date(listing)
+    if listing.available_on.present?
+      listing.available_on <= Date.today ? "Now! <small>(as of #{listing.available_on.strftime('%m/%d/%Y')})</small>".html_safe : listing.available_on.strftime("%m/%d/%Y")
+    end
+  end
 end
