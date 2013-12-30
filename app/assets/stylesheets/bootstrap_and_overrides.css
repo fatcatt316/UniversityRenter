@@ -147,6 +147,11 @@ a.dropdown-toggle:hover {
   text-decoration: none;
 }
 
+#login_error_message {
+  color: #990000;
+  font-weight: bold;
+}
+
 .orange_notice {
   float: left;
   -moz-border-radius: 5px;

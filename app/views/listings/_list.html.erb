@@ -14,7 +14,7 @@
       <% end %>
     </tr>
     <% listings.each do |listing| %>
-      <%= render :partial => "listings/row", :locals => {:listing => listing} %>
+      <%= render partial: "listings/row", locals: {listing: listing} %>
     <% end %>
   </table>
 <% end %>
