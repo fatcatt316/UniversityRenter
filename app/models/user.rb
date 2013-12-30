@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password, on: :create
   validates_presence_of :email  
   validates_uniqueness_of :email
+  validates_format_of :email, with: /.+@.+\..+/i, on: :create
   
   
   def to_s
