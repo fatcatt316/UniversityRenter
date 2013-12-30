@@ -8,7 +8,7 @@
     </h1>
     <h2>
       <span class="listing-title"><%= @listing %></span>
-      <span class="listing-monthly-price"><%= number_to_currency(@listing.price_per_month) %></span>
+      <span class="listing-monthly-price"><%= number_to_currency(@listing.price_per_month) %> per month</span>
     </h2>
     
     <% if @listing.images.any? %>
