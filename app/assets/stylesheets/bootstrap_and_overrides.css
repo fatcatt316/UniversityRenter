@@ -225,6 +225,11 @@ a.dropdown-toggle:hover {
   font-weight: normal;
 }
 
+.info {
+  color: grey;
+  font-size: 12px;
+}
+
 .feature_box label {
   display: inline-block;
 }

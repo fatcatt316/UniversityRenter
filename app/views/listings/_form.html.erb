@@ -13,7 +13,11 @@
   <table class="table-hover form">
     <tr>
       <th class="required"><%= f.label :title, "Ad Title:" %></th>
-      <td><%= f.text_field :title %></td>
+      <td>
+        <%= f.text_field :title %><br>
+        <small class="for_rent info">(Example: "Nice, clean room for rent")</small>
+        <small class="wanted info">(Example: "Looking for quiet apartment to rent")</small>
+      </td>
     </tr>
     <tr>
       <th class="required"><%= f.label :college_id, "College:" %></th>
