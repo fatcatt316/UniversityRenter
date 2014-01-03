@@ -32,7 +32,7 @@
       <% end %>
       
       <li <%= "class=active" if controller.controller_name == "listings" && ["new", "create", "edit", "update"].include?(controller.action_name) %>>
-        <%= link_to "Post an Ad", new_listing_url(:listing => {:college_id => current_college.try(:id)}) %>
+        <%= link_to "Post an Ad", new_listing_url(listing: {college_id: current_college.try(:id)}), class: "post_button" %>
       </li>
     </ul>
     
