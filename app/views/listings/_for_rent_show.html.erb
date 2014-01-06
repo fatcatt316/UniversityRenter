@@ -32,6 +32,16 @@
         </tr>
       <% end %>
       
+      <% if @listing.address.present? %>
+        <tr>
+          <th>Address:</th>
+          <td>
+            <%= @listing.address %> 
+            (<%= link_to "Google Map", google_maps_url(@listing.address), target: '_blank' %>)
+          </td>
+        </tr>
+      <% end %>
+      
       <% if @listing.preferred_gender %>
         <tr>
           <th>Preferred Gender:</th>
